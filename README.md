@@ -179,11 +179,11 @@ manga-image-translator-gui/
 
 ```
 ┌─────────────────────────────────────────────┐
-│           Rust GUI (GTK4/libadwaita)         │
+│           Rust GUI (GTK4/libadwaita)        │
 │                                             │
-│  main_window ← settings_panel              │
-│       ↕          file_browser              │
-│  ipc_bridge ←   preview                    │
+│  main_window ← settings_panel               │
+│       ↕          file_browser               │
+│  ipc_bridge ←   preview                     │
 │       ↕          dialogs                    │
 ├───────┬─────────────────────────────────────┤
 │ stdin/stdout (JSON)                         │
