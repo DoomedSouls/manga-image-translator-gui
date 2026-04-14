@@ -1,3 +1,5 @@
+<img width="3802" height="2051" alt="preview" src="https://github.com/user-attachments/assets/8657b60d-19d4-474c-bc28-d7d1ac895b8b" />
+
 # Manga Image Translator — GTK4 GUI
 
 A modern desktop GUI for [manga-image-translator](https://github.com/zyddnys/manga-image-translator), built with **GTK4 / libadwaita** in Rust.
