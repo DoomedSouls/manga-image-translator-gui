@@ -1,0 +1,544 @@
+# Manga Translator - Korean Translation
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Abbrechen"
+msgstr "취소"
+
+msgid "Abgebrochen"
+msgstr "취소됨"
+
+msgid "Aktualisieren"
+msgstr "새로고침"
+
+msgid "Aktuelles Verzeichnis"
+msgstr "현재 디렉토리"
+
+msgid "Akzentfarbe"
+msgstr "강조 색상"
+
+msgid "Akzentfarbe wählen"
+msgstr "강조 색상 선택"
+
+msgid "Alle auswählen"
+msgstr "모두 선택"
+
+msgid "Allgemein"
+msgstr "일반"
+
+msgid "Ansicht"
+msgstr "보기"
+
+msgid "Anwenden"
+msgstr "적용"
+
+msgid "API Schlüssel"
+msgstr "API 키"
+
+msgid "API Schlüssel eintragen"
+msgstr "API 키 입력"
+
+msgid "API-Schlüssel fehlt"
+msgstr "API 키가 없습니다"
+
+msgid "Auf Standard zurücksetzen"
+msgstr "기본값으로 재설정"
+
+msgid "Auflösung für Bildreparatur"
+msgstr "이미지 복구 해상도"
+
+msgid "Auflösung für Texterkennung"
+msgstr "텍스트 인식 해상도"
+
+msgid "Ausgabe"
+msgstr "출력"
+
+msgid "Ausgabe-Ordner"
+msgstr "출력 폴더"
+
+msgid "Ausgabe-Ordner wählen"
+msgstr "출력 폴더 선택"
+
+msgid "ausgewählt"
+msgstr "선택됨"
+
+msgid "Ausrichtung"
+msgstr "정렬"
+
+msgid "Auswahl aufheben"
+msgstr "선택 해제"
+
+msgid "Auswählen"
+msgstr "선택"
+
+msgid "Auto"
+msgstr "자동"
+
+msgid "Automatisch aktualisieren"
+msgstr "자동 새로고침"
+
+msgid "Backend nicht konfiguriert"
+msgstr "백엔드가 구성되지 않았습니다"
+
+msgid "BBox Zusammenführung"
+msgstr "바운딩 박스 병합"
+
+msgid "Benutzerdefiniert"
+msgstr "사용자 지정"
+
+msgid "Benutzerdefinierte Text-/Randfarbe"
+msgstr "사용자 지정 텍스트/테두리 색상"
+
+msgid "Berechnungsgenauigkeit"
+msgstr "연산 정밀도"
+
+msgid "Bereit"
+msgstr "준비 완료"
+
+msgid "Bilder"
+msgstr "이미지"
+
+msgid "Bildverarbeitung"
+msgstr "이미지 처리"
+
+msgid "Bildvergrößerung vor der Übersetzung"
+msgstr "번역 전 이미지 확대"
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr "API 키를 입력하세요"
+
+msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
+msgstr "API 설정에서 키를 입력하세요."
+
+msgid "Blau"
+msgstr "파란색"
+
+msgid "Blaugrün"
+msgstr "틸"
+
+msgid "Darstellung"
+msgstr "렌더링"
+
+msgid "Dateiauswahl"
+msgstr "파일 선택"
+
+msgid "Dateien"
+msgstr "파일"
+
+msgid "Dateien suchen…"
+msgstr "파일 검색…"
+
+msgid "Dateien übersetzt"
+msgstr "파일 번역됨"
+
+msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+msgstr "선택한 번역기에 API 키가 필요합니다."
+
+msgid "Detektor"
+msgstr "감지기"
+
+msgid "Dunkel"
+msgstr "어두움"
+
+msgid "Eigene Farben verwenden"
+msgstr "사용자 지정 색상 사용"
+
+msgid "Einstellungen ein-/ausblenden"
+msgstr "설정 표시/숨기기"
+
+msgid "Einstellungen für die Textdarstellung"
+msgstr "텍스트 표시 설정"
+
+msgid "Einstellungen für die Übersetzung"
+msgstr "번역 설정"
+
+msgid "Einstellungen für Inpainting und Upscaling"
+msgstr "인페인팅 및 업스케일링 설정"
+
+msgid "Erfordert Neustart"
+msgstr "재시작 필요"
+
+msgid "Erkennungsboxen zusammenführen (mocr)"
+msgstr "감지 박스 병합 (mocr)"
+
+msgid "Erkennungsgröße"
+msgstr "감지 크기"
+
+msgid "Erweitert"
+msgstr "고급"
+
+msgid "Erzwinge horizontale/vertikale Richtung"
+msgstr "가로/세로 방향 강제"
+
+msgid "Extern öffnen"
+msgstr "외부에서 열기"
+
+msgid "Farbe wählen"
+msgstr "색상 선택"
+
+msgid "Farbschema"
+msgstr "색상 테마"
+
+msgid "Farbwähler öffnen"
+msgstr "색상 선택기 열기"
+
+msgid "Fehler"
+msgstr "오류"
+
+msgid "Fehler beim Laden der Log-Datei."
+msgstr "로그 파일 로딩에 실패했습니다."
+
+msgid "Fertig!"
+msgstr "완료!"
+
+msgid "Gelb"
+msgstr "노란색"
+
+msgid "Gemini Modell"
+msgstr "Gemini 모델"
+
+msgid "Gerät"
+msgstr "장치"
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Grün"
+msgstr "초록색"
+
+msgid "Hell"
+msgstr "밝음"
+
+msgid "Inpainting"
+msgstr "인페인팅"
+
+msgid "Inpainting Größe"
+msgstr "인페인팅 크기"
+
+msgid "Inpainting Präzision"
+msgstr "인페인팅 정밀도"
+
+msgid "Kein Bild geladen"
+msgstr "이미지가 로드되지 않았습니다"
+
+msgid "Kein Rand/Umriss um den Text"
+msgstr "텍스트 주변 테두리 없음"
+
+msgid "Keine Datei ausgewählt"
+msgstr "파일이 선택되지 않음"
+
+msgid "Keine Dateien"
+msgstr "파일 없음"
+
+msgid "Keine Dateien ausgewählt"
+msgstr "선택된 파일 없음"
+
+msgid "Keine Log-Datei gefunden."
+msgstr "로그 파일을 찾을 수 없습니다."
+
+msgid "Keine Modelle gefunden"
+msgstr "모델을 찾을 수 없음"
+
+msgid "Kopieren"
+msgstr "복사"
+
+msgid "Lila"
+msgstr "보라색"
+
+msgid "Listenansicht"
+msgstr "목록 보기"
+
+msgid "Log anzeigen"
+msgstr "로그 보기"
+
+msgid "Log-Datei ist leer."
+msgstr "로그 파일이 비어 있습니다."
+
+msgid "Lokales Modell (.gguf Pfad)"
+msgstr "로컬 모델 (.gguf 경로)"
+
+msgid "Manga Translator"
+msgstr "Manga Translator"
+
+msgid "manga-image-translator"
+msgstr "manga-image-translator"
+
+msgid "manga-image-translator gefunden"
+msgstr "manga-image-translator을(를) 찾음"
+
+msgid "manga-image-translator Verzeichnis wählen"
+msgstr "manga-image-translator 디렉토리 선택"
+
+msgid "Manga-Startverzeichnis"
+msgstr "만가 홈 디렉토리"
+
+msgid "Manga-Startverzeichnis…"
+msgstr "만가 홈 디렉토리…"
+
+msgid "Manga-Verzeichnis wählen"
+msgstr "만가 디렉토리 선택"
+
+msgid "Masken-Erweiterung"
+msgstr "마스크 확장"
+
+msgid "Menü"
+msgstr "메뉴"
+
+msgid "Methode zur Bildreparatur"
+msgstr "이미지 복구 방법"
+
+msgid "Methode zur Blasenerkennung"
+msgstr "말풍선 감지 방법"
+
+msgid "Methode zur Texteinblendung"
+msgstr "텍스트 표시 방법"
+
+msgid "Modell für VLM-Korrektur"
+msgstr "VLM 보정용 모델"
+
+msgid "Modelle vom OpenRouter API laden"
+msgstr "OpenRouter API에서 모델 로드"
+
+msgid "Modelle werden geladen…"
+msgstr "모델 로딩 중…"
+
+msgid "Modellliste aktualisieren"
+msgstr "모델 목록 새로고침"
+
+msgid "Modus"
+msgstr "모드"
+
+msgid "Nicht gefunden"
+msgstr "찾을 수 없음"
+
+msgid "Nicht konfiguriert"
+msgstr "구성되지 않음"
+
+msgid "OCR Modell"
+msgstr "OCR 모델"
+
+msgid "OpenAI / ChatGPT"
+msgstr "OpenAI / ChatGPT"
+
+msgid "OpenRouter Modell"
+msgstr "OpenRouter 모델"
+
+msgid "Optical Character Recognition"
+msgstr "광학 문자 인식"
+
+msgid "Orange"
+msgstr "주황색"
+
+msgid "Original"
+msgstr "원본"
+
+msgid "Original-Ordner verwenden"
+msgstr "원본 폴더 사용"
+
+msgid "Positive Werte = größerer Text"
+msgstr "양수 값 = 더 큰 텍스트"
+
+msgid "Protokoll"
+msgstr "로그"
+
+msgid "Protokoll anzeigen"
+msgstr "로그 표시"
+
+msgid "Python-Umgebung"
+msgstr "Python 환경"
+
+msgid "Python-Umgebung gefunden"
+msgstr "Python 환경을 찾음"
+
+msgid "Rand:"
+msgstr "테두리:"
+
+msgid "Randfarbe (Hintergrund)"
+msgstr "테두리 색상 (배경)"
+
+msgid "Rasteransicht"
+msgstr "그리드 보기"
+
+msgid "Recheneinheit für die Übersetzung"
+msgstr "번역 연산 장치"
+
+msgid "Renderer"
+msgstr "렌더러"
+
+msgid "Rosa"
+msgstr "분홍색"
+
+msgid "Rot"
+msgstr "빨간색"
+
+msgid "RTL Richtung"
+msgstr "RTL 방향"
+
+msgid "Schließen"
+msgstr "닫기"
+
+msgid "Schrift randlos"
+msgstr "텍스트 테두리 없음"
+
+msgid "Schriftfarbe"
+msgstr "글꼴 색상"
+
+msgid "Schriftgrößenversatz"
+msgstr "글꼴 크기 오프셋"
+
+msgid "Sortierung:"
+msgstr "정렬:"
+
+msgid "Speichern"
+msgstr "저장"
+
+msgid "Sprache"
+msgstr "언어"
+
+msgid "Sprache wird beim Neustart wirksam."
+msgstr "언어는 다시 시작 후 적용됩니다."
+
+msgid "Sprache der Übersetzung"
+msgstr "번역 언어"
+
+msgid "Standard (result/)"
+msgstr "기본 (result/)"
+
+msgid "Startverzeichnis"
+msgstr "시작 디렉토리"
+
+msgid "Suche fokussieren"
+msgstr "검색 포커스"
+
+msgid "System"
+msgstr "시스템"
+
+msgid "Tastenkürzel"
+msgstr "키보드 단축키"
+
+msgid "Text von rechts nach links (Arabisch, Hebräisch)"
+msgstr "오른쪽에서 왼쪽으로 텍스트 (아랍어, 히브리어)"
+
+msgid "Text:"
+msgstr "텍스트:"
+
+msgid "Textausrichtung in Blasen"
+msgstr "말풍선 내 텍스트 정렬"
+
+msgid "Texterkennung"
+msgstr "텍스트 인식"
+
+msgid "Textfarbe (Vordergrund)"
+msgstr "텍스트 색상 (전경)"
+
+msgid "Textmaske erweitern um (px)"
+msgstr "텍스트 마스크 확장 (px)"
+
+msgid "Textrichtung"
+msgstr "텍스트 방향"
+
+msgid "Upscale Faktor"
+msgstr "업스케일 배율"
+
+msgid "Upscaler"
+msgstr "업스케일러"
+
+msgid "Vergleich"
+msgstr "비교"
+
+msgid "Vergrößerungsfaktor"
+msgstr "확대 배율"
+
+msgid "Verzeichnis wählen"
+msgstr "디렉토리 선택"
+
+msgid "Verzeichnis öffnen"
+msgstr "디렉토리 열기"
+
+msgid "Verzeichnis öffnen…"
+msgstr "디렉토리 열기…"
+
+msgid "Virtuelle Umgebung"
+msgstr "가상 환경"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "가상 환경 선택"
+
+msgid "Virtuelle Umgebung…"
+msgstr "가상 환경…"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "Vision Language Model 구성"
+
+msgid "Vision-fähiges Modell"
+msgstr "비전 지원 모델"
+
+msgid "VLM Einstellungen"
+msgstr "VLM 설정"
+
+msgid "VLM Typ"
+msgstr "VLM 유형"
+
+msgid "Vorschau"
+msgstr "미리보기"
+
+msgid "Weitere Dienste"
+msgstr "기타 서비스"
+
+msgid "Wähle das VLM-Backend"
+msgstr "VLM 백엔드를 선택하세요"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "번역 서비스를 선택하세요"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "번역 모드를 선택하세요"
+
+msgid "Zielsprache"
+msgstr "대상 언어"
+
+msgid "Zurück"
+msgstr "뒤로"
+
+msgid "Zurücksetzen"
+msgstr "재설정"
+
+msgid "Öffnen"
+msgstr "열기"
+
+msgid "Über Manga Translator"
+msgstr "Manga Translator 정보"
+
+msgid "Übergeordnetes Verzeichnis"
+msgstr "상위 디렉토리"
+
+msgid "Übersetzen"
+msgstr "번역"
+
+msgid "Übersetzer"
+msgstr "번역기"
+
+msgid "Übersetzung"
+msgstr "번역"
+
+msgid "Übersetzung abbrechen"
+msgstr "번역 취소"
+
+msgid "Übersetzung fehlgeschlagen"
+msgstr "번역 실패"
+
+msgid "Übersetzung wird vorbereitet…"
+msgstr "번역 준비 중…"

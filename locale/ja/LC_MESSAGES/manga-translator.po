@@ -1,0 +1,544 @@
+# Manga Translator - Japanese Translation
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Abbrechen"
+msgstr "キャンセル"
+
+msgid "Abgebrochen"
+msgstr "キャンセル済み"
+
+msgid "Aktualisieren"
+msgstr "更新"
+
+msgid "Aktuelles Verzeichnis"
+msgstr "現在のディレクトリ"
+
+msgid "Akzentfarbe"
+msgstr "アクセントカラー"
+
+msgid "Akzentfarbe wählen"
+msgstr "アクセントカラーを選択"
+
+msgid "Alle auswählen"
+msgstr "すべて選択"
+
+msgid "Allgemein"
+msgstr "一般"
+
+msgid "Ansicht"
+msgstr "表示"
+
+msgid "Anwenden"
+msgstr "適用"
+
+msgid "API Schlüssel"
+msgstr "API キー"
+
+msgid "API Schlüssel eintragen"
+msgstr "API キーを入力"
+
+msgid "API-Schlüssel fehlt"
+msgstr "APIキーがありません"
+
+msgid "Auf Standard zurücksetzen"
+msgstr "デフォルトに戻す"
+
+msgid "Auflösung für Bildreparatur"
+msgstr "画像修復の解像度"
+
+msgid "Auflösung für Texterkennung"
+msgstr "テキスト認識の解像度"
+
+msgid "Ausgabe"
+msgstr "出力"
+
+msgid "Ausgabe-Ordner"
+msgstr "出力フォルダ"
+
+msgid "Ausgabe-Ordner wählen"
+msgstr "出力フォルダを選択"
+
+msgid "ausgewählt"
+msgstr "選択済み"
+
+msgid "Ausrichtung"
+msgstr "配置"
+
+msgid "Auswahl aufheben"
+msgstr "選択解除"
+
+msgid "Auswählen"
+msgstr "選択"
+
+msgid "Auto"
+msgstr "自動"
+
+msgid "Automatisch aktualisieren"
+msgstr "自動更新"
+
+msgid "Backend nicht konfiguriert"
+msgstr "バックエンドが設定されていません"
+
+msgid "BBox Zusammenführung"
+msgstr "バウンディングボックス統合"
+
+msgid "Benutzerdefiniert"
+msgstr "カスタム"
+
+msgid "Benutzerdefinierte Text-/Randfarbe"
+msgstr "カスタムテキスト/縁取り色"
+
+msgid "Berechnungsgenauigkeit"
+msgstr "計算精度"
+
+msgid "Bereit"
+msgstr "準備完了"
+
+msgid "Bilder"
+msgstr "画像"
+
+msgid "Bildverarbeitung"
+msgstr "画像処理"
+
+msgid "Bildvergrößerung vor der Übersetzung"
+msgstr "翻訳前の画像拡大"
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr "API キーを入力してください"
+
+msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
+msgstr "API設定でキーを入力してください。"
+
+msgid "Blau"
+msgstr "ブルー"
+
+msgid "Blaugrün"
+msgstr "ティール"
+
+msgid "Darstellung"
+msgstr "レンダリング"
+
+msgid "Dateiauswahl"
+msgstr "ファイル選択"
+
+msgid "Dateien"
+msgstr "ファイル"
+
+msgid "Dateien suchen…"
+msgstr "ファイルを検索…"
+
+msgid "Dateien übersetzt"
+msgstr "ファイル翻訳済み"
+
+msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+msgstr "選択した翻訳エンジンにはAPIキーが必要です。"
+
+msgid "Detektor"
+msgstr "検出器"
+
+msgid "Dunkel"
+msgstr "ダーク"
+
+msgid "Eigene Farben verwenden"
+msgstr "カスタム色を使用"
+
+msgid "Einstellungen ein-/ausblenden"
+msgstr "設定の表示/非表示"
+
+msgid "Einstellungen für die Textdarstellung"
+msgstr "テキスト表示の設定"
+
+msgid "Einstellungen für die Übersetzung"
+msgstr "翻訳の設定"
+
+msgid "Einstellungen für Inpainting und Upscaling"
+msgstr "Inpaintingとアップスケールの設定"
+
+msgid "Erfordert Neustart"
+msgstr "再起動が必要です"
+
+msgid "Erkennungsboxen zusammenführen (mocr)"
+msgstr "検出ボックスの統合 (mocr)"
+
+msgid "Erkennungsgröße"
+msgstr "認識サイズ"
+
+msgid "Erweitert"
+msgstr "詳細設定"
+
+msgid "Erzwinge horizontale/vertikale Richtung"
+msgstr "水平/垂直方向を強制"
+
+msgid "Extern öffnen"
+msgstr "外部で開く"
+
+msgid "Farbe wählen"
+msgstr "色を選択"
+
+msgid "Farbschema"
+msgstr "カラースキーム"
+
+msgid "Farbwähler öffnen"
+msgstr "カラーピッカーを開く"
+
+msgid "Fehler"
+msgstr "エラー"
+
+msgid "Fehler beim Laden der Log-Datei."
+msgstr "ログファイルの読み込みに失敗しました。"
+
+msgid "Fertig!"
+msgstr "完了！"
+
+msgid "Gelb"
+msgstr "イエロー"
+
+msgid "Gemini Modell"
+msgstr "Gemini モデル"
+
+msgid "Gerät"
+msgstr "デバイス"
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Grün"
+msgstr "グリーン"
+
+msgid "Hell"
+msgstr "ライト"
+
+msgid "Inpainting"
+msgstr "Inpainting"
+
+msgid "Inpainting Größe"
+msgstr "Inpaintingサイズ"
+
+msgid "Inpainting Präzision"
+msgstr "Inpainting精度"
+
+msgid "Kein Bild geladen"
+msgstr "画像が読み込まれていません"
+
+msgid "Kein Rand/Umriss um den Text"
+msgstr "テキストに縁取りなし"
+
+msgid "Keine Datei ausgewählt"
+msgstr "ファイルが選択されていません"
+
+msgid "Keine Dateien"
+msgstr "ファイルなし"
+
+msgid "Keine Dateien ausgewählt"
+msgstr "ファイルが選択されていません"
+
+msgid "Keine Log-Datei gefunden."
+msgstr "ログファイルが見つかりません。"
+
+msgid "Keine Modelle gefunden"
+msgstr "モデルが見つかりません"
+
+msgid "Kopieren"
+msgstr "コピー"
+
+msgid "Lila"
+msgstr "パープル"
+
+msgid "Listenansicht"
+msgstr "リスト表示"
+
+msgid "Log anzeigen"
+msgstr "ログを表示"
+
+msgid "Log-Datei ist leer."
+msgstr "ログファイルは空です。"
+
+msgid "Lokales Modell (.gguf Pfad)"
+msgstr "ローカルモデル (.gguf パス)"
+
+msgid "Manga Translator"
+msgstr "Manga Translator"
+
+msgid "manga-image-translator"
+msgstr "manga-image-translator"
+
+msgid "manga-image-translator gefunden"
+msgstr "manga-image-translator が見つかりました"
+
+msgid "manga-image-translator Verzeichnis wählen"
+msgstr "manga-image-translator ディレクトリを選択"
+
+msgid "Manga-Startverzeichnis"
+msgstr "マンガのホームディレクトリ"
+
+msgid "Manga-Startverzeichnis…"
+msgstr "マンガのホームディレクトリ…"
+
+msgid "Manga-Verzeichnis wählen"
+msgstr "マンガディレクトリを選択"
+
+msgid "Masken-Erweiterung"
+msgstr "マスク拡張"
+
+msgid "Menü"
+msgstr "メニュー"
+
+msgid "Methode zur Bildreparatur"
+msgstr "画像修復の手法"
+
+msgid "Methode zur Blasenerkennung"
+msgstr "吹き出し検出の手法"
+
+msgid "Methode zur Texteinblendung"
+msgstr "テキスト描画の手法"
+
+msgid "Modell für VLM-Korrektur"
+msgstr "VLM補正用モデル"
+
+msgid "Modelle vom OpenRouter API laden"
+msgstr "OpenRouter APIからモデルを読み込む"
+
+msgid "Modelle werden geladen…"
+msgstr "モデルを読み込み中…"
+
+msgid "Modellliste aktualisieren"
+msgstr "モデルリストを更新"
+
+msgid "Modus"
+msgstr "モード"
+
+msgid "Nicht gefunden"
+msgstr "見つかりません"
+
+msgid "Nicht konfiguriert"
+msgstr "未設定"
+
+msgid "OCR Modell"
+msgstr "OCR モデル"
+
+msgid "OpenAI / ChatGPT"
+msgstr "OpenAI / ChatGPT"
+
+msgid "OpenRouter Modell"
+msgstr "OpenRouterモデル"
+
+msgid "Optical Character Recognition"
+msgstr "光学文字認識"
+
+msgid "Orange"
+msgstr "オレンジ"
+
+msgid "Original"
+msgstr "オリジナル"
+
+msgid "Original-Ordner verwenden"
+msgstr "元のフォルダを使用"
+
+msgid "Positive Werte = größerer Text"
+msgstr "正の値 = より大きなテキスト"
+
+msgid "Protokoll"
+msgstr "ログ"
+
+msgid "Protokoll anzeigen"
+msgstr "ログを表示"
+
+msgid "Python-Umgebung"
+msgstr "Python環境"
+
+msgid "Python-Umgebung gefunden"
+msgstr "Python環境が見つかりました"
+
+msgid "Rand:"
+msgstr "縁取り:"
+
+msgid "Randfarbe (Hintergrund)"
+msgstr "縁取りの色 (背景)"
+
+msgid "Rasteransicht"
+msgstr "グリッド表示"
+
+msgid "Recheneinheit für die Übersetzung"
+msgstr "翻訳の計算デバイス"
+
+msgid "Renderer"
+msgstr "レンダラー"
+
+msgid "Rosa"
+msgstr "ピンク"
+
+msgid "Rot"
+msgstr "レッド"
+
+msgid "RTL Richtung"
+msgstr "RTL方向"
+
+msgid "Schließen"
+msgstr "閉じる"
+
+msgid "Schrift randlos"
+msgstr "文字の縁なし"
+
+msgid "Schriftfarbe"
+msgstr "フォントの色"
+
+msgid "Schriftgrößenversatz"
+msgstr "フォントサイズオフセット"
+
+msgid "Sortierung:"
+msgstr "並び替え:"
+
+msgid "Speichern"
+msgstr "保存"
+
+msgid "Sprache"
+msgstr "言語"
+
+msgid "Sprache wird beim Neustart wirksam."
+msgstr "言語の変更は再起動後に適用されます。"
+
+msgid "Sprache der Übersetzung"
+msgstr "翻訳の言語"
+
+msgid "Standard (result/)"
+msgstr "デフォルト (result/)"
+
+msgid "Startverzeichnis"
+msgstr "開始ディレクトリ"
+
+msgid "Suche fokussieren"
+msgstr "検索にフォーカス"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Tastenkürzel"
+msgstr "キーボードショートカット"
+
+msgid "Text von rechts nach links (Arabisch, Hebräisch)"
+msgstr "右から左へのテキスト (アラビア語、ヘブライ語)"
+
+msgid "Text:"
+msgstr "テキスト:"
+
+msgid "Textausrichtung in Blasen"
+msgstr "吹き出し内のテキスト配置"
+
+msgid "Texterkennung"
+msgstr "テキスト認識"
+
+msgid "Textfarbe (Vordergrund)"
+msgstr "テキストの色 (前景)"
+
+msgid "Textmaske erweitern um (px)"
+msgstr "テキストマスクの拡張量 (px)"
+
+msgid "Textrichtung"
+msgstr "テキストの方向"
+
+msgid "Upscale Faktor"
+msgstr "アップスケール倍率"
+
+msgid "Upscaler"
+msgstr "アップスケーラー"
+
+msgid "Vergleich"
+msgstr "比較"
+
+msgid "Vergrößerungsfaktor"
+msgstr "拡大倍率"
+
+msgid "Verzeichnis wählen"
+msgstr "ディレクトリを選択"
+
+msgid "Verzeichnis öffnen"
+msgstr "ディレクトリを開く"
+
+msgid "Verzeichnis öffnen…"
+msgstr "ディレクトリを開く…"
+
+msgid "Virtuelle Umgebung"
+msgstr "仮想環境"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "仮想環境を選択"
+
+msgid "Virtuelle Umgebung…"
+msgstr "仮想環境…"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "Vision Language Model 設定"
+
+msgid "Vision-fähiges Modell"
+msgstr "ビジョン対応モデル"
+
+msgid "VLM Einstellungen"
+msgstr "VLM設定"
+
+msgid "VLM Typ"
+msgstr "VLMタイプ"
+
+msgid "Vorschau"
+msgstr "プレビュー"
+
+msgid "Weitere Dienste"
+msgstr "その他のサービス"
+
+msgid "Wähle das VLM-Backend"
+msgstr "VLMバックエンドを選択"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "翻訳サービスを選択"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "翻訳モードを選択"
+
+msgid "Zielsprache"
+msgstr "翻訳先言語"
+
+msgid "Zurück"
+msgstr "戻る"
+
+msgid "Zurücksetzen"
+msgstr "リセット"
+
+msgid "Öffnen"
+msgstr "開く"
+
+msgid "Über Manga Translator"
+msgstr "Manga Translator について"
+
+msgid "Übergeordnetes Verzeichnis"
+msgstr "上位ディレクトリ"
+
+msgid "Übersetzen"
+msgstr "翻訳"
+
+msgid "Übersetzer"
+msgstr "翻訳エンジン"
+
+msgid "Übersetzung"
+msgstr "翻訳"
+
+msgid "Übersetzung abbrechen"
+msgstr "翻訳を中止"
+
+msgid "Übersetzung fehlgeschlagen"
+msgstr "翻訳に失敗しました"
+
+msgid "Übersetzung wird vorbereitet…"
+msgstr "翻訳を準備中…"

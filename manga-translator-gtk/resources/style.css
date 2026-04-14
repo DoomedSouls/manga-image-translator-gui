@@ -1,0 +1,755 @@
+/* resources/style.css
+ *
+ * Global CSS for Manga Translator GTK4/libadwaita GUI (Rust)
+ *
+ * Covers: animations, accent colors, buttons, progress bar,
+ * file browser, settings panel, preview pane, and dialogs.
+ */
+
+/* ===================================================================
+ * Accent color definitions (overridden at runtime)
+ * =================================================================== */
+
+/* accent_color is now a CSS variable fallback.
+   When an accent override is active, --accent-bg-color is set by the runtime provider.
+   Otherwise, libadwaita's @accent_bg_color is used as fallback. */
+
+/* ===================================================================
+ * Custom Widget Backgrounds
+ *
+ * Custom gtk::Widget subclasses (FileBrowser, SettingsPanel, Preview)
+ * need explicit transparent backgrounds so they inherit the theme's
+ * @window_bg_color in both light and dark modes. Without this, the
+ * layout manager may cache the initial theme background and not update
+ * when adw::StyleManager::set_color_scheme() switches themes.
+   =================================================================== */
+
+MangaFileBrowser,
+MangaPreview,
+MangaSettingsPanel {
+    background: transparent;
+}
+
+/* ===================================================================
+ * Keyframe Animations
+   =================================================================== */
+
+/* --- Start button glow (green pulse) --- */
+@keyframes pulse-glow-green {
+    0% {
+        box-shadow: 0 0 4px alpha(#4caf50, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 16px alpha(#4caf50, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 4px alpha(#4caf50, 0.3);
+    }
+}
+
+/* --- Cancel button glow (red pulse) --- */
+@keyframes pulse-glow-red {
+    0% {
+        box-shadow: 0 0 4px alpha(#f44336, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 16px alpha(#f44336, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 4px alpha(#f44336, 0.3);
+    }
+}
+
+/* --- Grid item selection pop --- */
+@keyframes selection-pop {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(0.96);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Checkbox bounce --- */
+@keyframes check-bounce {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Row bounce (list view selection) --- */
+@keyframes row-bounce {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.97);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Row fade-in (staggered appearance) --- */
+@keyframes row-appear {
+    0% {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Breadcrumb navigation button flash --- */
+@keyframes btn-nav-flash {
+    0% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.btn-nav-flash {
+    animation: btn-nav-flash 600ms ease-in-out;
+}
+
+/* ===================================================================
+ * Window
+ * =================================================================== */
+
+manga-translator-window {
+    /* Ensure consistent background */
+}
+
+/* ===================================================================
+ * Header Bar
+ * =================================================================== */
+
+/* View toggle buttons in header */
+.view-toggle {
+    padding: 4px 8px;
+}
+
+/* ===================================================================
+ * Status Bar / Action Bar
+ * =================================================================== */
+
+.status-bar {
+    border-top: 1px solid alpha(@borders, 0.5);
+    padding: 4px 8px;
+}
+
+/* ===================================================================
+ * Start Button (Green — "Übersetzen")
+ * =================================================================== */
+
+button.start-action-btn {
+    background: #4caf50;
+    color: white;
+    animation: pulse-glow-green 2s ease-in-out infinite;
+    transition:
+        background 200ms ease,
+        box-shadow 200ms ease;
+    border-radius: 12px;
+    padding: 10px 24px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+button.start-action-btn:hover {
+    background: #66bb6a;
+    transform: scale(1.03);
+    box-shadow: 0 0 20px alpha(#4caf50, 0.8);
+}
+
+button.start-action-btn:active {
+    background: #43a047;
+    transform: scale(0.97);
+}
+
+button.start-action-btn:disabled {
+    background: alpha(#4caf50, 0.4);
+    animation: none;
+    color: alpha(white, 0.6);
+}
+
+button.start-action-btn.processing {
+    animation: pulse-glow-green 0.8s ease-in-out infinite;
+    opacity: 0.85;
+}
+
+button.start-action-btn spinner {
+    min-width: 18px;
+    min-height: 18px;
+}
+
+/* ===================================================================
+ * Start Button Warning (Red — API key missing)
+ * =================================================================== */
+
+@keyframes pulse-glow-warning {
+    0% {
+        box-shadow: 0 0 4px alpha(#ff5722, 0.5);
+    }
+    25% {
+        box-shadow: 0 0 20px alpha(#ff5722, 0.9);
+    }
+    50% {
+        box-shadow: 0 0 30px alpha(#ff5722, 1);
+    }
+    75% {
+        box-shadow: 0 0 20px alpha(#ff5722, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 4px alpha(#ff5722, 0.5);
+    }
+}
+
+button.start-action-btn.warning {
+    background: #d32f2f;
+    color: white;
+    animation: pulse-glow-warning 0.8s ease-in-out infinite;
+    border: 2px solid #ff5722;
+}
+
+button.start-action-btn.warning:hover {
+    background: #e53935;
+    box-shadow: 0 0 30px alpha(#ff5722, 1);
+}
+
+button.start-action-btn.warning:active {
+    background: #c62828;
+    transform: scale(0.97);
+}
+
+/* ===================================================================
+ * Cancel Button (Red — "Abbrechen")
+ * =================================================================== */
+
+button.cancel-action-btn {
+    background: #f44336;
+    color: white;
+    animation: pulse-glow-red 1.5s ease-in-out infinite;
+    transition:
+        background 200ms ease,
+        box-shadow 200ms ease;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 700;
+}
+
+button.cancel-action-btn:hover {
+    background: #ef5350;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px alpha(#f44336, 0.8);
+}
+
+button.cancel-action-btn:active {
+    background: #e53935;
+    transform: scale(0.95);
+}
+
+button.cancel-action-btn:disabled {
+    opacity: 0.5;
+    animation: none;
+}
+
+/* ===================================================================
+ * Progress Bar (Red-to-Green gradient)
+ * =================================================================== */
+
+.translation-progress {
+    min-height: 6px;
+    border-radius: 3px;
+}
+
+progressbar.translation-progress trough {
+    min-height: 6px;
+    border-radius: 3px;
+    background: alpha(@borders, 0.4);
+}
+
+progressbar.translation-progress progress {
+    min-height: 6px;
+    border-radius: 3px;
+    /* Red → Yellow → Green gradient */
+    background: linear-gradient(
+        to right,
+        #f44336,
+        #ff9800,
+        #ffeb3b,
+        #8bc34a,
+        #4caf50
+    );
+}
+
+progressbar.translation-progress.active progress {
+    animation: pulse-glow-green 1s ease-in-out infinite;
+}
+
+/* ===================================================================
+ * File Browser
+ * =================================================================== */
+
+/* Grid item in the file browser */
+.grid-item-box {
+    border-radius: 8px;
+    padding: 4px;
+    transition:
+        background 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.grid-item-box:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.08);
+}
+
+/* Selected grid item */
+.grid-item-box.accent-selected {
+    box-shadow: 0 0 0 2px var(--accent-bg-color, @accent_bg_color);
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.05);
+}
+
+.grid-item-box.just-selected {
+    animation: selection-pop 250ms ease-out;
+}
+
+/* Folder checked in grid view */
+.grid-item-box.folder-checked {
+    box-shadow: 0 0 0 2px var(--accent-bg-color, @accent_bg_color);
+}
+
+/* Suppress GTK's internal hover highlight on GridView children */
+gridview child:hover {
+    background: transparent;
+}
+
+/* Grid item thumbnail */
+.grid-item-box image {
+    border-radius: 4px;
+}
+
+/* Grid item label (filename) */
+.grid-item-box label {
+    font-size: 0.85em;
+    padding: 2px 4px;
+}
+
+/* ===================================================================
+ * List View Rows
+ * =================================================================== */
+
+.file-row {
+    transition: background 150ms ease;
+    animation: row-appear 250ms ease-out forwards;
+    opacity: 0; /* Animate from invisible */
+}
+
+.file-row.row-visible {
+    opacity: 1;
+}
+
+.file-row:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.06);
+}
+
+.file-row.accent-selected {
+    box-shadow: 0 0 0 2px var(--accent-bg-color, @accent_bg_color);
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.05);
+    border-radius: 8px;
+}
+
+.file-row.folder-checked {
+    box-shadow: 0 0 0 2px var(--accent-bg-color, @accent_bg_color);
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.08);
+    border-radius: 8px;
+}
+
+.file-row.just-selected {
+    animation: row-bounce 300ms ease-out;
+}
+
+/* Folder row in list view */
+.folder-row {
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 150ms ease;
+}
+
+.folder-row:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.06);
+}
+
+/* Suppress button hover inside folder rows (double-highlight fix) */
+.folder-row button.flat,
+.folder-row button.flat:hover,
+.folder-row button.flat:active {
+    background: transparent;
+}
+
+/* ===================================================================
+ * Preview Pane
+ * =================================================================== */
+
+.preview-placeholder {
+    border-radius: 8px;
+    background: alpha(@view_bg_color, 0.95);
+}
+
+.preview-image {
+    border-radius: 4px;
+}
+
+.comparison-container {
+    border-radius: 8px;
+    /* overflow: hidden; — not supported by GTK4 CSS */
+}
+
+/* Comparison slider */
+.comparison-slider {
+    background: transparent;
+    min-width: 3px;
+    /* cursor: col-resize; — not supported by GTK4 CSS */
+}
+
+.comparison-label {
+    color: alpha(@fg_color, 0.6);
+}
+
+/* Preview mode buttons */
+.preview-mode-btn {
+    padding: 4px 12px;
+    font-size: 0.85em;
+}
+
+/* ===================================================================
+ * Settings Panel
+ * =================================================================== */
+
+/* Combo rows in settings */
+.preferences-group row {
+    border-radius: 8px;
+    margin-bottom: 2px;
+}
+
+/* ===================================================================
+ * Accent Color Dialog
+ * =================================================================== */
+
+.accent-swatch {
+    min-width: 64px;
+    min-height: 64px;
+    border-radius: 50%;
+    padding: 0;
+    transition: transform 150ms ease;
+}
+
+.accent-swatch:hover {
+    transform: scale(1.1);
+}
+
+.accent-swatch:active {
+    transform: scale(0.95);
+}
+
+/* Active/selected swatch indicator */
+.accent-swatch.active-swatch {
+    box-shadow:
+        0 0 0 3px @accent_fg_color,
+        0 0 0 5px var(--accent-bg-color, @accent_bg_color);
+}
+
+/* ===================================================================
+ * API Keys Dialog
+ * =================================================================== */
+
+/* Entry fields in API key rows */
+dialog entry {
+    min-width: 200px;
+}
+
+/* ===================================================================
+ * Log Viewer
+ * =================================================================== */
+
+.log-textview {
+    font-family: monospace;
+    font-size: 0.85em;
+}
+
+.log-textview text {
+    background-color: alpha(@view_bg_color, 0.95);
+    color: @view_fg_color;
+}
+
+/* Log button error indicator (amber) */
+.log-error-indicator {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* ===================================================================
+ * Toast Notifications
+ * =================================================================== */
+
+toast {
+    border-radius: 12px;
+}
+
+/* ===================================================================
+ * About Dialog
+ * =================================================================== */
+
+dialog.about {
+    /* Additional about dialog styling */
+}
+
+/* ===================================================================
+ * Scrollbar — use Adwaita defaults (overlay, rounded, accent-colored)
+ * =================================================================== */
+
+/* ===================================================================
+ * Search Bar
+ * =================================================================== */
+
+searchbar {
+    border-bottom: 1px solid alpha(@borders, 0.4);
+}
+
+/* ===================================================================
+ * Breadcrumb Navigation
+ * =================================================================== */
+
+.breadcrumb-box {
+    background: transparent;
+    transition: opacity 200ms ease;
+}
+
+.breadcrumb-btn {
+    border-radius: 6px;
+    padding: 2px 8px;
+    min-width: 0;
+    transition:
+        background 150ms ease,
+        transform 100ms ease;
+}
+
+.breadcrumb-btn:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.15);
+    transform: translateY(-1px);
+}
+
+.breadcrumb-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.breadcrumb-separator {
+    opacity: 0.5;
+    transition: opacity 150ms ease;
+}
+
+/* ===================================================================
+ * Paned Separator
+ * =================================================================== */
+
+paned > separator {
+    min-width: 2px;
+    min-height: 2px;
+    background: alpha(@borders, 0.3);
+    transition: background 200ms ease;
+}
+
+paned > separator:hover {
+    background: var(--accent-bg-color, @accent_bg_color);
+}
+
+/* ===================================================================
+ * General Utility Classes
+ * =================================================================== */
+
+.dim-label {
+    opacity: 0.55;
+}
+
+.caption {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+.title-2 {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.title-4 {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* Linked button group */
+.linked button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.linked button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* ===================================================================
+ * Drag & Drop Highlight
+ * =================================================================== */
+
+@keyframes drop-zone-pulse {
+    0%,
+    100% {
+        box-shadow: inset 0 0 0 2px
+            alpha(var(--accent-bg-color, @accent_bg_color), 0.3);
+    }
+    50% {
+        box-shadow: inset 0 0 0 4px
+            alpha(var(--accent-bg-color, @accent_bg_color), 0.6);
+    }
+}
+
+.drop-zone-active {
+    animation: drop-zone-pulse 1s ease-in-out infinite;
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.05);
+    border-radius: 12px;
+}
+
+/* ===================================================================
+ * Thumbnail Shimmer (loading placeholder pulse)
+ * =================================================================== */
+
+@keyframes thumbnail-shimmer {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+.thumbnail-loading image {
+    animation: thumbnail-shimmer 1.5s ease-in-out infinite;
+}
+
+/* ===================================================================
+ * Log Error Indicator (amber pulse)
+ * =================================================================== */
+
+@keyframes pulse-glow-amber {
+    0%,
+    100% {
+        box-shadow: 0 0 4px alpha(#ff9800, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 14px alpha(#ff9800, 0.8);
+    }
+}
+
+.log-btn-error {
+    animation: pulse-glow-amber 1.5s ease-in-out infinite;
+    color: #ff9800;
+}
+
+.log-btn-error:hover {
+    box-shadow: 0 0 18px alpha(#ff9800, 0.9);
+}
+
+/* ===================================================================
+ * Scroll Indicators (Adwaita-style thin separator lines)
+ * =================================================================== */
+
+.scroll-indicator-top,
+.scroll-indicator-bottom {
+    min-height: 0;
+    pointer-events: none;
+    transition: box-shadow 200ms ease;
+}
+
+.scroll-indicator-top {
+    box-shadow: inset 0 -1px alpha(@borders, 0.6);
+}
+
+.scroll-indicator-bottom {
+    box-shadow: inset 0 1px alpha(@borders, 0.6);
+}
+
+.scroll-indicator-top.scroll-hidden,
+.scroll-indicator-bottom.scroll-hidden {
+    box-shadow: none;
+}
+
+/* ===================================================================
+ * Count Label Bounce
+ * =================================================================== */
+
+@keyframes count-bounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.count-bounce {
+    animation: count-bounce 350ms ease-out;
+}

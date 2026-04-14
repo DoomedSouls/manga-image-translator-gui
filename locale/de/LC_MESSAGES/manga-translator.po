@@ -1,0 +1,544 @@
+# Manga Translator - German Translation (Source Language)
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Abbrechen"
+msgstr "Abbrechen"
+
+msgid "Abgebrochen"
+msgstr "Abgebrochen"
+
+msgid "Aktualisieren"
+msgstr "Aktualisieren"
+
+msgid "Aktuelles Verzeichnis"
+msgstr "Aktuelles Verzeichnis"
+
+msgid "Akzentfarbe"
+msgstr "Akzentfarbe"
+
+msgid "Akzentfarbe wählen"
+msgstr "Akzentfarbe wählen"
+
+msgid "Alle auswählen"
+msgstr "Alle auswählen"
+
+msgid "Allgemein"
+msgstr "Allgemein"
+
+msgid "Ansicht"
+msgstr "Ansicht"
+
+msgid "Anwenden"
+msgstr "Anwenden"
+
+msgid "API Schlüssel"
+msgstr "API Schlüssel"
+
+msgid "API Schlüssel eintragen"
+msgstr "API Schlüssel eintragen"
+
+msgid "API-Schlüssel fehlt"
+msgstr "API-Schlüssel fehlt"
+
+msgid "Auflösung für Bildreparatur"
+msgstr "Auflösung für Bildreparatur"
+
+msgid "Auflösung für Texterkennung"
+msgstr "Auflösung für Texterkennung"
+
+msgid "Auf Standard zurücksetzen"
+msgstr "Auf Standard zurücksetzen"
+
+msgid "Ausgabe"
+msgstr "Ausgabe"
+
+msgid "Ausgabe-Ordner"
+msgstr "Ausgabe-Ordner"
+
+msgid "Ausgabe-Ordner wählen"
+msgstr "Ausgabe-Ordner wählen"
+
+msgid "ausgewählt"
+msgstr "ausgewählt"
+
+msgid "Ausrichtung"
+msgstr "Ausrichtung"
+
+msgid "Auswahl aufheben"
+msgstr "Auswahl aufheben"
+
+msgid "Auswählen"
+msgstr "Auswählen"
+
+msgid "Auto"
+msgstr "Auto"
+
+msgid "Automatisch aktualisieren"
+msgstr "Automatisch aktualisieren"
+
+msgid "Backend nicht konfiguriert"
+msgstr "Backend nicht konfiguriert"
+
+msgid "BBox Zusammenführung"
+msgstr "BBox Zusammenführung"
+
+msgid "Benutzerdefiniert"
+msgstr "Benutzerdefiniert"
+
+msgid "Benutzerdefinierte Text-/Randfarbe"
+msgstr "Benutzerdefinierte Text-/Randfarbe"
+
+msgid "Berechnungsgenauigkeit"
+msgstr "Berechnungsgenauigkeit"
+
+msgid "Bereit"
+msgstr "Bereit"
+
+msgid "Bilder"
+msgstr "Bilder"
+
+msgid "Bildverarbeitung"
+msgstr "Bildverarbeitung"
+
+msgid "Bildvergrößerung vor der Übersetzung"
+msgstr "Bildvergrößerung vor der Übersetzung"
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr "Bitte API-Schlüssel eintragen"
+
+msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
+msgstr "Bitte trage den Schlüssel in den API-Einstellungen ein."
+
+msgid "Blau"
+msgstr "Blau"
+
+msgid "Blaugrün"
+msgstr "Blaugrün"
+
+msgid "Darstellung"
+msgstr "Darstellung"
+
+msgid "Dateiauswahl"
+msgstr "Dateiauswahl"
+
+msgid "Dateien"
+msgstr "Dateien"
+
+msgid "Dateien suchen…"
+msgstr "Dateien suchen…"
+
+msgid "Dateien übersetzt"
+msgstr "Dateien übersetzt"
+
+msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+msgstr "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+
+msgid "Detektor"
+msgstr "Detektor"
+
+msgid "Dunkel"
+msgstr "Dunkel"
+
+msgid "Eigene Farben verwenden"
+msgstr "Eigene Farben verwenden"
+
+msgid "Einstellungen ein-/ausblenden"
+msgstr "Einstellungen ein-/ausblenden"
+
+msgid "Einstellungen für die Textdarstellung"
+msgstr "Einstellungen für die Textdarstellung"
+
+msgid "Einstellungen für die Übersetzung"
+msgstr "Einstellungen für die Übersetzung"
+
+msgid "Einstellungen für Inpainting und Upscaling"
+msgstr "Einstellungen für Inpainting und Upscaling"
+
+msgid "Erfordert Neustart"
+msgstr "Erfordert Neustart"
+
+msgid "Erkennungsboxen zusammenführen (mocr)"
+msgstr "Erkennungsboxen zusammenführen (mocr)"
+
+msgid "Erkennungsgröße"
+msgstr "Erkennungsgröße"
+
+msgid "Erweitert"
+msgstr "Erweitert"
+
+msgid "Erzwinge horizontale/vertikale Richtung"
+msgstr "Erzwinge horizontale/vertikale Richtung"
+
+msgid "Extern öffnen"
+msgstr "Extern öffnen"
+
+msgid "Farbe wählen"
+msgstr "Farbe wählen"
+
+msgid "Farbschema"
+msgstr "Farbschema"
+
+msgid "Farbwähler öffnen"
+msgstr "Farbwähler öffnen"
+
+msgid "Fehler"
+msgstr "Fehler"
+
+msgid "Fehler beim Laden der Log-Datei."
+msgstr "Fehler beim Laden der Log-Datei."
+
+msgid "Fertig!"
+msgstr "Fertig!"
+
+msgid "Gelb"
+msgstr "Gelb"
+
+msgid "Gemini Modell"
+msgstr "Gemini Modell"
+
+msgid "Gerät"
+msgstr "Gerät"
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Grün"
+msgstr "Grün"
+
+msgid "Hell"
+msgstr "Hell"
+
+msgid "Inpainting"
+msgstr "Inpainting"
+
+msgid "Inpainting Größe"
+msgstr "Inpainting Größe"
+
+msgid "Inpainting Präzision"
+msgstr "Inpainting Präzision"
+
+msgid "Kein Bild geladen"
+msgstr "Kein Bild geladen"
+
+msgid "Keine Datei ausgewählt"
+msgstr "Keine Datei ausgewählt"
+
+msgid "Keine Dateien"
+msgstr "Keine Dateien"
+
+msgid "Keine Dateien ausgewählt"
+msgstr "Keine Dateien ausgewählt"
+
+msgid "Keine Log-Datei gefunden."
+msgstr "Keine Log-Datei gefunden."
+
+msgid "Keine Modelle gefunden"
+msgstr "Keine Modelle gefunden"
+
+msgid "Kein Rand/Umriss um den Text"
+msgstr "Kein Rand/Umriss um den Text"
+
+msgid "Kopieren"
+msgstr "Kopieren"
+
+msgid "Lila"
+msgstr "Lila"
+
+msgid "Listenansicht"
+msgstr "Listenansicht"
+
+msgid "Log anzeigen"
+msgstr "Log anzeigen"
+
+msgid "Log-Datei ist leer."
+msgstr "Log-Datei ist leer."
+
+msgid "Lokales Modell (.gguf Pfad)"
+msgstr "Lokales Modell (.gguf Pfad)"
+
+msgid "manga-image-translator"
+msgstr "manga-image-translator"
+
+msgid "manga-image-translator gefunden"
+msgstr "manga-image-translator gefunden"
+
+msgid "manga-image-translator Verzeichnis wählen"
+msgstr "manga-image-translator Verzeichnis wählen"
+
+msgid "Manga-Startverzeichnis"
+msgstr "Manga-Startverzeichnis"
+
+msgid "Manga-Startverzeichnis…"
+msgstr "Manga-Startverzeichnis…"
+
+msgid "Manga Translator"
+msgstr "Manga Translator"
+
+msgid "Manga-Verzeichnis wählen"
+msgstr "Manga-Verzeichnis wählen"
+
+msgid "Masken-Erweiterung"
+msgstr "Masken-Erweiterung"
+
+msgid "Menü"
+msgstr "Menü"
+
+msgid "Methode zur Bildreparatur"
+msgstr "Methode zur Bildreparatur"
+
+msgid "Methode zur Blasenerkennung"
+msgstr "Methode zur Blasenerkennung"
+
+msgid "Methode zur Texteinblendung"
+msgstr "Methode zur Texteinblendung"
+
+msgid "Modelle vom OpenRouter API laden"
+msgstr "Modelle vom OpenRouter API laden"
+
+msgid "Modelle werden geladen…"
+msgstr "Modelle werden geladen…"
+
+msgid "Modell für VLM-Korrektur"
+msgstr "Modell für VLM-Korrektur"
+
+msgid "Modellliste aktualisieren"
+msgstr "Modellliste aktualisieren"
+
+msgid "Modus"
+msgstr "Modus"
+
+msgid "Nicht gefunden"
+msgstr "Nicht gefunden"
+
+msgid "Nicht konfiguriert"
+msgstr "Nicht konfiguriert"
+
+msgid "OCR Modell"
+msgstr "OCR Modell"
+
+msgid "Öffnen"
+msgstr "Öffnen"
+
+msgid "OpenAI / ChatGPT"
+msgstr "OpenAI / ChatGPT"
+
+msgid "OpenRouter Modell"
+msgstr "OpenRouter Modell"
+
+msgid "Optical Character Recognition"
+msgstr "Optical Character Recognition"
+
+msgid "Orange"
+msgstr "Orange"
+
+msgid "Original"
+msgstr "Original"
+
+msgid "Original-Ordner verwenden"
+msgstr "Original-Ordner verwenden"
+
+msgid "Positive Werte = größerer Text"
+msgstr "Positive Werte = größerer Text"
+
+msgid "Protokoll"
+msgstr "Protokoll"
+
+msgid "Protokoll anzeigen"
+msgstr "Protokoll anzeigen"
+
+msgid "Python-Umgebung"
+msgstr "Python-Umgebung"
+
+msgid "Python-Umgebung gefunden"
+msgstr "Python-Umgebung gefunden"
+
+msgid "Rand:"
+msgstr "Rand:"
+
+msgid "Randfarbe (Hintergrund)"
+msgstr "Randfarbe (Hintergrund)"
+
+msgid "Rasteransicht"
+msgstr "Rasteransicht"
+
+msgid "Recheneinheit für die Übersetzung"
+msgstr "Recheneinheit für die Übersetzung"
+
+msgid "Renderer"
+msgstr "Renderer"
+
+msgid "Rosa"
+msgstr "Rosa"
+
+msgid "Rot"
+msgstr "Rot"
+
+msgid "RTL Richtung"
+msgstr "RTL Richtung"
+
+msgid "Schließen"
+msgstr "Schließen"
+
+msgid "Schriftfarbe"
+msgstr "Schriftfarbe"
+
+msgid "Schriftgrößenversatz"
+msgstr "Schriftgrößenversatz"
+
+msgid "Schrift randlos"
+msgstr "Schrift randlos"
+
+msgid "Sortierung:"
+msgstr "Sortierung:"
+
+msgid "Speichern"
+msgstr "Speichern"
+
+msgid "Sprache"
+msgstr "Sprache"
+
+msgid "Sprache wird beim Neustart wirksam."
+msgstr "Sprache wird beim Neustart wirksam."
+
+msgid "Sprache der Übersetzung"
+msgstr "Sprache der Übersetzung"
+
+msgid "Standard (result/)"
+msgstr "Standard (result/)"
+
+msgid "Startverzeichnis"
+msgstr "Startverzeichnis"
+
+msgid "Suche fokussieren"
+msgstr "Suche fokussieren"
+
+msgid "System"
+msgstr "System"
+
+msgid "Tastenkürzel"
+msgstr "Tastenkürzel"
+
+msgid "Text:"
+msgstr "Text:"
+
+msgid "Textausrichtung in Blasen"
+msgstr "Textausrichtung in Blasen"
+
+msgid "Texterkennung"
+msgstr "Texterkennung"
+
+msgid "Textfarbe (Vordergrund)"
+msgstr "Textfarbe (Vordergrund)"
+
+msgid "Textmaske erweitern um (px)"
+msgstr "Textmaske erweitern um (px)"
+
+msgid "Textrichtung"
+msgstr "Textrichtung"
+
+msgid "Text von rechts nach links (Arabisch, Hebräisch)"
+msgstr "Text von rechts nach links (Arabisch, Hebräisch)"
+
+msgid "Übergeordnetes Verzeichnis"
+msgstr "Übergeordnetes Verzeichnis"
+
+msgid "Über Manga Translator"
+msgstr "Über Manga Translator"
+
+msgid "Übersetzen"
+msgstr "Übersetzen"
+
+msgid "Übersetzer"
+msgstr "Übersetzer"
+
+msgid "Übersetzung"
+msgstr "Übersetzung"
+
+msgid "Übersetzung abbrechen"
+msgstr "Übersetzung abbrechen"
+
+msgid "Übersetzung fehlgeschlagen"
+msgstr "Übersetzung fehlgeschlagen"
+
+msgid "Übersetzung wird vorbereitet…"
+msgstr "Übersetzung wird vorbereitet…"
+
+msgid "Upscale Faktor"
+msgstr "Upscale Faktor"
+
+msgid "Upscaler"
+msgstr "Upscaler"
+
+msgid "Vergleich"
+msgstr "Vergleich"
+
+msgid "Vergrößerungsfaktor"
+msgstr "Vergrößerungsfaktor"
+
+msgid "Verzeichnis öffnen"
+msgstr "Verzeichnis öffnen"
+
+msgid "Verzeichnis öffnen…"
+msgstr "Verzeichnis öffnen…"
+
+msgid "Verzeichnis wählen"
+msgstr "Verzeichnis wählen"
+
+msgid "Virtuelle Umgebung"
+msgstr "Virtuelle Umgebung"
+
+msgid "Virtuelle Umgebung…"
+msgstr "Virtuelle Umgebung…"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "Virtuelle Umgebung wählen"
+
+msgid "Vision-fähiges Modell"
+msgstr "Vision-fähiges Modell"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "Vision Language Model Konfiguration"
+
+msgid "VLM Einstellungen"
+msgstr "VLM Einstellungen"
+
+msgid "VLM Typ"
+msgstr "VLM Typ"
+
+msgid "Vorschau"
+msgstr "Vorschau"
+
+msgid "Wähle das VLM-Backend"
+msgstr "Wähle das VLM-Backend"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "Wähle den Übersetzungsdienst"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "Wähle den Übersetzungsmodus"
+
+msgid "Weitere Dienste"
+msgstr "Weitere Dienste"
+
+msgid "Zielsprache"
+msgstr "Zielsprache"
+
+msgid "Zurück"
+msgstr "Zurück"
+
+msgid "Zurücksetzen"
+msgstr "Zurücksetzen"

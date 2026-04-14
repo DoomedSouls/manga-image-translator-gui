@@ -1,0 +1,544 @@
+# Manga Translator - Brazilian Portuguese Translation
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "API Schlüssel"
+msgstr "Chaves de API"
+
+msgid "API Schlüssel eintragen"
+msgstr "Inserir chave de API"
+
+msgid "API-Schlüssel fehlt"
+msgstr "Falta a chave de API"
+
+msgid "Abbrechen"
+msgstr "Cancelar"
+
+msgid "Abgebrochen"
+msgstr "Cancelado"
+
+msgid "Aktualisieren"
+msgstr "Atualizar"
+
+msgid "Aktuelles Verzeichnis"
+msgstr "Diretório atual"
+
+msgid "Akzentfarbe"
+msgstr "Cor de destaque"
+
+msgid "Akzentfarbe wählen"
+msgstr "Escolher cor de destaque"
+
+msgid "Alle auswählen"
+msgstr "Selecionar tudo"
+
+msgid "Allgemein"
+msgstr "Geral"
+
+msgid "Ansicht"
+msgstr "Visualização"
+
+msgid "Anwenden"
+msgstr "Aplicar"
+
+msgid "Auf Standard zurücksetzen"
+msgstr "Restaurar padrão"
+
+msgid "Auflösung für Bildreparatur"
+msgstr "Resolução para reparação de imagem"
+
+msgid "Auflösung für Texterkennung"
+msgstr "Resolução para reconhecimento de texto"
+
+msgid "Ausgabe"
+msgstr "Saída"
+
+msgid "Ausgabe-Ordner"
+msgstr "Pasta de saída"
+
+msgid "Ausgabe-Ordner wählen"
+msgstr "Escolher pasta de saída"
+
+msgid "Ausrichtung"
+msgstr "Alinhamento"
+
+msgid "Auswahl aufheben"
+msgstr "Desmarcar tudo"
+
+msgid "Auswählen"
+msgstr "Selecionar"
+
+msgid "Auto"
+msgstr "Auto"
+
+msgid "Automatisch aktualisieren"
+msgstr "Atualização automática"
+
+msgid "BBox Zusammenführung"
+msgstr "Fusão de caixas delimitadoras"
+
+msgid "Backend nicht konfiguriert"
+msgstr "Backend não configurado"
+
+msgid "Benutzerdefiniert"
+msgstr "Personalizado"
+
+msgid "Benutzerdefinierte Text-/Randfarbe"
+msgstr "Cor de texto/borda personalizada"
+
+msgid "Berechnungsgenauigkeit"
+msgstr "Precisão de cálculo"
+
+msgid "Bereit"
+msgstr "Pronto"
+
+msgid "Bilder"
+msgstr "Imagens"
+
+msgid "Bildverarbeitung"
+msgstr "Processamento de imagem"
+
+msgid "Bildvergrößerung vor der Übersetzung"
+msgstr "Ampliação de imagem antes da tradução"
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr "Por favor, insira a chave de API"
+
+msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
+msgstr "Por favor, insira a chave nas configurações de API."
+
+msgid "Blau"
+msgstr "Azul"
+
+msgid "Blaugrün"
+msgstr "Azul-esverdeado"
+
+msgid "Darstellung"
+msgstr "Renderização"
+
+msgid "Dateiauswahl"
+msgstr "Seleção de arquivos"
+
+msgid "Dateien"
+msgstr "Arquivos"
+
+msgid "Dateien suchen…"
+msgstr "Buscar arquivos…"
+
+msgid "Dateien übersetzt"
+msgstr "Arquivos traduzidos"
+
+msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+msgstr "O tradutor selecionado requer uma chave de API."
+
+msgid "Detektor"
+msgstr "Detector"
+
+msgid "Dunkel"
+msgstr "Escuro"
+
+msgid "Eigene Farben verwenden"
+msgstr "Usar cores próprias"
+
+msgid "Einstellungen ein-/ausblenden"
+msgstr "Mostrar/ocultar configurações"
+
+msgid "Einstellungen für Inpainting und Upscaling"
+msgstr "Configurações de inpainting e escalonamento"
+
+msgid "Einstellungen für die Textdarstellung"
+msgstr "Configurações da representação de texto"
+
+msgid "Einstellungen für die Übersetzung"
+msgstr "Configurações da tradução"
+
+msgid "Erfordert Neustart"
+msgstr "Requer reinicialização"
+
+msgid "Erkennungsboxen zusammenführen (mocr)"
+msgstr "Fundir caixas de detecção (mocr)"
+
+msgid "Erkennungsgröße"
+msgstr "Tamanho de detecção"
+
+msgid "Erweitert"
+msgstr "Avançado"
+
+msgid "Erzwinge horizontale/vertikale Richtung"
+msgstr "Forçar direção horizontal/vertical"
+
+msgid "Extern öffnen"
+msgstr "Abrir externamente"
+
+msgid "Farbe wählen"
+msgstr "Escolher cor"
+
+msgid "Farbschema"
+msgstr "Esquema de cores"
+
+msgid "Farbwähler öffnen"
+msgstr "Abrir seletor de cores"
+
+msgid "Fehler"
+msgstr "Erro"
+
+msgid "Fehler beim Laden der Log-Datei."
+msgstr "Erro ao carregar o arquivo de registro."
+
+msgid "Fertig!"
+msgstr "Pronto!"
+
+msgid "Gelb"
+msgstr "Amarelo"
+
+msgid "Gemini Modell"
+msgstr "Modelo Gemini"
+
+msgid "Gerät"
+msgstr "Dispositivo"
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Grün"
+msgstr "Verde"
+
+msgid "Hell"
+msgstr "Claro"
+
+msgid "Inpainting"
+msgstr "Inpainting"
+
+msgid "Inpainting Größe"
+msgstr "Tamanho de inpainting"
+
+msgid "Inpainting Präzision"
+msgstr "Precisão de inpainting"
+
+msgid "Kein Bild geladen"
+msgstr "Nenhuma imagem carregada"
+
+msgid "Kein Rand/Umriss um den Text"
+msgstr "Sem borda/contorno ao redor do texto"
+
+msgid "Keine Datei ausgewählt"
+msgstr "Nenhum arquivo selecionado"
+
+msgid "Keine Dateien"
+msgstr "Sem arquivos"
+
+msgid "Keine Dateien ausgewählt"
+msgstr "Nenhum arquivo selecionado"
+
+msgid "Keine Log-Datei gefunden."
+msgstr "Nenhum arquivo de log encontrado."
+
+msgid "Keine Modelle gefunden"
+msgstr "Nenhum modelo encontrado"
+
+msgid "Kopieren"
+msgstr "Copiar"
+
+msgid "Lila"
+msgstr "Roxo"
+
+msgid "Listenansicht"
+msgstr "Exibição em lista"
+
+msgid "Log anzeigen"
+msgstr "Mostrar log"
+
+msgid "Log-Datei ist leer."
+msgstr "O arquivo de registro está vazio."
+
+msgid "Lokales Modell (.gguf Pfad)"
+msgstr "Modelo local (caminho .gguf)"
+
+msgid "Manga Translator"
+msgstr "Manga Translator"
+
+msgid "Manga-Startverzeichnis"
+msgstr "Diretório inicial de mangá"
+
+msgid "Manga-Startverzeichnis…"
+msgstr "Diretório inicial de mangá…"
+
+msgid "Manga-Verzeichnis wählen"
+msgstr "Selecionar diretório de mangá"
+
+msgid "Masken-Erweiterung"
+msgstr "Expansão de máscara"
+
+msgid "Menü"
+msgstr "Menu"
+
+msgid "Methode zur Bildreparatur"
+msgstr "Método de reparação de imagem"
+
+msgid "Methode zur Blasenerkennung"
+msgstr "Método de detecção de balões"
+
+msgid "Methode zur Texteinblendung"
+msgstr "Método de inserção de texto"
+
+msgid "Modell für VLM-Korrektur"
+msgstr "Modelo para correção VLM"
+
+msgid "Modelle vom OpenRouter API laden"
+msgstr "Carregar modelos da API do OpenRouter"
+
+msgid "Modelle werden geladen…"
+msgstr "Carregando modelos…"
+
+msgid "Modellliste aktualisieren"
+msgstr "Atualizar lista de modelos"
+
+msgid "Modus"
+msgstr "Modo"
+
+msgid "Nicht gefunden"
+msgstr "Não encontrado"
+
+msgid "Nicht konfiguriert"
+msgstr "Não configurado"
+
+msgid "OCR Modell"
+msgstr "Modelo OCR"
+
+msgid "OpenAI / ChatGPT"
+msgstr "OpenAI / ChatGPT"
+
+msgid "OpenRouter Modell"
+msgstr "Modelo do OpenRouter"
+
+msgid "Optical Character Recognition"
+msgstr "Reconhecimento Óptico de Caracteres"
+
+msgid "Orange"
+msgstr "Laranja"
+
+msgid "Original"
+msgstr "Original"
+
+msgid "Original-Ordner verwenden"
+msgstr "Usar pasta original"
+
+msgid "Positive Werte = größerer Text"
+msgstr "Valores positivos = texto maior"
+
+msgid "Protokoll"
+msgstr "Log"
+
+msgid "Protokoll anzeigen"
+msgstr "Exibir registro"
+
+msgid "Python-Umgebung"
+msgstr "Ambiente Python"
+
+msgid "Python-Umgebung gefunden"
+msgstr "Ambiente Python encontrado"
+
+msgid "RTL Richtung"
+msgstr "Direção RTL"
+
+msgid "Rand:"
+msgstr "Borda:"
+
+msgid "Randfarbe (Hintergrund)"
+msgstr "Cor da borda (fundo)"
+
+msgid "Rasteransicht"
+msgstr "Exibição em grade"
+
+msgid "Recheneinheit für die Übersetzung"
+msgstr "Unidade de processamento para tradução"
+
+msgid "Renderer"
+msgstr "Renderizador"
+
+msgid "Rosa"
+msgstr "Rosa"
+
+msgid "Rot"
+msgstr "Vermelho"
+
+msgid "Schließen"
+msgstr "Fechar"
+
+msgid "Schrift randlos"
+msgstr "Texto sem borda"
+
+msgid "Schriftfarbe"
+msgstr "Cor da fonte"
+
+msgid "Schriftgrößenversatz"
+msgstr "Deslocamento do tamanho da fonte"
+
+msgid "Sortierung:"
+msgstr "Ordenação:"
+
+msgid "Speichern"
+msgstr "Salvar"
+
+msgid "Sprache"
+msgstr "Idioma"
+
+msgid "Sprache wird beim Neustart wirksam."
+msgstr "O idioma será aplicado ao reiniciar."
+
+msgid "Sprache der Übersetzung"
+msgstr "Idioma da tradução"
+
+msgid "Standard (result/)"
+msgstr "Padrão (result/)"
+
+msgid "Startverzeichnis"
+msgstr "Diretório inicial"
+
+msgid "Suche fokussieren"
+msgstr "Focar na busca"
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Tastenkürzel"
+msgstr "Atalhos de teclado"
+
+msgid "Text von rechts nach links (Arabisch, Hebräisch)"
+msgstr "Texto da direita para a esquerda (árabe, hebraico)"
+
+msgid "Text:"
+msgstr "Texto:"
+
+msgid "Textausrichtung in Blasen"
+msgstr "Alinhamento de texto nos balões"
+
+msgid "Texterkennung"
+msgstr "Reconhecimento de texto"
+
+msgid "Textfarbe (Vordergrund)"
+msgstr "Cor do texto (primeiro plano)"
+
+msgid "Textmaske erweitern um (px)"
+msgstr "Expandir máscara de texto em (px)"
+
+msgid "Textrichtung"
+msgstr "Direção do texto"
+
+msgid "Upscale Faktor"
+msgstr "Fator de escalonamento"
+
+msgid "Upscaler"
+msgstr "Upscaler"
+
+msgid "VLM Einstellungen"
+msgstr "Configurações do VLM"
+
+msgid "VLM Typ"
+msgstr "Tipo de VLM"
+
+msgid "Vergleich"
+msgstr "Comparar"
+
+msgid "Vergrößerungsfaktor"
+msgstr "Fator de ampliação"
+
+msgid "Verzeichnis wählen"
+msgstr "Selecionar diretório"
+
+msgid "Verzeichnis öffnen"
+msgstr "Abrir diretório"
+
+msgid "Verzeichnis öffnen…"
+msgstr "Abrir diretório…"
+
+msgid "Virtuelle Umgebung"
+msgstr "Ambiente virtual"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "Selecionar ambiente virtual"
+
+msgid "Virtuelle Umgebung…"
+msgstr "Ambiente virtual…"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "Configuração do Vision Language Model"
+
+msgid "Vision-fähiges Modell"
+msgstr "Modelo com capacidade de visão"
+
+msgid "Vorschau"
+msgstr "Pré-visualização"
+
+msgid "Weitere Dienste"
+msgstr "Outros serviços"
+
+msgid "Wähle das VLM-Backend"
+msgstr "Selecione o backend VLM"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "Selecione o serviço de tradução"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "Selecione o modo de tradução"
+
+msgid "Zielsprache"
+msgstr "Idioma de destino"
+
+msgid "Zurück"
+msgstr "Voltar"
+
+msgid "Zurücksetzen"
+msgstr "Restaurar"
+
+msgid "ausgewählt"
+msgstr "selecionado(s)"
+
+msgid "manga-image-translator"
+msgstr "manga-image-translator"
+
+msgid "manga-image-translator Verzeichnis wählen"
+msgstr "Selecionar diretório do manga-image-translator"
+
+msgid "manga-image-translator gefunden"
+msgstr "manga-image-translator encontrado"
+
+msgid "Öffnen"
+msgstr "Abrir"
+
+msgid "Über Manga Translator"
+msgstr "Sobre o Manga Translator"
+
+msgid "Übergeordnetes Verzeichnis"
+msgstr "Diretório superior"
+
+msgid "Übersetzen"
+msgstr "Traduzir"
+
+msgid "Übersetzer"
+msgstr "Tradutor"
+
+msgid "Übersetzung"
+msgstr "Tradução"
+
+msgid "Übersetzung abbrechen"
+msgstr "Cancelar tradução"
+
+msgid "Übersetzung fehlgeschlagen"
+msgstr "Tradução falhou"
+
+msgid "Übersetzung wird vorbereitet…"
+msgstr "Preparando tradução…"

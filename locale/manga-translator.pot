@@ -1,0 +1,551 @@
+# Manga Translator - Translation Template
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "0 Dateien"
+msgstr ""
+
+msgid "48px (Standard)"
+msgstr ""
+
+msgid "A-Z"
+msgstr ""
+
+msgid "API Fehler: {}"
+msgstr ""
+
+msgid "API Schlüssel"
+msgstr ""
+
+msgid "API Schlüssel eintragen"
+msgstr ""
+
+msgid "API-Schlüssel für {} fehlt"
+msgstr ""
+
+msgid "Abbrechen"
+msgstr ""
+
+msgid "Abbrechen (Escape)"
+msgstr ""
+
+msgid "Abbrechen..."
+msgstr ""
+
+msgid "Abbruch angefordert..."
+msgstr ""
+
+msgid "Aktualisieren"
+msgstr ""
+
+msgid "Alle Bilder wurden erfolgreich verarbeitet."
+msgstr ""
+
+msgid "Alle auswählen"
+msgstr ""
+
+msgid "Alle speichern"
+msgstr ""
+
+msgid "Antwort von Gemini erhalten."
+msgstr ""
+
+msgid "Ausgabe"
+msgstr ""
+
+msgid "Ausgabe-Ordner"
+msgstr ""
+
+msgid "Ausgabe-Ordner wählen"
+msgstr ""
+
+msgid "Ausgabe-Ordner: {}"
+msgstr ""
+
+msgid "Auswahl aufheben"
+msgstr ""
+
+msgid "Auswählen"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Automatisch aktualisieren"
+msgstr ""
+
+msgid "Beende llama.cpp Server..."
+msgstr ""
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr ""
+
+msgid "Bereit"
+msgstr ""
+
+msgid "Bildverarbeitung"
+msgstr ""
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr ""
+
+msgid "Bitte wählen Sie mindestens eine Datei aus."
+msgstr ""
+
+msgid "CTD (Better Quality)"
+msgstr ""
+
+msgid "Cache Einstellungen"
+msgstr ""
+
+msgid "Cache-Modus"
+msgstr ""
+
+msgid "Cache-Verzeichnis"
+msgstr ""
+
+msgid "Cache-Verzeichnis auswählen"
+msgstr ""
+
+msgid "Dark Mode aktiviert"
+msgstr ""
+
+msgid "Datei ausgewählt: {}"
+msgstr ""
+
+msgid "Datei-Fehler: {}"
+msgstr ""
+
+msgid "Datum"
+msgstr ""
+
+msgid "Details: {}"
+msgstr ""
+
+msgid "Detector"
+msgstr ""
+
+msgid "Deutsch (DEU)"
+msgstr ""
+
+msgid "ESRGAN (Beste Qualität)"
+msgstr ""
+
+msgid "Ebene hoch"
+msgstr ""
+
+msgid "Ein modernes Manga-Übersetzungstool mit VLM-Unterstützung"
+msgstr ""
+
+msgid "Einstellungen für Bildverbesserung"
+msgstr ""
+
+msgid "Einstellungen für Texterkennung"
+msgstr ""
+
+msgid "Einstellungen zurückgesetzt"
+msgstr ""
+
+msgid "Einstellungen zurücksetzen"
+msgstr ""
+
+msgid "Einstellungen zurücksetzen?"
+msgstr ""
+
+msgid "Englisch (ENG)"
+msgstr ""
+
+msgid "Extern öffnen"
+msgstr ""
+
+msgid "Erfolgreich!"
+msgstr ""
+
+msgid "Fehler bei der Google API-Initialisierung: {}"
+msgstr ""
+
+msgid "Fehler bei {}: {}"
+msgstr ""
+
+msgid "Fehler beim Laden: {}"
+msgstr ""
+
+msgid "Fehler: {}"
+msgstr ""
+
+msgid "Fehler: Das 'google-genai' Paket fehlt!"
+msgstr ""
+
+msgid "Fehler: Das 'openai' Paket fehlt!"
+msgstr ""
+
+msgid "Fehler: Kein Gemini API-Schlüssel konfiguriert!"
+msgstr ""
+
+msgid "Fehler: Kein lokaler VLM-Server unter http://127.0.0.1:8080"
+msgstr ""
+
+msgid "Französisch (FRA)"
+msgstr ""
+
+msgid "Gemini (Online)"
+msgstr ""
+
+msgid "Gemini API erfolgreich initialisiert."
+msgstr ""
+
+msgid "Gemini Modell"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Installiere mit: pip install google-genai"
+msgstr ""
+
+msgid "In Zwischenablage kopiert"
+msgstr ""
+
+msgid "Installiere mit: pip install openai"
+msgstr ""
+
+msgid "Ja"
+msgstr ""
+
+msgid "Kein Text auf Seite gefunden. Überspringe VLM."
+msgstr ""
+
+msgid "Kein Verzeichnis ausgewählt"
+msgstr ""
+
+msgid "Keine Datei ausgewählt"
+msgstr ""
+
+msgid "Keine Dateien ausgewählt"
+msgstr ""
+
+msgid "Keine zuletzt verwendeten Ordner"
+msgstr ""
+
+msgid "Konnte llama-server nicht starten: {}"
+msgstr ""
+
+msgid "Kopieren"
+msgstr ""
+
+msgid "Light Mode aktiviert"
+msgstr ""
+
+msgid "Listenansicht"
+msgstr ""
+
+msgid "Log anzeigen"
+msgstr ""
+
+msgid "Log anzeigen ({} Fehler)"
+msgstr ""
+
+msgid "Lokaler VLM-Server verbunden."
+msgstr ""
+
+msgid "Lokales Modell"
+msgstr ""
+
+msgid "Lokales Modell (Pfad zur .gguf)"
+msgstr ""
+
+msgid "Manga Translator"
+msgstr ""
+
+msgid "Manga Translator Team"
+msgstr ""
+
+msgid "Menü"
+msgstr ""
+
+msgid "Modus wählen"
+msgstr ""
+
+msgid "Natürlich"
+msgstr ""
+
+msgid "Nein"
+msgstr ""
+
+msgid "Nur Upscaling"
+msgstr ""
+
+msgid "Nutzt KI für kontextbasierte Übersetzung"
+msgstr ""
+
+msgid "OCR Modell"
+msgstr ""
+
+msgid "Optical Character Recognition"
+msgstr ""
+
+msgid "Ordner"
+msgstr ""
+
+msgid "Ordner auswählen"
+msgstr ""
+
+msgid "Ordner geöffnet: {}"
+msgstr ""
+
+msgid "Ordner wechseln"
+msgstr ""
+
+msgid "Original"
+msgstr ""
+
+msgid "Original-Ordner verwenden"
+msgstr ""
+
+msgid "Originalgröße"
+msgstr ""
+
+msgid "Projektname (Cache)"
+msgstr ""
+
+msgid "Protokoll"
+msgstr ""
+
+msgid "Rasteransicht"
+msgstr ""
+
+msgid "Schließen"
+msgstr ""
+
+msgid "Seite veredelt!"
+msgstr ""
+
+msgid "Sende an Gemini API (Modell: {})..."
+msgstr ""
+
+msgid "Sende an VLM zur Korrektur (Hintergrund)..."
+msgstr ""
+
+msgid "Sende an lokales VLM..."
+msgstr ""
+
+msgid "Sortierung"
+msgstr ""
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr ""
+
+msgid "Sprache in die übersetzt werden soll"
+msgstr ""
+
+msgid "Sprache, Erkennung und OCR"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Standard (result/)"
+msgstr ""
+
+msgid "Standard Übersetzer"
+msgstr ""
+
+msgid "Starte llama-server mit: llama-server -m <model> --port 8080"
+msgstr ""
+
+msgid "Starte lokalen llama.cpp Server mit {}..."
+msgstr ""
+
+msgid "Suchen..."
+msgstr ""
+
+msgid "Texterkennungsmodell"
+msgstr ""
+
+msgid "Unbenannt"
+msgstr ""
+
+msgid "Upscale-Faktor"
+msgstr ""
+
+msgid "Upscaler"
+msgstr ""
+
+msgid "VLM (Vision Language Model)"
+msgstr ""
+
+msgid "VLM Einstellungen"
+msgstr ""
+
+msgid "VLM Typ"
+msgstr ""
+
+msgid "Verarbeite Bild {}/{}: {}"
+msgstr ""
+
+msgid "Verarbeite..."
+msgstr ""
+
+msgid "Verbessert Bildqualität ohne Übersetzung"
+msgstr ""
+
+msgid "Veredle Seite: {} ..."
+msgstr ""
+
+msgid "Vergrößerungsfaktor (nur wenn aktiv)"
+msgstr ""
+
+msgid "Verwenden Sie gespeicherte Übersetzungen"
+msgstr ""
+
+msgid "Verwendet Online-Übersetzungsdienste"
+msgstr ""
+
+msgid "Verwendet gespeicherte Übersetzungen"
+msgstr ""
+
+msgid "Vision Language Model Konfiguration"
+msgstr ""
+
+msgid "Vorgang abgebrochen."
+msgstr ""
+
+msgid "Vorgang abgeschlossen"
+msgstr ""
+
+msgid "Vorgang abgeschlossen!"
+msgstr ""
+
+msgid "Vorgang starten"
+msgstr ""
+
+msgid "Vorschau"
+msgstr ""
+
+msgid "Waifu2x (Guter Standard)"
+msgstr ""
+
+msgid "Wählen Sie das Gemini-Modell für die VLM-Korrektur"
+msgstr ""
+
+msgid "Wählen Sie das VLM-Backend"
+msgstr ""
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr ""
+
+msgid "Wählen Sie den Upscaling-Algorithmus"
+msgstr ""
+
+msgid "Wählen Sie den Übersetzungsdienst"
+msgstr ""
+
+msgid "Wählen Sie den Übersetzungsmodus"
+msgstr ""
+
+msgid "Wählen Sie ein Cache-Verzeichnis"
+msgstr ""
+
+msgid "Zielsprache"
+msgstr ""
+
+msgid "Zuletzt verwendet"
+msgstr ""
+
+msgid "Zuletzt verwendete Ordner"
+msgstr ""
+
+msgid "mocr (Better Quality)"
+msgstr ""
+
+msgid "{} Dateien ausgewählt"
+msgstr ""
+
+msgid "{} Dateien · {} ausgewählt"
+msgstr ""
+
+msgid "{} Ordner, {} Dateien"
+msgstr ""
+
+msgid "© 2024 Manga Translator Team"
+msgstr ""
+
+msgid "Über Manga Translator"
+msgstr ""
+
+msgid "Übersetzer"
+msgstr ""
+
+msgid "Übersetzung"
+msgstr ""
+
+msgid "◀ Vergleich ▶"
+msgstr ""
+
+msgid "Sprache"
+msgstr ""
+
+msgid "Oberflächensprache ändern"
+msgstr ""
+
+msgid "Erfordert Neustart"
+msgstr ""
+
+msgid "Sprache wird beim nächsten Start automatisch erkannt."
+msgstr ""
+
+msgid "Sprache wird beim nächsten Start auf {} geändert."
+msgstr ""
+
+msgid "Kein Bild geladen"
+msgstr ""
+
+msgid "Erscheinungsbild"
+msgstr ""
+
+msgid "Akzentfarbe"
+msgstr ""
+
+msgid "Farbe für Hervorhebungen und Auswahl"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Blaugrün"
+msgstr ""
+
+msgid "Blau"
+msgstr ""
+
+msgid "Lila"
+msgstr ""
+
+msgid "Grün"
+msgstr ""
+
+msgid "Gelb"
+msgstr ""
+
+msgid "Orange"
+msgstr ""
+
+msgid "Rot"
+msgstr ""
+
+msgid "Rosa"
+msgstr ""

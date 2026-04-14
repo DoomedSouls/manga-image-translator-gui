@@ -1,0 +1,37 @@
+# Rust build artifacts
+target/
+**/target/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+*.log.old
+
+# Threadbridge internal data
+.threadbridge/
+
+# Translation output (user-generated)
+result/
+
+# ML models (too large for Git — download separately)
+models/

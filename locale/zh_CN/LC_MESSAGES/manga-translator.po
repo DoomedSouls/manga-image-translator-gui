@@ -1,0 +1,544 @@
+# Manga Translator - Simplified Chinese Translation
+# Copyright (C) 2024 Manga Translator Team
+# This file is distributed under the same license as the Manga Translator package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manga-translator 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "API Schlüssel"
+msgstr "API 密钥"
+
+msgid "API Schlüssel eintragen"
+msgstr "输入 API 密钥"
+
+msgid "API-Schlüssel fehlt"
+msgstr "缺少 API 密钥"
+
+msgid "Abbrechen"
+msgstr "取消"
+
+msgid "Abgebrochen"
+msgstr "已取消"
+
+msgid "Aktualisieren"
+msgstr "刷新"
+
+msgid "Aktuelles Verzeichnis"
+msgstr "当前目录"
+
+msgid "Akzentfarbe"
+msgstr "强调色"
+
+msgid "Akzentfarbe wählen"
+msgstr "选择强调色"
+
+msgid "Alle auswählen"
+msgstr "全选"
+
+msgid "Allgemein"
+msgstr "常规"
+
+msgid "Ansicht"
+msgstr "视图"
+
+msgid "Anwenden"
+msgstr "应用"
+
+msgid "Auf Standard zurücksetzen"
+msgstr "恢复默认设置"
+
+msgid "Auflösung für Bildreparatur"
+msgstr "图像修复分辨率"
+
+msgid "Auflösung für Texterkennung"
+msgstr "文字识别分辨率"
+
+msgid "Ausgabe"
+msgstr "输出"
+
+msgid "Ausgabe-Ordner"
+msgstr "输出文件夹"
+
+msgid "Ausgabe-Ordner wählen"
+msgstr "选择输出文件夹"
+
+msgid "Ausrichtung"
+msgstr "对齐方式"
+
+msgid "Auswahl aufheben"
+msgstr "取消全选"
+
+msgid "Auswählen"
+msgstr "选择"
+
+msgid "Auto"
+msgstr "自动"
+
+msgid "Automatisch aktualisieren"
+msgstr "自动刷新"
+
+msgid "BBox Zusammenführung"
+msgstr "边界框合并"
+
+msgid "Backend nicht konfiguriert"
+msgstr "后端未配置"
+
+msgid "Benutzerdefiniert"
+msgstr "自定义"
+
+msgid "Benutzerdefinierte Text-/Randfarbe"
+msgstr "自定义文字/边框颜色"
+
+msgid "Berechnungsgenauigkeit"
+msgstr "计算精度"
+
+msgid "Bereit"
+msgstr "就绪"
+
+msgid "Bilder"
+msgstr "图片"
+
+msgid "Bildverarbeitung"
+msgstr "图像处理"
+
+msgid "Bildvergrößerung vor der Übersetzung"
+msgstr "翻译前放大图像"
+
+msgid "Bitte API-Schlüssel eintragen"
+msgstr "请输入 API 密钥"
+
+msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
+msgstr "请在 API 设置中输入密钥。"
+
+msgid "Blau"
+msgstr "蓝色"
+
+msgid "Blaugrün"
+msgstr "青色"
+
+msgid "Darstellung"
+msgstr "渲染"
+
+msgid "Dateiauswahl"
+msgstr "文件选择"
+
+msgid "Dateien"
+msgstr "文件"
+
+msgid "Dateien suchen…"
+msgstr "搜索文件…"
+
+msgid "Dateien übersetzt"
+msgstr "文件已翻译"
+
+msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
+msgstr "所选翻译器需要 API 密钥。"
+
+msgid "Detektor"
+msgstr "检测器"
+
+msgid "Dunkel"
+msgstr "深色"
+
+msgid "Eigene Farben verwenden"
+msgstr "使用自定义颜色"
+
+msgid "Einstellungen ein-/ausblenden"
+msgstr "显示/隐藏设置"
+
+msgid "Einstellungen für Inpainting und Upscaling"
+msgstr "图像修复和超分辨率设置"
+
+msgid "Einstellungen für die Textdarstellung"
+msgstr "文本渲染设置"
+
+msgid "Einstellungen für die Übersetzung"
+msgstr "翻译设置"
+
+msgid "Erfordert Neustart"
+msgstr "需要重启"
+
+msgid "Erkennungsboxen zusammenführen (mocr)"
+msgstr "合并检测框 (mocr)"
+
+msgid "Erkennungsgröße"
+msgstr "检测大小"
+
+msgid "Erweitert"
+msgstr "高级"
+
+msgid "Erzwinge horizontale/vertikale Richtung"
+msgstr "强制水平/垂直方向"
+
+msgid "Extern öffnen"
+msgstr "外部打开"
+
+msgid "Farbe wählen"
+msgstr "选择颜色"
+
+msgid "Farbschema"
+msgstr "配色方案"
+
+msgid "Farbwähler öffnen"
+msgstr "打开颜色选择器"
+
+msgid "Fehler"
+msgstr "错误"
+
+msgid "Fehler beim Laden der Log-Datei."
+msgstr "加载日志文件时出错。"
+
+msgid "Fertig!"
+msgstr "完成！"
+
+msgid "Gelb"
+msgstr "黄色"
+
+msgid "Gemini Modell"
+msgstr "Gemini 模型"
+
+msgid "Gerät"
+msgstr "设备"
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Grün"
+msgstr "绿色"
+
+msgid "Hell"
+msgstr "浅色"
+
+msgid "Inpainting"
+msgstr "图像修复"
+
+msgid "Inpainting Größe"
+msgstr "修复大小"
+
+msgid "Inpainting Präzision"
+msgstr "修复精度"
+
+msgid "Kein Bild geladen"
+msgstr "未加载图片"
+
+msgid "Kein Rand/Umriss um den Text"
+msgstr "文字无边框/轮廓"
+
+msgid "Keine Datei ausgewählt"
+msgstr "未选择文件"
+
+msgid "Keine Dateien"
+msgstr "无文件"
+
+msgid "Keine Dateien ausgewählt"
+msgstr "未选择文件"
+
+msgid "Keine Log-Datei gefunden."
+msgstr "未找到日志文件。"
+
+msgid "Keine Modelle gefunden"
+msgstr "未找到模型"
+
+msgid "Kopieren"
+msgstr "复制"
+
+msgid "Lila"
+msgstr "紫色"
+
+msgid "Listenansicht"
+msgstr "列表视图"
+
+msgid "Log anzeigen"
+msgstr "显示日志"
+
+msgid "Log-Datei ist leer."
+msgstr "日志文件为空。"
+
+msgid "Lokales Modell (.gguf Pfad)"
+msgstr "本地模型（.gguf 路径）"
+
+msgid "Manga Translator"
+msgstr "Manga Translator"
+
+msgid "Manga-Startverzeichnis"
+msgstr "漫画主目录"
+
+msgid "Manga-Startverzeichnis…"
+msgstr "漫画主目录…"
+
+msgid "Manga-Verzeichnis wählen"
+msgstr "选择漫画目录"
+
+msgid "Masken-Erweiterung"
+msgstr "遮罩扩展"
+
+msgid "Menü"
+msgstr "菜单"
+
+msgid "Methode zur Bildreparatur"
+msgstr "图像修复方法"
+
+msgid "Methode zur Blasenerkennung"
+msgstr "气泡检测方法"
+
+msgid "Methode zur Texteinblendung"
+msgstr "文字嵌入方法"
+
+msgid "Modell für VLM-Korrektur"
+msgstr "VLM 修正模型"
+
+msgid "Modelle vom OpenRouter API laden"
+msgstr "从 OpenRouter API 加载模型"
+
+msgid "Modelle werden geladen…"
+msgstr "正在加载模型…"
+
+msgid "Modellliste aktualisieren"
+msgstr "更新模型列表"
+
+msgid "Modus"
+msgstr "模式"
+
+msgid "Nicht gefunden"
+msgstr "未找到"
+
+msgid "Nicht konfiguriert"
+msgstr "未配置"
+
+msgid "OCR Modell"
+msgstr "OCR 模型"
+
+msgid "OpenAI / ChatGPT"
+msgstr "OpenAI / ChatGPT"
+
+msgid "OpenRouter Modell"
+msgstr "OpenRouter 模型"
+
+msgid "Optical Character Recognition"
+msgstr "光学字符识别"
+
+msgid "Orange"
+msgstr "橙色"
+
+msgid "Original"
+msgstr "原图"
+
+msgid "Original-Ordner verwenden"
+msgstr "使用原始文件夹"
+
+msgid "Positive Werte = größerer Text"
+msgstr "正值 = 更大的文字"
+
+msgid "Protokoll"
+msgstr "日志"
+
+msgid "Protokoll anzeigen"
+msgstr "显示日志"
+
+msgid "Python-Umgebung"
+msgstr "Python 环境"
+
+msgid "Python-Umgebung gefunden"
+msgstr "已找到 Python 环境"
+
+msgid "RTL Richtung"
+msgstr "RTL 方向"
+
+msgid "Rand:"
+msgstr "边框："
+
+msgid "Randfarbe (Hintergrund)"
+msgstr "边框颜色（背景）"
+
+msgid "Rasteransicht"
+msgstr "网格视图"
+
+msgid "Recheneinheit für die Übersetzung"
+msgstr "翻译计算单元"
+
+msgid "Renderer"
+msgstr "渲染器"
+
+msgid "Rosa"
+msgstr "粉色"
+
+msgid "Rot"
+msgstr "红色"
+
+msgid "Schließen"
+msgstr "关闭"
+
+msgid "Schrift randlos"
+msgstr "无边框字体"
+
+msgid "Schriftfarbe"
+msgstr "字体颜色"
+
+msgid "Schriftgrößenversatz"
+msgstr "字号偏移"
+
+msgid "Sortierung:"
+msgstr "排序："
+
+msgid "Speichern"
+msgstr "保存"
+
+msgid "Sprache"
+msgstr "语言"
+
+msgid "Sprache wird beim Neustart wirksam."
+msgstr "语言将在重启后生效。"
+
+msgid "Sprache der Übersetzung"
+msgstr "翻译目标语言"
+
+msgid "Standard (result/)"
+msgstr "默认 (result/)"
+
+msgid "Startverzeichnis"
+msgstr "起始目录"
+
+msgid "Suche fokussieren"
+msgstr "聚焦搜索"
+
+msgid "System"
+msgstr "系统"
+
+msgid "Tastenkürzel"
+msgstr "键盘快捷键"
+
+msgid "Text von rechts nach links (Arabisch, Hebräisch)"
+msgstr "从右到左的文字（阿拉伯语、希伯来语）"
+
+msgid "Text:"
+msgstr "文字："
+
+msgid "Textausrichtung in Blasen"
+msgstr "气泡内文字对齐"
+
+msgid "Texterkennung"
+msgstr "文本识别"
+
+msgid "Textfarbe (Vordergrund)"
+msgstr "文字颜色（前景）"
+
+msgid "Textmaske erweitern um (px)"
+msgstr "文字遮罩扩展 (px)"
+
+msgid "Textrichtung"
+msgstr "文字方向"
+
+msgid "Upscale Faktor"
+msgstr "放大倍数"
+
+msgid "Upscaler"
+msgstr "图像放大"
+
+msgid "VLM Einstellungen"
+msgstr "VLM 设置"
+
+msgid "VLM Typ"
+msgstr "VLM 类型"
+
+msgid "Vergleich"
+msgstr "比较"
+
+msgid "Vergrößerungsfaktor"
+msgstr "放大系数"
+
+msgid "Verzeichnis wählen"
+msgstr "选择目录"
+
+msgid "Verzeichnis öffnen"
+msgstr "打开目录"
+
+msgid "Verzeichnis öffnen…"
+msgstr "打开目录…"
+
+msgid "Virtuelle Umgebung"
+msgstr "虚拟环境"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "选择虚拟环境"
+
+msgid "Virtuelle Umgebung…"
+msgstr "虚拟环境…"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "视觉语言模型配置"
+
+msgid "Vision-fähiges Modell"
+msgstr "视觉模型"
+
+msgid "Vorschau"
+msgstr "预览"
+
+msgid "Weitere Dienste"
+msgstr "其他服务"
+
+msgid "Wähle das VLM-Backend"
+msgstr "选择 VLM 后端"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "选择翻译服务"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "选择翻译模式"
+
+msgid "Zielsprache"
+msgstr "目标语言"
+
+msgid "Zurück"
+msgstr "返回"
+
+msgid "Zurücksetzen"
+msgstr "重置"
+
+msgid "ausgewählt"
+msgstr "已选择"
+
+msgid "manga-image-translator"
+msgstr "manga-image-translator"
+
+msgid "manga-image-translator Verzeichnis wählen"
+msgstr "选择 manga-image-translator 目录"
+
+msgid "manga-image-translator gefunden"
+msgstr "已找到 manga-image-translator"
+
+msgid "Öffnen"
+msgstr "打开"
+
+msgid "Über Manga Translator"
+msgstr "关于 Manga Translator"
+
+msgid "Übergeordnetes Verzeichnis"
+msgstr "上级目录"
+
+msgid "Übersetzen"
+msgstr "翻译"
+
+msgid "Übersetzer"
+msgstr "翻译器"
+
+msgid "Übersetzung"
+msgstr "翻译"
+
+msgid "Übersetzung abbrechen"
+msgstr "取消翻译"
+
+msgid "Übersetzung fehlgeschlagen"
+msgstr "翻译失败"
+
+msgid "Übersetzung wird vorbereitet…"
+msgstr "正在准备翻译…"
