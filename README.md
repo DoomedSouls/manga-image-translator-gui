@@ -63,7 +63,7 @@ sudo dnf install rust gtk4-devel libadwaita-devel
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/manga-image-translator-gui.git
+git clone https://github.com/DoomedSouls/manga-image-translator-gui.git
 cd manga-image-translator-gui
 
 # Build (release)
