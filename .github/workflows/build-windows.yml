@@ -55,6 +55,18 @@ jobs:
             mingw-w64-x86_64-adwaita-icon-theme
             mingw-w64-x86_64-hicolor-icon-theme
 
+      - name: Configure cargo linker flags for Windows
+        shell: msys2 {0}
+        run: |
+          cd manga-translator-gtk
+          mkdir -p .cargo
+          cat > .cargo/config.toml << 'EOF'
+          [target.x86_64-pc-windows-gnu]
+          rustflags = [
+            "-C", "link-args=-ladvapi32 -lshell32 -lole32 -lshlwapi -lws2_32 -luserenv -lntdll",
+          ]
+          EOF
+
       - name: Build release
         shell: msys2 {0}
         env:
