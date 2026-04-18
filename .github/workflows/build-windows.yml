@@ -57,6 +57,10 @@ jobs:
 
       - name: Build release
         shell: msys2 {0}
+        env:
+          PKG_CONFIG_ALLOW_CROSS: "1"
+          PKG_CONFIG_PATH: "/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig"
+          SYSTEM_DEPS_LINK: "static"
         run: |
           export PATH="/c/Users/${USER}/.cargo/bin:${PATH}"
           cd manga-translator-gtk
