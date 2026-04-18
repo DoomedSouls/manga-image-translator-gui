@@ -311,13 +311,16 @@ impl IpcBridge {
 
         // Derive python binary from venv: site-packages → python3.X → lib → venv root
         if let Some(ref sp) = venv_site_packages {
-            // /path/to/venv/lib/python3.X/site-packages → /path/to/venv/bin/python3
-            // Three parent() hops: site-packages → python3.X → lib → venv_root
+            // Linux:   /path/to/venv/lib/python3.X/site-packages → /path/to/venv/bin/python3
+            // Windows: C:\venv\Lib\site-packages → C:\venv\Scripts\python.exe
             if let Some(venv_root) = sp
                 .parent()
                 .and_then(|p| p.parent())
                 .and_then(|p| p.parent())
             {
+                #[cfg(target_os = "windows")]
+                let bin = venv_root.join("Scripts").join("python.exe");
+                #[cfg(not(target_os = "windows"))]
                 let bin = venv_root.join("bin").join("python3");
                 if bin.exists() {
                     cfg.python_bin = bin.to_string_lossy().to_string();
@@ -354,7 +357,14 @@ impl IpcBridge {
         let python_bin = {
             let cfg = self.config.lock().unwrap();
             if cfg.python_bin.is_empty() {
-                "python3".to_string()
+                #[cfg(target_os = "windows")]
+                {
+                    "python".to_string()
+                }
+                #[cfg(not(target_os = "windows"))]
+                {
+                    "python3".to_string()
+                }
             } else {
                 cfg.python_bin.clone()
             }
@@ -771,7 +781,11 @@ impl IpcBridge {
             }
         }
 
-        paths.join(":")
+        #[cfg(target_os = "windows")]
+        let separator = ";";
+        #[cfg(not(target_os = "windows"))]
+        let separator = ":";
+        paths.join(separator)
     }
 
     // -----------------------------------------------------------------------

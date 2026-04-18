@@ -1,0 +1,199 @@
+name: Build Windows
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: mingw64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gtk4
+            mingw-w64-x86_64-libadwaita
+            mingw-w64-x86_64-gettext
+            mingw-w64-x86_64-gettext-tools
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-pkgconf
+            mingw-w64-x86_64-cairo
+            mingw-w64-x86_64-pango
+            mingw-w64-x86_64-gdk-pixbuf2
+            mingw-w64-x86_64-harfbuzz
+            mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-fontconfig
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-graphene
+            mingw-w64-x86_64-pcre2
+            mingw-w64-x86_64-librsvg
+            mingw-w64-x86_64-adwaita-icon-theme
+            mingw-w64-x86_64-hicolor-icon-theme
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-gnu
+
+      - name: Build release
+        run: |
+          cd manga-translator-gtk
+          cargo build --release --target x86_64-pc-windows-gnu
+
+      - name: Package distribution
+        run: |
+          VERSION="${GITHUB_REF_NAME:-0.2.0}"
+          DIST="dist/manga-translator-gtk-${VERSION}-windows-x86_64"
+          MINGW="/mingw64"
+
+          mkdir -p "${DIST}"
+
+          # Copy binary
+          cp manga-translator-gtk/target/x86_64-pc-windows-gnu/release/manga-translator-gtk.exe "${DIST}/"
+
+          # Copy Python backend
+          mkdir -p "${DIST}/backend"
+          cp manga-translator-gtk/backend/server.py "${DIST}/backend/"
+
+          # Copy locale files
+          mkdir -p "${DIST}/locale"
+          cp -r locale/de "${DIST}/locale/"
+          cp -r locale/en "${DIST}/locale/"
+          cp -r locale/es "${DIST}/locale/"
+          cp -r locale/fr "${DIST}/locale/"
+          cp -r locale/it "${DIST}/locale/"
+          cp -r locale/ja "${DIST}/locale/"
+          cp -r locale/ko "${DIST}/locale/"
+          cp -r locale/pt_BR "${DIST}/locale/"
+          cp -r locale/zh_CN "${DIST}/locale/"
+
+          # Copy required DLLs from MSYS2
+          for dll in \
+            libgtk-4-1.dll \
+            libadwaita-1-0.dll \
+            libgdk_pixbuf-2.0-0.dll \
+            libglib-2.0-0.dll \
+            libgobject-2.0-0.dll \
+            libgio-2.0-0.dll \
+            libcairo-2.dll \
+            libcairo-gobject-2.dll \
+            libcairo-script-interpreter-2.dll \
+            libpango-1.0-0.dll \
+            libpangocairo-1.0-0.dll \
+            libpangoft2-1.0-0.dll \
+            libpangowin32-1.0-0.dll \
+            libgraphene-1.0-0.dll \
+            libharfbuzz.dll \
+            libharfbuzz-gobject.dll \
+            libfreetype-6.dll \
+            libfontconfig-1.dll \
+            libintl-8.dll \
+            libiconv-2.dll \
+            libpcre2-8-0.dll \
+            libpixman-1-0.dll \
+            libpng16-16.dll \
+            libjpeg-8.dll \
+            libtiff-6.dll \
+            librsvg-2-2.dll \
+            libxml2-2.dll \
+            libcroco-0.6-3.dll \
+            liblzma-5.dll \
+            libzstd.dll \
+            libbz2-1.dll \
+            libexpat-1.dll \
+            libssp-0.dll \
+            libwinpthread-1.dll \
+            libgcc_s_seh-1.dll \
+            libgraphite2.dll \
+            libfribidi-0.dll \
+            libdatrie-1.dll \
+            libthai-0.dll \
+            libepoxy-0.dll \
+            libstdc++-6.dll \
+            zlib1.dll \
+            libdeflate.dll \
+            libjbig-0.dll \
+            libwebp-7.dll \
+            libsharpyuv-0.dll \
+            libidn2-0.dll \
+            libunistring-5.dll \
+            libbrotlidec.dll \
+            libbrotlicommon.dll \
+            libpsl-5.dll \
+            libcrypto-3-x64.dll \
+            libssl-3-x64.dll \
+            glib-compile-schemas.exe \
+            gdk-pixbuf-query-loaders.exe \
+            gdbus.exe; do
+            if [ -f "${MINGW}/bin/${dll}" ]; then
+              cp "${MINGW}/bin/${dll}" "${DIST}/"
+            fi
+          done
+
+          # Copy GTK schemas
+          mkdir -p "${DIST}/share/glib-2.0/schemas"
+          cp "${MINGW}/share/glib-2.0/schemas/"*.xml "${DIST}/share/glib-2.0/schemas/"
+          if [ -f "${MINGW}/share/glib-2.0/schemas/gschemas.compiled" ]; then
+            cp "${MINGW}/share/glib-2.0/schemas/gschemas.compiled" "${DIST}/share/glib-2.0/schemas/"
+          fi
+
+          # Compile schemas in the dist
+          cd "${DIST}/share/glib-2.0/schemas"
+          "${DIST}/glib-compile-schemas.exe" . 2>/dev/null || true
+          cd -
+
+          # Copy GDK-Pixbuf loaders
+          mkdir -p "${DIST}/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+          cp "${MINGW}/lib/gdk-pixbuf-2.0/2.10.0/loaders/"*.dll "${DIST}/lib/gdk-pixbuf-2.0/2.10.0/loaders/"
+
+          # Generate loaders cache
+          cd "${DIST}"
+          "./gdk-pixbuf-query-loaders.exe" > "lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" 2>/dev/null || true
+          # Fix absolute MSYS2 paths in cache to relative
+          sed -i 's|C:/[^"]*/mingw64/lib/|lib/|g' "lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" 2>/dev/null || true
+          cd -
+
+          # Copy icons (Adwaita + hicolor)
+          mkdir -p "${DIST}/share/icons"
+          cp -r "${MINGW}/share/icons/Adwaita" "${DIST}/share/icons/" 2>/dev/null || true
+          cp -r "${MINGW}/share/icons/hicolor" "${DIST}/share/icons/" 2>/dev/null || true
+
+          # Copy GTK4 settings
+          mkdir -p "${DIST}/share/gtk-4.0"
+          cp "${MINGW}/share/gtk-4.0/settings.ini" "${DIST}/share/gtk-4.0/" 2>/dev/null || true
+
+          # Remove build tools from dist (not needed at runtime)
+          rm -f "${DIST}/glib-compile-schemas.exe"
+          rm -f "${DIST}/gdk-pixbuf-query-loaders.exe"
+          rm -f "${DIST}/gdbus.exe"
+
+          # Create ZIP
+          cd dist
+          7z a -tzip "manga-translator-gtk-${VERSION}-windows-x86_64.zip" "manga-translator-gtk-${VERSION}-windows-x86_64/"
+          cd ..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manga-translator-gtk-windows-x86_64
+          path: dist/*.zip
+
+      - name: Upload to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip

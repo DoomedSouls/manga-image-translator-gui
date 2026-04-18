@@ -310,14 +310,35 @@ fn find_locale_dir() -> Option<String> {
     // 2. Relative to the executable
     if let Ok(exe) = std::env::current_exe() {
         if let Some(exe_dir) = exe.parent() {
-            // Installed mode: <prefix>/bin/ → <prefix>/share/locale/
-            let share_locale = exe_dir.join("..").join("share").join("locale");
-            if share_locale.is_dir() {
-                if let Ok(canonical) = share_locale.canonicalize() {
-                    return Some(canonical.to_string_lossy().into_owned());
+            // Windows: locale/ next to the executable (portable install)
+            #[cfg(target_os = "windows")]
+            {
+                let win_locale = exe_dir.join("locale");
+                if win_locale.is_dir() {
+                    if let Ok(canonical) = win_locale.canonicalize() {
+                        log::info!("Locale dir found next to exe: {}", canonical.display());
+                        return Some(canonical.to_string_lossy().into_owned());
+                    }
+                }
+                // Windows installed: <prefix>\bin\ → <prefix>\share\locale\
+                let share_locale = exe_dir.join("..").join("share").join("locale");
+                if share_locale.is_dir() {
+                    if let Ok(canonical) = share_locale.canonicalize() {
+                        return Some(canonical.to_string_lossy().into_owned());
+                    }
                 }
             }
-            // Development: target/release/ → ../../locale/
+            // Linux installed: <prefix>/bin/ → <prefix>/share/locale/
+            #[cfg(not(target_os = "windows"))]
+            {
+                let share_locale = exe_dir.join("..").join("share").join("locale");
+                if share_locale.is_dir() {
+                    if let Ok(canonical) = share_locale.canonicalize() {
+                        return Some(canonical.to_string_lossy().into_owned());
+                    }
+                }
+            }
+            // Development: target/release/ → ../../locale/ (both platforms)
             let dev_locale = exe_dir.join("..").join("..").join("locale");
             if dev_locale.is_dir() {
                 if let Ok(canonical) = dev_locale.canonicalize() {
@@ -335,11 +356,27 @@ fn find_locale_dir() -> Option<String> {
         }
     }
 
-    // 4. XDG data directories
-    if let Some(data_home) = std::env::var_os("XDG_DATA_HOME") {
-        let xdg_locale = PathBuf::from(data_home).join("locale");
-        if xdg_locale.is_dir() {
-            return Some(xdg_locale.to_string_lossy().into_owned());
+    // 4. Platform-specific data directories
+    #[cfg(target_os = "windows")]
+    {
+        // Windows: %APPDATA%\manga-translator\locale
+        if let Some(appdata) = std::env::var_os("APPDATA") {
+            let appdata_locale = PathBuf::from(appdata)
+                .join("manga-translator")
+                .join("locale");
+            if appdata_locale.is_dir() {
+                return Some(appdata_locale.to_string_lossy().into_owned());
+            }
+        }
+    }
+    #[cfg(not(target_os = "windows"))]
+    {
+        // Linux: XDG data directories
+        if let Some(data_home) = std::env::var_os("XDG_DATA_HOME") {
+            let xdg_locale = PathBuf::from(data_home).join("locale");
+            if xdg_locale.is_dir() {
+                return Some(xdg_locale.to_string_lossy().into_owned());
+            }
         }
     }
 
