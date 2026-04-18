@@ -1118,7 +1118,7 @@ pub fn show_about_dialog(parent: &impl IsA<gtk::Widget>) {
     let about = adw::AboutDialog::builder()
         .application_name("Manga Translator")
         .application_icon("applications-graphics")
-        .version("0.1.0 (Rust)")
+        .version("0.2.0")
         .comments(&i18n::t(
             "Ein GUI für Manga Image Translator — geschrieben in Rust mit GTK4/libadwaita",
         ))
