@@ -2,7 +2,7 @@ name: Build Windows
 
 on:
   push:
-    tags: ['v*']
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
@@ -11,13 +11,24 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-gnu
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
 
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
@@ -44,17 +55,15 @@ jobs:
             mingw-w64-x86_64-adwaita-icon-theme
             mingw-w64-x86_64-hicolor-icon-theme
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-pc-windows-gnu
-
       - name: Build release
+        shell: msys2 {0}
         run: |
+          export PATH="/c/Users/${USER}/.cargo/bin:${PATH}"
           cd manga-translator-gtk
           cargo build --release --target x86_64-pc-windows-gnu
 
       - name: Package distribution
+        shell: msys2 {0}
         run: |
           VERSION="${GITHUB_REF_NAME:-0.2.0}"
           DIST="dist/manga-translator-gtk-${VERSION}-windows-x86_64"
@@ -71,15 +80,9 @@ jobs:
 
           # Copy locale files
           mkdir -p "${DIST}/locale"
-          cp -r locale/de "${DIST}/locale/"
-          cp -r locale/en "${DIST}/locale/"
-          cp -r locale/es "${DIST}/locale/"
-          cp -r locale/fr "${DIST}/locale/"
-          cp -r locale/it "${DIST}/locale/"
-          cp -r locale/ja "${DIST}/locale/"
-          cp -r locale/ko "${DIST}/locale/"
-          cp -r locale/pt_BR "${DIST}/locale/"
-          cp -r locale/zh_CN "${DIST}/locale/"
+          for lang in de en es fr it ja ko pt_BR zh_CN; do
+            cp -r "locale/${lang}" "${DIST}/locale/"
+          done
 
           # Copy required DLLs from MSYS2
           for dll in \
