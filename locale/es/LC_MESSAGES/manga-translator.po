@@ -542,3 +542,180 @@ msgstr "Traducción fallida"
 
 msgid "Übersetzung wird vorbereitet…"
 msgstr "Preparando traducción…"
+
+msgid "Wirkt sofort"
+msgstr "Funciona inmediatamente"
+
+msgid "Standard Übersetzer"
+msgstr "Traductor estándar"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (Modelo de lenguaje visual)"
+
+msgid "Text extrahieren"
+msgstr "Extraer texto"
+
+msgid "Text einfügen"
+msgstr "Insertar texto"
+
+msgid "Nur Upscaling"
+msgstr "Solo escalado"
+
+msgid "Lokal (Offline)"
+msgstr "Local (sin conexión)"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google (via DeepTranslator)"
+
+msgid "Baidu"
+msgstr "Baidu"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "Caiyun"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "Ninguno (solo detección de texto)"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — Optimizado para manga y cómics"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "Predeterminado — Detección de texto general"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — Basado en ConvNext"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — Detección PaddlePaddle"
+
+msgid "48px (Standard)"
+msgstr "48px (Estándar)"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr (Mejor calidad)"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — Inpainting estándar"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — Reconstrucción basada en contexto"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — Reparación de imagen basada en parches"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — Migración de estilo neuronal"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — Inpainting de alta resolución"
+
+msgid "Keiner"
+msgstr "Ninguno"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — Mejora general de imagen"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — Optimizado para anime y manga"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — Escalado 4x"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "Nombre (A-Z)"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "Natural (1, 2, 10)"
+
+msgid "Datum (neueste zuerst)"
+msgstr "Fecha (más reciente primero)"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter (en línea)"
+
+msgid "Gemini (Online)"
+msgstr "Gemini (en línea)"
+
+msgid "Lokales Modell"
+msgstr "Modelo local"
+
+msgid "Standard"
+msgstr "Estándar"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "Sin renderizado"
+
+msgid "Links"
+msgstr "Izquierda"
+
+msgid "Zentriert"
+msgstr "Centrado"
+
+msgid "Rechts"
+msgstr "Derecha"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertikal"
+msgstr "Vertical"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32 (Lento, preciso)"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16 (Equilibrado)"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16 (Rápido, estándar)"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "Ajustes para la detección de burbujas y texto"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "Opciones adicionales para usuarios avanzados"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "Elija la ubicación de almacenamiento para las imágenes traducidas"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "Guarda las traducciones en la misma carpeta que los archivos originales"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "Ubicación personalizada para las traducciones"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "Abrir Menú → Entorno virtual… para configurar las rutas"

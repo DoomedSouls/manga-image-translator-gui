@@ -279,6 +279,7 @@ impl SettingsPanelPrivate {
         // ── Language section ──────────────────────────────────────
         let language_group = adw::PreferencesGroup::new();
         language_group.set_title(&i18n::t("Sprache"));
+        i18n::register_group_title(&language_group, "Sprache");
 
         let lang_names: Vec<&str> = i18n::SUPPORTED_LANGUAGES
             .iter()
@@ -288,9 +289,10 @@ impl SettingsPanelPrivate {
 
         let language_row = adw::ComboRow::builder()
             .title(&i18n::t("Sprache"))
-            .subtitle(&i18n::t("Erfordert Neustart"))
+            .subtitle(&i18n::t("Wirkt sofort"))
             .model(&lang_model)
             .build();
+        i18n::register_combo_row(&language_row, "Sprache", Some("Wirkt sofort"));
 
         let lang_icon = gtk::Image::from_icon_name("emoji-flags-symbolic");
         lang_icon.add_css_class("dim-label");
@@ -301,7 +303,16 @@ impl SettingsPanelPrivate {
         // ── Translation group ──────────────────────────────────────
         let translation_group = adw::PreferencesGroup::new();
         translation_group.set_title(&i18n::t("Übersetzung"));
+        i18n::register_group_title(&translation_group, "Übersetzung");
         translation_group.set_description(Some(&i18n::t("Einstellungen für die Übersetzung")));
+        {
+            let weak = translation_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t("Einstellungen für die Übersetzung")));
+                }
+            }));
+        }
 
         // Translation mode ComboRow
         let mode_model = gtk::StringList::new(config::options::TRANSLATION_MODES);
@@ -310,6 +321,8 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Wähle den Übersetzungsmodus"))
             .model(&mode_model)
             .build();
+        i18n::register_combo_row(&mode_row, "Modus", Some("Wähle den Übersetzungsmodus"));
+        i18n::register_combo_row_items(&mode_row, config::options::TRANSLATION_MODES);
 
         // Translator ComboRow
         let translator_model = gtk::StringList::new(config::options::TRANSLATORS);
@@ -318,6 +331,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Wähle den Übersetzungsdienst"))
             .model(&translator_model)
             .build();
+        i18n::register_combo_row(
+            &translator_row,
+            "Übersetzer",
+            Some("Wähle den Übersetzungsdienst"),
+        );
+        i18n::register_combo_row_items(&translator_row, config::options::TRANSLATORS);
         translator_row.add_css_class("settings-translator");
 
         // Target language ComboRow
@@ -327,12 +346,22 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Sprache der Übersetzung"))
             .model(&lang_model)
             .build();
+        i18n::register_combo_row(
+            &target_lang_row,
+            "Zielsprache",
+            Some("Sprache der Übersetzung"),
+        );
 
         // RTL direction switch
         let rtl_row = adw::SwitchRow::builder()
             .title(&i18n::t("RTL Richtung"))
             .subtitle(&i18n::t("Text von rechts nach links (Arabisch, Hebräisch)"))
             .build();
+        i18n::register_switch_row(
+            &rtl_row,
+            "RTL Richtung",
+            Some("Text von rechts nach links (Arabisch, Hebräisch)"),
+        );
 
         translation_group.add(&mode_row);
         translation_group.add(&translator_row);
@@ -342,9 +371,20 @@ impl SettingsPanelPrivate {
         // ── Output section ─────────────────────────────────────────
         let output_group = adw::PreferencesGroup::new();
         output_group.set_title(&i18n::t("Ausgabe"));
+        i18n::register_group_title(&output_group, "Ausgabe");
         output_group.set_description(Some(&i18n::t(
             "Wählen Sie den Speicherort für übersetzte Bilder",
         )));
+        {
+            let weak = output_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t(
+                        "Wählen Sie den Speicherort für übersetzte Bilder",
+                    )));
+                }
+            }));
+        }
 
         // Use original folder switch
         let use_original_folder_row = adw::SwitchRow::builder()
@@ -353,6 +393,11 @@ impl SettingsPanelPrivate {
                 "Speichert die Übersetzungen im selben Ordner wie die Originaldateien",
             ))
             .build();
+        i18n::register_switch_row(
+            &use_original_folder_row,
+            "Original-Ordner verwenden",
+            Some("Speichert die Übersetzungen im selben Ordner wie die Originaldateien"),
+        );
 
         output_group.add(&use_original_folder_row);
 
@@ -363,13 +408,20 @@ impl SettingsPanelPrivate {
                 "Benutzerdefinierter Speicherort für Übersetzungen",
             ))
             .build();
+        i18n::register_action_row(
+            &output_directory_row,
+            "Ausgabe-Ordner",
+            Some("Benutzerdefinierter Speicherort für Übersetzungen"),
+        );
 
         let output_directory_label = gtk::Label::new(Some(&i18n::t("Standard (result/)")));
+        i18n::register_label(&output_directory_label, "Standard (result/)");
         output_directory_label.set_halign(gtk::Align::Start);
         output_directory_label.add_css_class("caption");
         output_directory_label.add_css_class("dim-label");
 
         let output_button = gtk::Button::with_label(&i18n::t("Auswählen"));
+        i18n::register_button(&output_button, "Auswählen");
         output_button.set_valign(gtk::Align::Center);
         output_button.add_css_class("flat");
 
@@ -380,7 +432,16 @@ impl SettingsPanelPrivate {
         // ── VLM section (hidden by default, shown when mode=VLM) ───
         let vlm_section = adw::PreferencesGroup::new();
         vlm_section.set_title(&i18n::t("VLM Einstellungen"));
+        i18n::register_group_title(&vlm_section, "VLM Einstellungen");
         vlm_section.set_description(Some(&i18n::t("Vision Language Model Konfiguration")));
+        {
+            let weak = vlm_section.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t("Vision Language Model Konfiguration")));
+                }
+            }));
+        }
 
         // VLM Type ComboRow
         let vlm_type_model = gtk::StringList::new(config::options::VLM_TYPES);
@@ -389,6 +450,8 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Wähle das VLM-Backend"))
             .model(&vlm_type_model)
             .build();
+        i18n::register_combo_row(&vlm_type_row, "VLM Typ", Some("Wähle das VLM-Backend"));
+        i18n::register_combo_row_items(&vlm_type_row, config::options::VLM_TYPES);
 
         // Gemini Model ComboRow
         let gemini_model_list = gtk::StringList::new(config::options::GEMINI_MODELS);
@@ -397,6 +460,11 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Modell für VLM-Korrektur"))
             .model(&gemini_model_list)
             .build();
+        i18n::register_combo_row(
+            &gemini_model_row,
+            "Gemini Modell",
+            Some("Modell für VLM-Korrektur"),
+        );
 
         // OpenRouter Model ComboRow (initially empty — populated from cache or API fetch)
         let openrouter_model_list = gtk::StringList::new(&[]);
@@ -405,6 +473,11 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Vision-fähiges Modell"))
             .model(&openrouter_model_list)
             .build();
+        i18n::register_combo_row(
+            &openrouter_model_row,
+            "OpenRouter Modell",
+            Some("Vision-fähiges Modell"),
+        );
 
         // Refresh row for fetching OpenRouter models from the API
         let openrouter_refresh_row = adw::ActionRow::builder()
@@ -413,6 +486,11 @@ impl SettingsPanelPrivate {
             .activatable(true)
             .selectable(false)
             .build();
+        i18n::register_action_row(
+            &openrouter_refresh_row,
+            "Modellliste aktualisieren",
+            Some("Modelle vom OpenRouter API laden"),
+        );
         openrouter_refresh_row.add_css_class("suggested-action");
         let refresh_icon = gtk::Image::from_icon_name("view-refresh-symbolic");
         openrouter_refresh_row.add_suffix(&refresh_icon);
@@ -421,6 +499,7 @@ impl SettingsPanelPrivate {
         let local_model_row = adw::EntryRow::builder()
             .title(&i18n::t("Lokales Modell (.gguf Pfad)"))
             .build();
+        i18n::register_entry_row(&local_model_row, "Lokales Modell (.gguf Pfad)");
         local_model_row.set_visible(false);
 
         vlm_section.add(&vlm_type_row);
@@ -442,9 +521,20 @@ impl SettingsPanelPrivate {
         // ── Detection group ────────────────────────────────────────
         let detection_group = adw::PreferencesGroup::new();
         detection_group.set_title(&i18n::t("Texterkennung"));
+        i18n::register_group_title(&detection_group, "Texterkennung");
         detection_group.set_description(Some(&i18n::t(
             "Einstellungen für Blasen- und Texterkennung",
         )));
+        {
+            let weak = detection_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t(
+                        "Einstellungen für Blasen- und Texterkennung",
+                    )));
+                }
+            }));
+        }
 
         // Detector ComboRow
         let detector_model = gtk::StringList::new(config::options::DETECTORS);
@@ -453,6 +543,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Methode zur Blasenerkennung"))
             .model(&detector_model)
             .build();
+        i18n::register_combo_row(
+            &detector_row,
+            "Detektor",
+            Some("Methode zur Blasenerkennung"),
+        );
+        i18n::register_combo_row_items(&detector_row, config::options::DETECTORS);
 
         // OCR model ComboRow
         let ocr_model = gtk::StringList::new(config::options::OCR_MODELS);
@@ -461,12 +557,23 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Optical Character Recognition"))
             .model(&ocr_model)
             .build();
+        i18n::register_combo_row(
+            &ocr_row,
+            "OCR Modell",
+            Some("Optical Character Recognition"),
+        );
+        i18n::register_combo_row_items(&ocr_row, config::options::OCR_MODELS);
 
         // mocr merge switch
         let mocr_merge_row = adw::SwitchRow::builder()
             .title(&i18n::t("BBox Zusammenführung"))
             .subtitle(&i18n::t("Erkennungsboxen zusammenführen (mocr)"))
             .build();
+        i18n::register_switch_row(
+            &mocr_merge_row,
+            "BBox Zusammenführung",
+            Some("Erkennungsboxen zusammenführen (mocr)"),
+        );
 
         detection_group.add(&detector_row);
         detection_group.add(&ocr_row);
@@ -475,8 +582,17 @@ impl SettingsPanelPrivate {
         // ── Image processing group ─────────────────────────────────
         let processing_group = adw::PreferencesGroup::new();
         processing_group.set_title(&i18n::t("Bildverarbeitung"));
+        i18n::register_group_title(&processing_group, "Bildverarbeitung");
         processing_group
             .set_description(Some(&i18n::t("Einstellungen für Inpainting und Upscaling")));
+        {
+            let weak = processing_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t("Einstellungen für Inpainting und Upscaling")));
+                }
+            }));
+        }
 
         // Inpainter ComboRow
         let inpainter_model = gtk::StringList::new(config::options::INPAINTERS);
@@ -485,6 +601,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Methode zur Bildreparatur"))
             .model(&inpainter_model)
             .build();
+        i18n::register_combo_row(
+            &inpainter_row,
+            "Inpainting",
+            Some("Methode zur Bildreparatur"),
+        );
+        i18n::register_combo_row_items(&inpainter_row, config::options::INPAINTERS);
 
         // Upscaler ComboRow
         let upscaler_model = gtk::StringList::new(config::options::UPSCALERS);
@@ -493,12 +615,23 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Bildvergrößerung vor der Übersetzung"))
             .model(&upscaler_model)
             .build();
+        i18n::register_combo_row(
+            &upscaler_row,
+            "Upscaler",
+            Some("Bildvergrößerung vor der Übersetzung"),
+        );
+        i18n::register_combo_row_items(&upscaler_row, config::options::UPSCALERS);
 
         // Upscale ratio ComboRow (dynamic — populated based on upscaler)
         let upscale_ratio_row = adw::ComboRow::builder()
             .title(&i18n::t("Upscale Faktor"))
             .subtitle(&i18n::t("Vergrößerungsfaktor"))
             .build();
+        i18n::register_combo_row(
+            &upscale_ratio_row,
+            "Upscale Faktor",
+            Some("Vergrößerungsfaktor"),
+        );
         // Initially hidden (no upscaler selected)
         upscale_ratio_row.set_visible(false);
 
@@ -509,6 +642,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Recheneinheit für die Übersetzung"))
             .model(&device_model)
             .build();
+        i18n::register_combo_row(
+            &device_row,
+            "Gerät",
+            Some("Recheneinheit für die Übersetzung"),
+        );
+        i18n::register_combo_row_items(&device_row, config::options::DEVICES);
 
         processing_group.add(&inpainter_row);
         processing_group.add(&upscaler_row);
@@ -518,7 +657,16 @@ impl SettingsPanelPrivate {
         // ── Rendering group ─────────────────────────────────────────
         let rendering_group = adw::PreferencesGroup::new();
         rendering_group.set_title(&i18n::t("Darstellung"));
+        i18n::register_group_title(&rendering_group, "Darstellung");
         rendering_group.set_description(Some(&i18n::t("Einstellungen für die Textdarstellung")));
+        {
+            let weak = rendering_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t("Einstellungen für die Textdarstellung")));
+                }
+            }));
+        }
 
         // Renderer ComboRow
         let renderer_model = gtk::StringList::new(config::options::RENDERERS);
@@ -527,6 +675,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Methode zur Texteinblendung"))
             .model(&renderer_model)
             .build();
+        i18n::register_combo_row(
+            &renderer_row,
+            "Renderer",
+            Some("Methode zur Texteinblendung"),
+        );
+        i18n::register_combo_row_items(&renderer_row, config::options::RENDERERS);
 
         // Alignment ComboRow
         let alignment_model = gtk::StringList::new(config::options::ALIGNMENTS);
@@ -535,6 +689,12 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Textausrichtung in Blasen"))
             .model(&alignment_model)
             .build();
+        i18n::register_combo_row(
+            &alignment_row,
+            "Ausrichtung",
+            Some("Textausrichtung in Blasen"),
+        );
+        i18n::register_combo_row_items(&alignment_row, config::options::ALIGNMENTS);
 
         // Text direction ComboRow
         let direction_model = gtk::StringList::new(config::options::DIRECTIONS);
@@ -543,18 +703,38 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Erzwinge horizontale/vertikale Richtung"))
             .model(&direction_model)
             .build();
+        i18n::register_combo_row(
+            &direction_row,
+            "Textrichtung",
+            Some("Erzwinge horizontale/vertikale Richtung"),
+        );
+        i18n::register_combo_row_items(&direction_row, config::options::DIRECTIONS);
 
         // Disable font border switch
         let disable_font_border_row = adw::SwitchRow::builder()
             .title(&i18n::t("Schrift randlos"))
             .subtitle(&i18n::t("Kein Rand/Umriss um den Text"))
             .build();
+        i18n::register_switch_row(
+            &disable_font_border_row,
+            "Schrift randlos",
+            Some("Kein Rand/Umriss um den Text"),
+        );
 
         // Font size offset SpinRow
         let font_size_offset_adj = gtk::Adjustment::new(0.0, -20.0, 20.0, 1.0, 5.0, 0.0);
         let font_size_offset_row = adw::SpinRow::new(Some(&font_size_offset_adj), 1.0, 0);
         font_size_offset_row.set_title(&i18n::t("Schriftgrößenversatz"));
         font_size_offset_row.set_subtitle(&i18n::t("Positive Werte = größerer Text"));
+        {
+            let weak = font_size_offset_row.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(r) = weak.upgrade() {
+                    r.set_title(&i18n::t("Schriftgrößenversatz"));
+                    r.set_subtitle(&i18n::t("Positive Werte = größerer Text"));
+                }
+            }));
+        }
 
         // Font color ActionRow with Switch + two ColorDialogButtons
         let font_color_row = adw::ActionRow::builder()
@@ -563,28 +743,38 @@ impl SettingsPanelPrivate {
             .activatable(false)
             .selectable(false)
             .build();
+        i18n::register_action_row(
+            &font_color_row,
+            "Schriftfarbe",
+            Some("Benutzerdefinierte Text-/Randfarbe"),
+        );
 
         let color_dialog = gtk::ColorDialog::builder().with_alpha(false).build();
 
         // Foreground (text) color button — default black
         let font_color_fg_btn = gtk::ColorDialogButton::new(Some(color_dialog.clone()));
         font_color_fg_btn.set_tooltip_text(Some(&i18n::t("Textfarbe (Vordergrund)")));
+        i18n::register_tooltip(&font_color_fg_btn, "Textfarbe (Vordergrund)");
         font_color_fg_btn.set_rgba(&gtk::gdk::RGBA::new(0.0, 0.0, 0.0, 1.0));
         font_color_fg_btn.set_sensitive(false);
 
         // Background (border) color button — default white
         let font_color_bg_btn = gtk::ColorDialogButton::new(Some(color_dialog));
         font_color_bg_btn.set_tooltip_text(Some(&i18n::t("Randfarbe (Hintergrund)")));
+        i18n::register_tooltip(&font_color_bg_btn, "Randfarbe (Hintergrund)");
         font_color_bg_btn.set_rgba(&gtk::gdk::RGBA::new(1.0, 1.0, 1.0, 1.0));
         font_color_bg_btn.set_sensitive(false);
 
         // Switch: ON = custom colors, OFF = auto (OCR-detected)
         let font_color_switch = gtk::Switch::new();
         font_color_switch.set_tooltip_text(Some(&i18n::t("Eigene Farben verwenden")));
+        i18n::register_tooltip(&font_color_switch, "Eigene Farben verwenden");
         font_color_switch.set_valign(gtk::Align::Center);
 
         let fg_label = gtk::Label::new(Some(&i18n::t("Text:")));
+        i18n::register_label(&fg_label, "Text:");
         let bg_label = gtk::Label::new(Some(&i18n::t("Rand:")));
+        i18n::register_label(&bg_label, "Rand:");
 
         let color_box = gtk::Box::new(gtk::Orientation::Horizontal, 6);
         color_box.set_valign(gtk::Align::Center);
@@ -606,21 +796,50 @@ impl SettingsPanelPrivate {
         // ── Advanced group (collapsible) ────────────────────────────
         let advanced_group = adw::PreferencesGroup::new();
         advanced_group.set_title(&i18n::t("Erweitert"));
+        i18n::register_group_title(&advanced_group, "Erweitert");
         advanced_group.set_description(Some(&i18n::t(
             "Zusätzliche Optionen für fortgeschrittene Benutzer",
         )));
+        {
+            let weak = advanced_group.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(g) = weak.upgrade() {
+                    g.set_description(Some(&i18n::t(
+                        "Zusätzliche Optionen für fortgeschrittene Benutzer",
+                    )));
+                }
+            }));
+        }
 
         // Advanced: Mask dilation offset SpinRow
         let mask_dilation_adj = gtk::Adjustment::new(20.0, 0.0, 200.0, 5.0, 20.0, 0.0);
         let mask_dilation_offset_row = adw::SpinRow::new(Some(&mask_dilation_adj), 5.0, 0);
         mask_dilation_offset_row.set_title(&i18n::t("Masken-Erweiterung"));
         mask_dilation_offset_row.set_subtitle(&i18n::t("Textmaske erweitern um (px)"));
+        {
+            let weak = mask_dilation_offset_row.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(r) = weak.upgrade() {
+                    r.set_title(&i18n::t("Masken-Erweiterung"));
+                    r.set_subtitle(&i18n::t("Textmaske erweitern um (px)"));
+                }
+            }));
+        }
 
         // Advanced: Inpainting size SpinRow
         let inpainting_size_adj = gtk::Adjustment::new(2048.0, 256.0, 4096.0, 256.0, 512.0, 0.0);
         let inpainting_size_row = adw::SpinRow::new(Some(&inpainting_size_adj), 256.0, 0);
         inpainting_size_row.set_title(&i18n::t("Inpainting Größe"));
         inpainting_size_row.set_subtitle(&i18n::t("Auflösung für Bildreparatur"));
+        {
+            let weak = inpainting_size_row.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(r) = weak.upgrade() {
+                    r.set_title(&i18n::t("Inpainting Größe"));
+                    r.set_subtitle(&i18n::t("Auflösung für Bildreparatur"));
+                }
+            }));
+        }
 
         // Advanced: Inpainting precision ComboRow
         let inpainting_precision_model =
@@ -630,12 +849,30 @@ impl SettingsPanelPrivate {
             .subtitle(&i18n::t("Berechnungsgenauigkeit"))
             .model(&inpainting_precision_model)
             .build();
+        i18n::register_combo_row(
+            &inpainting_precision_row,
+            "Inpainting Präzision",
+            Some("Berechnungsgenauigkeit"),
+        );
+        i18n::register_combo_row_items(
+            &inpainting_precision_row,
+            config::options::INPAINTING_PRECISIONS,
+        );
 
         // Advanced: Detection size SpinRow
         let detection_size_adj = gtk::Adjustment::new(2048.0, 256.0, 4096.0, 256.0, 512.0, 0.0);
         let detection_size_row = adw::SpinRow::new(Some(&detection_size_adj), 256.0, 0);
         detection_size_row.set_title(&i18n::t("Erkennungsgröße"));
         detection_size_row.set_subtitle(&i18n::t("Auflösung für Texterkennung"));
+        {
+            let weak = detection_size_row.downgrade();
+            i18n::register(Box::new(move || {
+                if let Some(r) = weak.upgrade() {
+                    r.set_title(&i18n::t("Erkennungsgröße"));
+                    r.set_subtitle(&i18n::t("Auflösung für Texterkennung"));
+                }
+            }));
+        }
 
         advanced_group.add(&mask_dilation_offset_row);
         advanced_group.add(&inpainting_size_row);
@@ -2407,6 +2644,18 @@ impl SettingsPanel {
             return cfg.borrow().settings.use_original_folder;
         }
         false
+    }
+
+    /// Get the currently selected UI language code from the language combo row.
+    pub fn ui_language_code(&self) -> String {
+        let priv_ = self.imp();
+        if let Some(row) = priv_.language_row.borrow().as_ref() {
+            let idx = row.selected() as usize;
+            if let Some((code, _)) = i18n::SUPPORTED_LANGUAGES.get(idx) {
+                return code.to_string();
+            }
+        }
+        String::new()
     }
 
     /// Build translation parameters from current UI state.

@@ -38,6 +38,8 @@ pub struct WindowState {
     pub is_processing: bool,
     /// Cancel flag for the running translation.
     pub cancel_flag: Arc<AtomicBool>,
+    /// Current animated fraction for smooth progress bar interpolation.
+    pub animated_fraction: f64,
     /// Current search filter text.
     #[allow(dead_code)]
     pub search_text: String,
@@ -117,6 +119,7 @@ pub fn build_main_window(app: &adw::Application) -> adw::ApplicationWindow {
         current_directory: ConfigManager::default_manga_dir(),
         is_processing: false,
         cancel_flag: Arc::new(AtomicBool::new(false)),
+        animated_fraction: 0.0,
         search_text: String::new(),
         accent_color: "system".to_string(),
         accent_css_provider: None,
@@ -354,12 +357,11 @@ pub fn build_main_window(app: &adw::Application) -> adw::ApplicationWindow {
                 super::dialogs::check_api_key_status(&w, &s);
             }
             super::settings_panel::SettingKind::Language => {
-                w.borrow().toast_overlay.add_toast(
-                    adw::Toast::builder()
-                        .title(&i18n::t("Sprache wird beim Neustart wirksam."))
-                        .timeout(3)
-                        .build(),
-                );
+                // Read the selected language code from settings panel
+                let lang_code = w.borrow().settings_panel.ui_language_code();
+                if !lang_code.is_empty() {
+                    i18n::set_language(&lang_code);
+                }
             }
             _ => {}
         });
@@ -432,8 +434,20 @@ fn build_header_bar(
     let menu_button = gtk::MenuButton::new();
     menu_button.set_icon_name("emblem-system-symbolic");
     menu_button.set_tooltip_text(Some(&i18n::t("Menü")));
+    i18n::register_tooltip(&menu_button, "Menü");
     let menu = build_menu_model();
     menu_button.set_menu_model(Some(&menu));
+
+    // Retranslate menu items when language changes
+    {
+        let weak_btn = menu_button.downgrade();
+        i18n::register(Box::new(move || {
+            if let Some(btn) = weak_btn.upgrade() {
+                let new_menu = build_menu_model();
+                btn.set_menu_model(Some(&new_menu));
+            }
+        }));
+    }
 
     header.pack_end(&menu_button);
     toolbar_view.add_top_bar(&header);
@@ -522,16 +536,19 @@ fn build_file_browser_area(
     let btn_bc_home = gtk::Button::from_icon_name("go-home-symbolic");
     btn_bc_home.add_css_class("flat");
     btn_bc_home.set_tooltip_text(Some(&i18n::t("Startverzeichnis")));
+    i18n::register_tooltip(&btn_bc_home, "Startverzeichnis");
     use gtk::prelude::ActionableExt;
     btn_bc_home.set_action_name(Some("win.navigate-home"));
 
     let btn_bc_up = gtk::Button::from_icon_name("go-up-symbolic");
     btn_bc_up.add_css_class("flat");
     btn_bc_up.set_tooltip_text(Some(&i18n::t("Übergeordnetes Verzeichnis")));
+    i18n::register_tooltip(&btn_bc_up, "Übergeordnetes Verzeichnis");
 
     let btn_bc_refresh = gtk::Button::new();
     btn_bc_refresh.add_css_class("flat");
     btn_bc_refresh.set_tooltip_text(Some(&i18n::t("Aktualisieren")));
+    i18n::register_tooltip(&btn_bc_refresh, "Aktualisieren");
     btn_bc_refresh.set_child(Some(&gtk::Image::from_icon_name("view-refresh-symbolic")));
 
     let scrolled = gtk::ScrolledWindow::new();
@@ -553,6 +570,7 @@ fn build_file_browser_area(
     let search_entry = gtk::SearchEntry::new();
     search_entry.set_hexpand(true);
     search_entry.set_placeholder_text(Some(&i18n::t("Dateien suchen…")));
+    i18n::register_search_placeholder(&search_entry, "Dateien suchen…");
     search_bar.set_child(Some(&search_entry));
     search_bar.connect_entry(&search_entry);
     vbox.append(&search_bar);
@@ -567,10 +585,12 @@ fn build_file_browser_area(
     let btn_select_all = gtk::Button::with_label(&i18n::t("Alle auswählen"));
     btn_select_all.add_css_class("flat");
     btn_select_all.set_hexpand(true);
+    i18n::register_button(&btn_select_all, "Alle auswählen");
 
     let btn_deselect = gtk::Button::with_label(&i18n::t("Auswahl aufheben"));
     btn_deselect.add_css_class("flat");
     btn_deselect.set_hexpand(true);
+    i18n::register_button(&btn_deselect, "Auswahl aufheben");
 
     // View toggle (grid / list)
     let view_box = gtk::Box::new(gtk::Orientation::Horizontal, 0);
@@ -579,6 +599,7 @@ fn build_file_browser_area(
     let btn_grid = gtk::ToggleButton::new();
     btn_grid.set_icon_name("view-grid-symbolic");
     btn_grid.set_tooltip_text(Some(&i18n::t("Rasteransicht")));
+    i18n::register_tooltip(&btn_grid, "Rasteransicht");
     btn_grid.set_active(true);
     btn_grid.add_css_class("view-toggle");
     btn_grid.add_css_class("flat");
@@ -586,6 +607,7 @@ fn build_file_browser_area(
     let btn_list = gtk::ToggleButton::new();
     btn_list.set_icon_name("view-list-symbolic");
     btn_list.set_tooltip_text(Some(&i18n::t("Listenansicht")));
+    i18n::register_tooltip(&btn_list, "Listenansicht");
     btn_list.set_group(Some(&btn_grid));
     btn_list.add_css_class("view-toggle");
     btn_list.add_css_class("flat");
@@ -612,6 +634,7 @@ fn build_file_browser_area(
 
     let sort_label = gtk::Label::new(Some(&i18n::t("Sortierung:")));
     sort_label.add_css_class("caption");
+    i18n::register_label(&sort_label, "Sortierung:");
 
     let sort_model = gtk::StringList::new(config::options::SORT_METHODS);
     let sort_dropdown = gtk::DropDown::builder()
@@ -619,6 +642,7 @@ fn build_file_browser_area(
         .selected(config.borrow().settings.sort_method)
         .hexpand(true)
         .build();
+    i18n::register_dropdown_items(&sort_dropdown, config::options::SORT_METHODS);
 
     sort_row.append(&sort_label);
     sort_row.append(&sort_dropdown);
@@ -718,6 +742,7 @@ fn build_status_bar(
     let btn_log = gtk::Button::new();
     btn_log.set_icon_name("document-open-recent-symbolic");
     btn_log.set_tooltip_text(Some(&i18n::t("Protokoll anzeigen")));
+    i18n::register_tooltip(&btn_log, "Protokoll anzeigen");
     btn_log.add_css_class("flat");
     btn_log.set_valign(gtk::Align::Center);
 
@@ -1268,11 +1293,23 @@ fn update_breadcrumb(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowSt
         if i > 0 {
             let sep = gtk::Label::new(Some("›"));
             sep.add_css_class("breadcrumb-separator");
+            sep.add_css_class("breadcrumb-segment-new");
+            let sep_for_cleanup = sep.clone();
+            glib::timeout_add_local(std::time::Duration::from_millis(300), move || {
+                sep_for_cleanup.remove_css_class("breadcrumb-segment-new");
+                glib::ControlFlow::Break
+            });
             segments_box.append(&sep);
         }
         let btn = gtk::Button::with_label(name);
         btn.add_css_class("flat");
         btn.add_css_class("breadcrumb-btn");
+        btn.add_css_class("breadcrumb-segment-new");
+        let btn_for_cleanup = btn.clone();
+        glib::timeout_add_local(std::time::Duration::from_millis(300), move || {
+            btn_for_cleanup.remove_css_class("breadcrumb-segment-new");
+            glib::ControlFlow::Break
+        });
         let is_last = i == path_parts.len() - 1;
         if is_last {
             btn.add_css_class("heading");
@@ -1436,27 +1473,31 @@ fn start_translation(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowSt
                 TranslationMsg::Progress(fraction, text) => {
                     {
                         let w = w.borrow();
-                        w.progress_bar.set_fraction(fraction);
                         w.status_label.set_label(&text);
+                        // Smooth interpolation: 8 steps × 30ms = 240ms ease-out
+                        let current = s.borrow().animated_fraction;
+                        let diff = fraction - current;
+                        let steps = 8u32;
+                        let step_size = diff / steps as f64;
+                        let pb = w.progress_bar.clone();
+                        let s_clone = s.clone();
+                        for i in 1..=steps {
+                            let val = current + step_size * i as f64;
+                            let pb = pb.clone();
+                            let s_c = s_clone.clone();
+                            glib::timeout_add_local(
+                                std::time::Duration::from_millis(30 * i as u64),
+                                move || {
+                                    pb.set_fraction(val);
+                                    s_c.borrow_mut().animated_fraction = val;
+                                    glib::ControlFlow::Break
+                                },
+                            );
+                        }
                     }
                     s.borrow_mut().log_entries.borrow_mut().push(text.clone());
                 }
                 TranslationMsg::Done(result) => {
-                    // Re-enable UI
-                    {
-                        let w = w.borrow();
-                        w.settings_panel.set_sensitive(true);
-                        w.file_browser.set_sensitive(true);
-                        w.btn_start_spinner.stop();
-                        w.btn_start_spinner.set_visible(false);
-                        w.btn_start_label.set_label(&i18n::t("Übersetzen"));
-                        w.btn_start.add_css_class("suggested-action");
-                        w.btn_start.remove_css_class("destructive-action");
-                        w.btn_start.remove_css_class("processing");
-                        w.btn_start.remove_css_class("warning");
-                        w.progress_bar.remove_css_class("active");
-                        w.progress_revealer.set_reveal_child(false);
-                    }
                     s.borrow_mut().is_processing = false;
 
                     match result {
@@ -1468,11 +1509,32 @@ fn start_translation(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowSt
                                 count,
                                 i18n::t("Dateien übersetzt")
                             );
+
+                            // ── Completion Animation ──────────────────
                             {
                                 let w = w.borrow();
+                                // Re-enable UI
+                                w.settings_panel.set_sensitive(true);
+                                w.file_browser.set_sensitive(true);
+
+                                // Stop spinner, swap to checkmark label
+                                w.btn_start_spinner.stop();
+                                w.btn_start_spinner.add_css_class("spinner-fading");
+                                w.btn_start_label.set_label("✓");
+
+                                // Success button glow
+                                w.btn_start.remove_css_class("destructive-action");
+                                w.btn_start.remove_css_class("processing");
+                                w.btn_start.remove_css_class("warning");
+                                w.btn_start.add_css_class("success");
+
+                                // Progress bar → completed (green pulse)
+                                w.progress_bar.set_fraction(1.0);
+                                w.progress_bar.remove_css_class("active");
+                                w.progress_bar.add_css_class("completed");
+
                                 w.status_label.set_label(&text);
                                 w.btn_log.remove_css_class("log-btn-error");
-                                w.progress_bar.set_fraction(1.0);
                                 w.toast_overlay.add_toast(
                                     adw::Toast::builder().title(&text).timeout(5).build(),
                                 );
@@ -1484,9 +1546,59 @@ fn start_translation(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowSt
                                 // Refresh file browser to show translated files
                                 w.file_browser.force_refresh();
                             }
+
+                            // After 1.5s: fade out success → restore normal button
+                            let w_delayed = w.clone();
+                            glib::timeout_add_local(
+                                std::time::Duration::from_millis(1500),
+                                move || {
+                                    let w = w_delayed.borrow();
+                                    // Remove completion state
+                                    w.btn_start_spinner.remove_css_class("spinner-fading");
+                                    w.btn_start_spinner.set_visible(false);
+                                    w.btn_start.remove_css_class("success");
+                                    w.btn_start.add_css_class("suggested-action");
+                                    w.btn_start_label.set_label(&i18n::t("Übersetzen"));
+
+                                    // Collapse progress bar
+                                    w.progress_bar.remove_css_class("completed");
+                                    w.progress_revealer.set_reveal_child(false);
+
+                                    // Reset animated fraction
+                                    s.borrow_mut().animated_fraction = 0.0;
+
+                                    glib::ControlFlow::Break
+                                },
+                            );
+
                             log::info!("Translation completed: {} files", count);
                         }
                         Err(e) => {
+                            // Error/cancel — reset immediately, no animation
+                            {
+                                let w = w.borrow();
+                                w.settings_panel.set_sensitive(true);
+                                w.file_browser.set_sensitive(true);
+                                w.btn_start_spinner.stop();
+                                w.btn_start_spinner.add_css_class("spinner-fading");
+                                let spinner = w.btn_start_spinner.clone();
+                                glib::timeout_add_local(
+                                    std::time::Duration::from_millis(300),
+                                    move || {
+                                        spinner.remove_css_class("spinner-fading");
+                                        spinner.set_visible(false);
+                                        glib::ControlFlow::Break
+                                    },
+                                );
+                                w.btn_start_label.set_label(&i18n::t("Übersetzen"));
+                                w.btn_start.add_css_class("suggested-action");
+                                w.btn_start.remove_css_class("destructive-action");
+                                w.btn_start.remove_css_class("processing");
+                                w.btn_start.remove_css_class("warning");
+                                w.progress_bar.remove_css_class("active");
+                                w.progress_revealer.set_reveal_child(false);
+                            }
+
                             let is_cancelled = e.to_lowercase().contains("cancel");
                             let label = if is_cancelled {
                                 i18n::t("Abgebrochen")

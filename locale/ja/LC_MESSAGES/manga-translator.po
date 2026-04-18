@@ -542,3 +542,180 @@ msgstr "翻訳に失敗しました"
 
 msgid "Übersetzung wird vorbereitet…"
 msgstr "翻訳を準備中…"
+
+msgid "Wirkt sofort"
+msgstr "すぐに使える"
+
+msgid "Standard Übersetzer"
+msgstr "標準翻訳"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (ビジョン言語モデル)"
+
+msgid "Text extrahieren"
+msgstr "テキスト抽出"
+
+msgid "Text einfügen"
+msgstr "テキスト挿入"
+
+msgid "Nur Upscaling"
+msgstr "アップスケールのみ"
+
+msgid "Lokal (Offline)"
+msgstr "ローカル（オフライン）"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google（DeepTranslator経由）"
+
+msgid "Baidu"
+msgstr "Baidu"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "Caiyun"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "なし（テキスト検出のみ）"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — マンガ・コミック向け最適化"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "デフォルト — 汎用テキスト検出"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — ConvNextベース"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — PaddlePaddle検出"
+
+msgid "48px (Standard)"
+msgstr "48px（標準）"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr（高品質）"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — 標準インペイント"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — コンテキストベース再構築"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — パッチベース画像修復"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — ニューラルスタイル移行"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — 高解像度インペイント"
+
+msgid "Keiner"
+msgstr "なし"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — 汎用画質向上"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — アニメ・マンガ最適化"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — 4倍アップスケール"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "名前（A-Z）"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "自然順（1, 2, 10）"
+
+msgid "Datum (neueste zuerst)"
+msgstr "日付（新しい順）"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter（オンライン）"
+
+msgid "Gemini (Online)"
+msgstr "Gemini（オンライン）"
+
+msgid "Lokales Modell"
+msgstr "ローカルモデル"
+
+msgid "Standard"
+msgstr "標準"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "レンダリングなし"
+
+msgid "Links"
+msgstr "左揃え"
+
+msgid "Zentriert"
+msgstr "中央揃え"
+
+msgid "Rechts"
+msgstr "右揃え"
+
+msgid "Horizontal"
+msgstr "水平"
+
+msgid "Vertikal"
+msgstr "垂直"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32（低速、高精度）"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16（バランス）"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16（高速、標準）"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "吹き出しとテキスト検出の設定"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "上級ユーザー向けの追加オプション"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "翻訳画像の保存先を選択"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "翻訳を元ファイルと同じフォルダに保存"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "翻訳のカスタム保存先"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "メニュー → 仮想環境… を開いてパスを設定"

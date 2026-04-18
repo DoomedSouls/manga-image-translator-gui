@@ -542,3 +542,180 @@ msgstr "Back"
 
 msgid "Zurücksetzen"
 msgstr "Reset"
+
+msgid "Wirkt sofort"
+msgstr "Works immediately"
+
+msgid "Standard Übersetzer"
+msgstr "Standard Translator"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (Vision Language Model)"
+
+msgid "Text extrahieren"
+msgstr "Extract Text"
+
+msgid "Text einfügen"
+msgstr "Insert Text"
+
+msgid "Nur Upscaling"
+msgstr "Upscale Only"
+
+msgid "Lokal (Offline)"
+msgstr "Local (Offline)"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google (via DeepTranslator)"
+
+msgid "Baidu"
+msgstr "Baidu"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "Caiyun"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "None (Text Detection Only)"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — Optimized for Manga & Comics"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "Default — General Text Detection"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — ConvNext-based"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — PaddlePaddle Detection"
+
+msgid "48px (Standard)"
+msgstr "48px (Standard)"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr (Better Quality)"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — Standard Inpainting"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — Context-based Reconstruction"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — Patch-based Image Repair"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — Neural Style Migration"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — High-Resolution Inpainting"
+
+msgid "Keiner"
+msgstr "None"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — General Image Enhancement"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — Anime & Manga Optimized"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — 4x Upscaling"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "Name (A-Z)"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "Natural (1, 2, 10)"
+
+msgid "Datum (neueste zuerst)"
+msgstr "Date (newest first)"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter (Online)"
+
+msgid "Gemini (Online)"
+msgstr "Gemini (Online)"
+
+msgid "Lokales Modell"
+msgstr "Local Model"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "No Rendering"
+
+msgid "Links"
+msgstr "Left"
+
+msgid "Zentriert"
+msgstr "Center"
+
+msgid "Rechts"
+msgstr "Right"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertikal"
+msgstr "Vertical"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32 (Slow, Precise)"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16 (Balanced)"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16 (Fast, Standard)"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "Settings for bubble and text detection"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "Additional options for advanced users"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "Choose the storage location for translated images"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "Saves translations in the same folder as the original files"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "Custom storage location for translations"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "Open Menu → Virtual Environment… to configure the paths"

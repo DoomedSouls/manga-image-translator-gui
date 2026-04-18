@@ -542,3 +542,180 @@ msgstr "Échec de la traduction"
 
 msgid "Übersetzung wird vorbereitet…"
 msgstr "Préparation de la traduction…"
+
+msgid "Wirkt sofort"
+msgstr "Agit immédiatement"
+
+msgid "Standard Übersetzer"
+msgstr "Traducteur standard"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (Modèle de langage visuel)"
+
+msgid "Text extrahieren"
+msgstr "Extraire le texte"
+
+msgid "Text einfügen"
+msgstr "Insérer le texte"
+
+msgid "Nur Upscaling"
+msgstr "Mise à l'échelle uniquement"
+
+msgid "Lokal (Offline)"
+msgstr "Local (hors ligne)"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google (via DeepTranslator)"
+
+msgid "Baidu"
+msgstr "Baidu"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "Caiyun"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "Aucun (Détection de texte uniquement)"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — Optimisé pour manga et BD"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "Par défaut — Détection de texte générale"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — Basé sur ConvNext"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — Détection PaddlePaddle"
+
+msgid "48px (Standard)"
+msgstr "48px (Standard)"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr (Meilleure qualité)"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — Inpainting standard"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — Reconstruction basée sur le contexte"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — Réparation d'image par patchs"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — Migration de style neuronal"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — Inpainting haute résolution"
+
+msgid "Keiner"
+msgstr "Aucun"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — Amélioration générale de l'image"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — Optimisé pour anime et manga"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — Mise à l'échelle 4x"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "Nom (A-Z)"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "Naturel (1, 2, 10)"
+
+msgid "Datum (neueste zuerst)"
+msgstr "Date (plus récent d'abord)"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter (en ligne)"
+
+msgid "Gemini (Online)"
+msgstr "Gemini (en ligne)"
+
+msgid "Lokales Modell"
+msgstr "Modèle local"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "Pas de rendu"
+
+msgid "Links"
+msgstr "Gauche"
+
+msgid "Zentriert"
+msgstr "Centré"
+
+msgid "Rechts"
+msgstr "Droite"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertikal"
+msgstr "Vertical"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32 (Lent, Précis)"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16 (Équilibré)"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16 (Rapide, Standard)"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "Paramètres pour la détection de bulles et de texte"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "Options supplémentaires pour les utilisateurs avancés"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "Choisissez l'emplacement de stockage pour les images traduites"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "Enregistre les traductions dans le même dossier que les fichiers originaux"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "Emplacement personnalisé pour les traductions"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "Ouvrir Menu → Environnement virtuel… pour configurer les chemins"

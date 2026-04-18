@@ -176,6 +176,7 @@ impl PreviewPrivate {
 
         let title = gtk::Label::new(Some(&i18n::t("Vorschau")));
         title.add_css_class("title-2");
+        i18n::register_label(&title, "Vorschau");
         header.append(&title);
 
         // Mode toggle buttons (Original | Translated | Compare)
@@ -187,14 +188,17 @@ impl PreviewPrivate {
         let btn_original = gtk::ToggleButton::with_label(&i18n::t("Original"));
         btn_original.set_active(true);
         btn_original.add_css_class("preview-mode-btn");
+        i18n::register_toggle(&btn_original, "Original");
 
         let btn_translated = gtk::ToggleButton::with_label(&i18n::t("Übersetzung"));
         btn_translated.set_group(Some(&btn_original));
         btn_translated.add_css_class("preview-mode-btn");
+        i18n::register_toggle(&btn_translated, "Übersetzung");
 
         let btn_compare = gtk::ToggleButton::with_label(&i18n::t("Vergleich"));
         btn_compare.set_group(Some(&btn_original));
         btn_compare.add_css_class("preview-mode-btn");
+        i18n::register_toggle(&btn_compare, "Vergleich");
 
         mode_box.append(&btn_original);
         mode_box.append(&btn_translated);
@@ -416,6 +420,45 @@ impl PreviewPrivate {
             }
         ));
 
+        gesture.connect_drag_end(clone!(
+            #[weak]
+            obj,
+            move |_gesture, _offset_x, _offset_y| {
+                let this = obj.imp();
+                let final_pos = *this.slider_position.borrow();
+
+                // Micro-bounce: overshoot by 1.5% then snap back
+                let overshoot = if final_pos > 0.5 {
+                    (final_pos + 0.015).min(0.98)
+                } else {
+                    (final_pos - 0.015).max(0.02)
+                };
+
+                // Step 1: Move to overshoot
+                *this.slider_position.borrow_mut() = overshoot;
+                if let Some(sw) = this.slider_widget.borrow().as_ref() {
+                    sw.queue_draw();
+                }
+                if let Some(ow) = this.translated_overlay.borrow().as_ref() {
+                    ow.queue_draw();
+                }
+
+                // Step 2: Snap back to final position after 80ms
+                let obj2 = obj.clone();
+                glib::timeout_add_local(std::time::Duration::from_millis(80), move || {
+                    let this = obj2.imp();
+                    *this.slider_position.borrow_mut() = final_pos;
+                    if let Some(sw) = this.slider_widget.borrow().as_ref() {
+                        sw.queue_draw();
+                    }
+                    if let Some(ow) = this.translated_overlay.borrow().as_ref() {
+                        ow.queue_draw();
+                    }
+                    glib::ControlFlow::Break
+                });
+            }
+        ));
+
         slider_widget.add_controller(gesture);
 
         // Re-apply clip when the slider widget is resized (handles initial allocation
@@ -450,6 +493,7 @@ impl PreviewPrivate {
         info_bar.set_margin_bottom(4);
 
         let info_label = gtk::Label::new(Some(&i18n::t("Keine Datei ausgewählt")));
+        i18n::register_label(&info_label, "Keine Datei ausgewählt");
         info_label.add_css_class("caption");
         info_label.set_hexpand(true);
         info_label.set_xalign(0.0);
@@ -528,21 +572,40 @@ impl PreviewPrivate {
             match mode {
                 PreviewMode::Original => {
                     orig_pic.set_visible(true);
-                    trans_overlay.set_visible(false);
+                    // Smooth fade-out of translated layer
+                    trans_overlay.add_css_class("layer-hidden");
+                    let overlay_clone = trans_overlay.clone();
+                    glib::timeout_add_local(std::time::Duration::from_millis(250), move || {
+                        overlay_clone.set_visible(false);
+                        overlay_clone.remove_css_class("layer-hidden");
+                        glib::ControlFlow::Break
+                    });
                     slider_w.set_visible(false);
                 }
                 PreviewMode::Translated => {
                     orig_pic.set_visible(true);
+                    // Smooth fade-in of translated layer
                     trans_overlay.set_visible(true);
-                    slider_w.set_visible(false);
+                    trans_overlay.add_css_class("layer-hidden");
                     trans_overlay.queue_draw();
+                    let overlay_clone = trans_overlay.clone();
+                    glib::idle_add_local_once(move || {
+                        overlay_clone.remove_css_class("layer-hidden");
+                    });
+                    slider_w.set_visible(false);
                 }
                 PreviewMode::Compare => {
                     orig_pic.set_visible(true);
+                    // Smooth fade-in of translated layer
                     trans_overlay.set_visible(true);
+                    trans_overlay.add_css_class("layer-hidden");
+                    trans_overlay.queue_draw();
+                    let overlay_clone = trans_overlay.clone();
+                    glib::idle_add_local_once(move || {
+                        overlay_clone.remove_css_class("layer-hidden");
+                    });
                     slider_w.set_visible(true);
                     slider_w.queue_draw();
-                    trans_overlay.queue_draw();
                 }
             }
         }

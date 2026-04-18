@@ -1,4 +1,4 @@
-# Manga Translator - Korean Translation
+# Manga Translator - Italian Translation
 # Copyright (C) 2024 Manga Translator Team
 # This file is distributed under the same license as the Manga Translator package.
 #
@@ -9,266 +9,266 @@ msgstr ""
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: Manga Translator Team <team@manga-translator.org>\n"
-"Language-Team: Korean <ko@li.org>\n"
-"Language: ko\n"
+"Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Abbrechen"
-msgstr "취소"
+msgstr "Annulla"
 
 msgid "Abgebrochen"
-msgstr "취소됨"
+msgstr "Annullato"
 
 msgid "Aktualisieren"
-msgstr "새로고침"
+msgstr "Aggiorna"
 
 msgid "Aktuelles Verzeichnis"
-msgstr "현재 디렉토리"
+msgstr "Directory corrente"
 
 msgid "Akzentfarbe"
-msgstr "강조 색상"
+msgstr "Colore accent"
 
 msgid "Akzentfarbe wählen"
-msgstr "강조 색상 선택"
+msgstr "Scegli colore accent"
 
 msgid "Alle auswählen"
-msgstr "모두 선택"
+msgstr "Seleziona tutto"
 
 msgid "Allgemein"
-msgstr "일반"
+msgstr "Generale"
 
 msgid "Ansicht"
-msgstr "보기"
+msgstr "Visualizzazione"
 
 msgid "Anwenden"
-msgstr "적용"
+msgstr "Applica"
 
 msgid "API Schlüssel"
-msgstr "API 키"
+msgstr "Chiavi API"
 
 msgid "API Schlüssel eintragen"
-msgstr "API 키 입력"
+msgstr "Inserisci chiave API"
 
 msgid "API-Schlüssel fehlt"
-msgstr "API 키가 없습니다"
+msgstr "Chiave API mancante"
 
 msgid "Auf Standard zurücksetzen"
-msgstr "기본값으로 재설정"
+msgstr "Ripristina predefinito"
 
 msgid "Auflösung für Bildreparatur"
-msgstr "이미지 복구 해상도"
+msgstr "Risoluzione riparazione immagine"
 
 msgid "Auflösung für Texterkennung"
-msgstr "텍스트 인식 해상도"
+msgstr "Risoluzione rilevamento testo"
 
 msgid "Ausgabe"
-msgstr "출력"
+msgstr "Output"
 
 msgid "Ausgabe-Ordner"
-msgstr "출력 폴더"
+msgstr "Cartella di output"
 
 msgid "Ausgabe-Ordner wählen"
-msgstr "출력 폴더 선택"
+msgstr "Scegli cartella di output"
 
 msgid "ausgewählt"
-msgstr "선택됨"
+msgstr "selezionati"
 
 msgid "Ausrichtung"
-msgstr "정렬"
-
-msgid "Auswahl aufheben"
-msgstr "선택 해제"
+msgstr "Allineamento"
 
 msgid "Auswählen"
-msgstr "선택"
+msgstr "Seleziona"
+
+msgid "Auswahl aufheben"
+msgstr "Deseleziona tutto"
 
 msgid "Auto"
-msgstr "자동"
+msgstr "Auto"
 
 msgid "Automatisch aktualisieren"
-msgstr "자동 새로고침"
+msgstr "Aggiornamento automatico"
 
 msgid "Backend nicht konfiguriert"
-msgstr "백엔드가 구성되지 않았습니다"
+msgstr "Backend non configurato"
 
 msgid "BBox Zusammenführung"
-msgstr "바운딩 박스 병합"
+msgstr "Unione BBox"
 
 msgid "Benutzerdefiniert"
-msgstr "사용자 지정"
+msgstr "Personalizzato"
 
 msgid "Benutzerdefinierte Text-/Randfarbe"
-msgstr "사용자 지정 텍스트/테두리 색상"
+msgstr "Colore testo/bordo personalizzato"
 
 msgid "Berechnungsgenauigkeit"
-msgstr "연산 정밀도"
+msgstr "Precisione di calcolo"
 
 msgid "Bereit"
-msgstr "준비 완료"
+msgstr "Pronto"
 
 msgid "Bilder"
-msgstr "이미지"
+msgstr "Immagini"
 
 msgid "Bildverarbeitung"
-msgstr "이미지 처리"
+msgstr "Elaborazione immagini"
 
 msgid "Bildvergrößerung vor der Übersetzung"
-msgstr "번역 전 이미지 확대"
+msgstr "Ingrandimento immagine prima della traduzione"
 
 msgid "Bitte API-Schlüssel eintragen"
-msgstr "API 키를 입력하세요"
+msgstr "Inserisci la chiave API"
 
 msgid "Bitte trage den Schlüssel in den API-Einstellungen ein."
-msgstr "API 설정에서 키를 입력하세요."
+msgstr "Inserisci la chiave nelle impostazioni API."
 
 msgid "Blau"
-msgstr "파란색"
+msgstr "Blu"
 
 msgid "Blaugrün"
-msgstr "틸"
+msgstr "Verde acqua"
 
 msgid "Darstellung"
-msgstr "렌더링"
+msgstr "Rendering"
 
 msgid "Dateiauswahl"
-msgstr "파일 선택"
+msgstr "Selezione file"
 
 msgid "Dateien"
-msgstr "파일"
+msgstr "File"
 
 msgid "Dateien suchen…"
-msgstr "파일 검색…"
+msgstr "Cerca file…"
 
 msgid "Dateien übersetzt"
-msgstr "파일 번역됨"
+msgstr "file tradotti"
 
 msgid "Der ausgewählte Übersetzer benötigt einen API-Schlüssel."
-msgstr "선택한 번역기에 API 키가 필요합니다."
+msgstr "Il traduttore selezionato richiede una chiave API."
 
 msgid "Detektor"
-msgstr "감지기"
+msgstr "Rilevatore"
 
 msgid "Dunkel"
-msgstr "어두움"
+msgstr "Scuro"
 
 msgid "Eigene Farben verwenden"
-msgstr "사용자 지정 색상 사용"
+msgstr "Usa colori personalizzati"
 
 msgid "Einstellungen ein-/ausblenden"
-msgstr "설정 표시/숨기기"
+msgstr "Mostra/nascondi impostazioni"
 
 msgid "Einstellungen für die Textdarstellung"
-msgstr "텍스트 표시 설정"
+msgstr "Impostazioni rendering testo"
 
 msgid "Einstellungen für die Übersetzung"
-msgstr "번역 설정"
+msgstr "Impostazioni traduzione"
 
 msgid "Einstellungen für Inpainting und Upscaling"
-msgstr "인페인팅 및 업스케일링 설정"
+msgstr "Impostazioni inpainting e upscaling"
 
 msgid "Erfordert Neustart"
-msgstr "재시작 필요"
+msgstr "Richiede riavvio"
 
 msgid "Erkennungsboxen zusammenführen (mocr)"
-msgstr "감지 박스 병합 (mocr)"
+msgstr "Unisci box di rilevamento (mocr)"
 
 msgid "Erkennungsgröße"
-msgstr "감지 크기"
+msgstr "Dimensione rilevamento"
 
 msgid "Erweitert"
-msgstr "고급"
+msgstr "Avanzate"
 
 msgid "Erzwinge horizontale/vertikale Richtung"
-msgstr "가로/세로 방향 강제"
+msgstr "Forza direzione orizzontale/verticale"
 
 msgid "Extern öffnen"
-msgstr "외부에서 열기"
+msgstr "Apri esternamente"
 
 msgid "Farbe wählen"
-msgstr "색상 선택"
+msgstr "Scegli colore"
 
 msgid "Farbschema"
-msgstr "색상 테마"
+msgstr "Schema colori"
 
 msgid "Farbwähler öffnen"
-msgstr "색상 선택기 열기"
+msgstr "Apri selettore colori"
 
 msgid "Fehler"
-msgstr "오류"
+msgstr "Errore"
 
 msgid "Fehler beim Laden der Log-Datei."
-msgstr "로그 파일 로딩에 실패했습니다."
+msgstr "Errore nel caricamento del file di log."
 
 msgid "Fertig!"
-msgstr "완료!"
+msgstr "Fatto!"
 
 msgid "Gelb"
-msgstr "노란색"
+msgstr "Giallo"
 
 msgid "Gemini Modell"
-msgstr "Gemini 모델"
+msgstr "Modello Gemini"
 
 msgid "Gerät"
-msgstr "장치"
+msgstr "Dispositivo"
 
 msgid "Google Gemini"
 msgstr "Google Gemini"
 
 msgid "Grün"
-msgstr "초록색"
+msgstr "Verde"
 
 msgid "Hell"
-msgstr "밝음"
+msgstr "Chiaro"
 
 msgid "Inpainting"
-msgstr "인페인팅"
+msgstr "Inpainting"
 
 msgid "Inpainting Größe"
-msgstr "인페인팅 크기"
+msgstr "Dimensione inpainting"
 
 msgid "Inpainting Präzision"
-msgstr "인페인팅 정밀도"
+msgstr "Precisione inpainting"
 
 msgid "Kein Bild geladen"
-msgstr "이미지가 로드되지 않았습니다"
+msgstr "Nessuna immagine caricata"
 
 msgid "Kein Rand/Umriss um den Text"
-msgstr "텍스트 주변 테두리 없음"
+msgstr "Nessun bordo/contorno attorno al testo"
 
 msgid "Keine Datei ausgewählt"
-msgstr "파일이 선택되지 않음"
+msgstr "Nessun file selezionato"
 
 msgid "Keine Dateien"
-msgstr "파일 없음"
+msgstr "Nessun file"
 
 msgid "Keine Dateien ausgewählt"
-msgstr "선택된 파일 없음"
+msgstr "Nessun file selezionato"
 
 msgid "Keine Log-Datei gefunden."
-msgstr "로그 파일을 찾을 수 없습니다."
+msgstr "Nessun file di log trovato."
 
 msgid "Keine Modelle gefunden"
-msgstr "모델을 찾을 수 없음"
+msgstr "Nessun modello trovato"
 
 msgid "Kopieren"
-msgstr "복사"
+msgstr "Copia"
 
 msgid "Lila"
-msgstr "보라색"
+msgstr "Viola"
 
 msgid "Listenansicht"
-msgstr "목록 보기"
+msgstr "Vista elenco"
 
 msgid "Log anzeigen"
-msgstr "로그 보기"
+msgstr "Mostra log"
 
 msgid "Log-Datei ist leer."
-msgstr "로그 파일이 비어 있습니다."
+msgstr "Il file di log è vuoto."
 
 msgid "Lokales Modell (.gguf Pfad)"
-msgstr "로컬 모델 (.gguf 경로)"
+msgstr "Modello locale (percorso .gguf)"
 
 msgid "Manga Translator"
 msgstr "Manga Translator"
@@ -277,298 +277,301 @@ msgid "manga-image-translator"
 msgstr "manga-image-translator"
 
 msgid "manga-image-translator gefunden"
-msgstr "manga-image-translator을(를) 찾음"
+msgstr "manga-image-translator trovato"
 
 msgid "manga-image-translator Verzeichnis wählen"
-msgstr "manga-image-translator 디렉토리 선택"
+msgstr "Seleziona directory manga-image-translator"
 
 msgid "Manga-Startverzeichnis"
-msgstr "만가 홈 디렉토리"
+msgstr "Directory home manga"
 
 msgid "Manga-Startverzeichnis…"
-msgstr "만가 홈 디렉토리…"
+msgstr "Directory home manga…"
 
 msgid "Manga-Verzeichnis wählen"
-msgstr "만가 디렉토리 선택"
+msgstr "Seleziona directory manga"
 
 msgid "Masken-Erweiterung"
-msgstr "마스크 확장"
+msgstr "Espansione maschera"
 
 msgid "Menü"
-msgstr "메뉴"
+msgstr "Menu"
 
 msgid "Methode zur Bildreparatur"
-msgstr "이미지 복구 방법"
+msgstr "Metodo riparazione immagine"
 
 msgid "Methode zur Blasenerkennung"
-msgstr "말풍선 감지 방법"
+msgstr "Metodo rilevamento fumetti"
 
 msgid "Methode zur Texteinblendung"
-msgstr "텍스트 표시 방법"
+msgstr "Metodo rendering testo"
 
 msgid "Modell für VLM-Korrektur"
-msgstr "VLM 보정용 모델"
+msgstr "Modello per correzione VLM"
 
 msgid "Modelle vom OpenRouter API laden"
-msgstr "OpenRouter API에서 모델 로드"
+msgstr "Carica modelli dall'API OpenRouter"
 
 msgid "Modelle werden geladen…"
-msgstr "모델 로딩 중…"
+msgstr "Caricamento modelli…"
 
 msgid "Modellliste aktualisieren"
-msgstr "모델 목록 새로고침"
+msgstr "Aggiorna lista modelli"
 
 msgid "Modus"
-msgstr "모드"
+msgstr "Modalità"
 
 msgid "Nicht gefunden"
-msgstr "찾을 수 없음"
+msgstr "Non trovato"
 
 msgid "Nicht konfiguriert"
-msgstr "구성되지 않음"
+msgstr "Non configurato"
 
 msgid "OCR Modell"
-msgstr "OCR 모델"
+msgstr "Modello OCR"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "Apri Menu → Ambiente virtuale… per configurare i percorsi"
+
+msgid "Öffnen"
+msgstr "Apri"
 
 msgid "OpenAI / ChatGPT"
 msgstr "OpenAI / ChatGPT"
 
 msgid "OpenRouter Modell"
-msgstr "OpenRouter 모델"
+msgstr "Modello OpenRouter"
 
 msgid "Optical Character Recognition"
-msgstr "광학 문자 인식"
+msgstr "Riconoscimento ottico dei caratteri"
 
 msgid "Orange"
-msgstr "주황색"
+msgstr "Arancione"
 
 msgid "Original"
-msgstr "원본"
+msgstr "Originale"
 
 msgid "Original-Ordner verwenden"
-msgstr "원본 폴더 사용"
+msgstr "Usa cartella originale"
 
 msgid "Positive Werte = größerer Text"
-msgstr "양수 값 = 더 큰 텍스트"
+msgstr "Valori positivi = testo più grande"
 
 msgid "Protokoll"
-msgstr "로그"
+msgstr "Registro"
 
 msgid "Protokoll anzeigen"
-msgstr "로그 표시"
+msgstr "Mostra registro"
 
 msgid "Python-Umgebung"
-msgstr "Python 환경"
+msgstr "Ambiente Python"
 
 msgid "Python-Umgebung gefunden"
-msgstr "Python 환경을 찾음"
+msgstr "Ambiente Python trovato"
 
 msgid "Rand:"
-msgstr "테두리:"
+msgstr "Bordo:"
 
 msgid "Randfarbe (Hintergrund)"
-msgstr "테두리 색상 (배경)"
+msgstr "Colore bordo (sfondo)"
 
 msgid "Rasteransicht"
-msgstr "그리드 보기"
+msgstr "Vista griglia"
 
 msgid "Recheneinheit für die Übersetzung"
-msgstr "번역 연산 장치"
+msgstr "Unità di calcolo per la traduzione"
 
 msgid "Renderer"
-msgstr "렌더러"
+msgstr "Renderer"
 
 msgid "Rosa"
-msgstr "분홍색"
+msgstr "Rosa"
 
 msgid "Rot"
-msgstr "빨간색"
+msgstr "Rosso"
 
 msgid "RTL Richtung"
-msgstr "RTL 방향"
+msgstr "Direzione RTL"
 
 msgid "Schließen"
-msgstr "닫기"
+msgstr "Chiudi"
 
 msgid "Schrift randlos"
-msgstr "텍스트 테두리 없음"
+msgstr "Font senza bordo"
 
 msgid "Schriftfarbe"
-msgstr "글꼴 색상"
+msgstr "Colore font"
 
 msgid "Schriftgrößenversatz"
-msgstr "글꼴 크기 오프셋"
+msgstr "Offset dimensione font"
 
 msgid "Sortierung:"
-msgstr "정렬:"
+msgstr "Ordinamento:"
 
 msgid "Speichern"
-msgstr "저장"
+msgstr "Salva"
 
 msgid "Sprache"
-msgstr "언어"
+msgstr "Lingua"
 
 msgid "Sprache wird beim Neustart wirksam."
-msgstr "언어는 다시 시작 후 적용됩니다."
+msgstr "La lingua avrà effetto al riavvio."
 
 msgid "Sprache der Übersetzung"
-msgstr "번역 언어"
+msgstr "Lingua di traduzione"
 
 msgid "Standard (result/)"
-msgstr "기본 (result/)"
+msgstr "Predefinito (result/)"
 
 msgid "Startverzeichnis"
-msgstr "시작 디렉토리"
+msgstr "Directory iniziale"
 
 msgid "Suche fokussieren"
-msgstr "검색 포커스"
+msgstr "Focus ricerca"
 
 msgid "System"
-msgstr "시스템"
+msgstr "Sistema"
 
 msgid "Tastenkürzel"
-msgstr "키보드 단축키"
+msgstr "Scorciatoie da tastiera"
 
 msgid "Text von rechts nach links (Arabisch, Hebräisch)"
-msgstr "오른쪽에서 왼쪽으로 텍스트 (아랍어, 히브리어)"
+msgstr "Testo da destra a sinistra (arabo, ebraico)"
 
 msgid "Text:"
-msgstr "텍스트:"
+msgstr "Testo:"
 
 msgid "Textausrichtung in Blasen"
-msgstr "말풍선 내 텍스트 정렬"
+msgstr "Allineamento testo nei fumetti"
 
 msgid "Texterkennung"
-msgstr "텍스트 인식"
+msgstr "Riconoscimento testo"
 
 msgid "Textfarbe (Vordergrund)"
-msgstr "텍스트 색상 (전경)"
+msgstr "Colore testo (primo piano)"
 
 msgid "Textmaske erweitern um (px)"
-msgstr "텍스트 마스크 확장 (px)"
+msgstr "Espandi maschera testo di (px)"
 
 msgid "Textrichtung"
-msgstr "텍스트 방향"
-
-msgid "Upscale Faktor"
-msgstr "업스케일 배율"
-
-msgid "Upscaler"
-msgstr "업스케일러"
-
-msgid "Vergleich"
-msgstr "비교"
-
-msgid "Vergrößerungsfaktor"
-msgstr "확대 배율"
-
-msgid "Verzeichnis wählen"
-msgstr "디렉토리 선택"
-
-msgid "Verzeichnis öffnen"
-msgstr "디렉토리 열기"
-
-msgid "Verzeichnis öffnen…"
-msgstr "디렉토리 열기…"
-
-msgid "Virtuelle Umgebung"
-msgstr "가상 환경"
-
-msgid "Virtuelle Umgebung wählen"
-msgstr "가상 환경 선택"
-
-msgid "Virtuelle Umgebung…"
-msgstr "가상 환경…"
-
-msgid "Vision Language Model Konfiguration"
-msgstr "Vision Language Model 구성"
-
-msgid "Vision-fähiges Modell"
-msgstr "비전 지원 모델"
-
-msgid "VLM Einstellungen"
-msgstr "VLM 설정"
-
-msgid "VLM Typ"
-msgstr "VLM 유형"
-
-msgid "Vorschau"
-msgstr "미리보기"
-
-msgid "Weitere Dienste"
-msgstr "기타 서비스"
-
-msgid "Wähle das VLM-Backend"
-msgstr "VLM 백엔드를 선택하세요"
-
-msgid "Wähle den Übersetzungsdienst"
-msgstr "번역 서비스를 선택하세요"
-
-msgid "Wähle den Übersetzungsmodus"
-msgstr "번역 모드를 선택하세요"
-
-msgid "Zielsprache"
-msgstr "대상 언어"
-
-msgid "Zurück"
-msgstr "뒤로"
-
-msgid "Zurücksetzen"
-msgstr "재설정"
-
-msgid "Öffnen"
-msgstr "열기"
+msgstr "Direzione testo"
 
 msgid "Über Manga Translator"
-msgstr "Manga Translator 정보"
+msgstr "Informazioni su Manga Translator"
 
 msgid "Übergeordnetes Verzeichnis"
-msgstr "상위 디렉토리"
+msgstr "Directory superiore"
 
 msgid "Übersetzen"
-msgstr "번역"
+msgstr "Traduci"
 
 msgid "Übersetzer"
-msgstr "번역기"
+msgstr "Traduttore"
 
 msgid "Übersetzung"
-msgstr "번역"
+msgstr "Traduzione"
 
 msgid "Übersetzung abbrechen"
-msgstr "번역 취소"
+msgstr "Annulla traduzione"
 
 msgid "Übersetzung fehlgeschlagen"
-msgstr "번역 실패"
+msgstr "Traduzione fallita"
 
 msgid "Übersetzung wird vorbereitet…"
-msgstr "번역 준비 중…"
+msgstr "Preparazione traduzione…"
+
+msgid "Upscale Faktor"
+msgstr "Fattore di upscale"
+
+msgid "Upscaler"
+msgstr "Upscaler"
+
+msgid "Vergleich"
+msgstr "Confronta"
+
+msgid "Vergrößerungsfaktor"
+msgstr "Fattore di ingrandimento"
+
+msgid "Verzeichnis öffnen"
+msgstr "Apri directory"
+
+msgid "Verzeichnis öffnen…"
+msgstr "Apri directory…"
+
+msgid "Verzeichnis wählen"
+msgstr "Seleziona directory"
+
+msgid "Virtuelle Umgebung"
+msgstr "Ambiente virtuale"
+
+msgid "Virtuelle Umgebung wählen"
+msgstr "Seleziona ambiente virtuale"
+
+msgid "Virtuelle Umgebung…"
+msgstr "Ambiente virtuale…"
+
+msgid "Vision Language Model Konfiguration"
+msgstr "Configurazione Vision Language Model"
+
+msgid "Vision-fähiges Modell"
+msgstr "Modello con capacità visiva"
+
+msgid "VLM Einstellungen"
+msgstr "Impostazioni VLM"
+
+msgid "VLM Typ"
+msgstr "Tipo VLM"
+
+msgid "Vorschau"
+msgstr "Anteprima"
+
+msgid "Wähle das VLM-Backend"
+msgstr "Scegli il backend VLM"
+
+msgid "Wähle den Übersetzungsdienst"
+msgstr "Scegli il servizio di traduzione"
+
+msgid "Wähle den Übersetzungsmodus"
+msgstr "Scegli la modalità di traduzione"
+
+msgid "Weitere Dienste"
+msgstr "Altri servizi"
+
+msgid "Zielsprache"
+msgstr "Lingua di destinazione"
+
+msgid "Zurück"
+msgstr "Indietro"
+
+msgid "Zurücksetzen"
+msgstr "Ripristina"
 
 msgid "Wirkt sofort"
-msgstr "즉시 작동"
+msgstr "Effetto immediato"
 
 msgid "Standard Übersetzer"
-msgstr "표준 번역기"
+msgstr "Traduttore standard"
 
 msgid "VLM (Vision Language Model)"
-msgstr "VLM (비전 언어 모델)"
+msgstr "VLM (Modello linguistico visivo)"
 
 msgid "Text extrahieren"
-msgstr "텍스트 추출"
+msgstr "Estrai testo"
 
 msgid "Text einfügen"
-msgstr "텍스트 삽입"
+msgstr "Inserisci testo"
 
 msgid "Nur Upscaling"
-msgstr "업스케일링만"
+msgstr "Solo upscaling"
 
 msgid "Lokal (Offline)"
-msgstr "로컬 (오프라인)"
+msgstr "Locale (offline)"
 
 msgid "DeepL"
 msgstr "DeepL"
 
 msgid "Google (via DeepTranslator)"
-msgstr "Google (DeepTranslator 경유)"
+msgstr "Google (via DeepTranslator)"
 
 msgid "Baidu"
 msgstr "Baidu"
@@ -595,52 +598,52 @@ msgid "Sugoi"
 msgstr "Sugoi"
 
 msgid "None (Text nur erkennen)"
-msgstr "없음 (텍스트 감지만)"
+msgstr "Nessuno (solo rilevamento testo)"
 
 msgid "CTD — Optimiert für Manga & Comics"
-msgstr "CTD — 만화 & 코믹스 최적화"
+msgstr "CTD — Ottimizzato per manga e fumetti"
 
 msgid "Default — Allgemeine Texterkennung"
-msgstr "기본 — 일반 텍스트 인식"
+msgstr "Predefinito — Rilevamento testo generale"
 
 msgid "DBConvNext — ConvNext-basiert"
-msgstr "DBConvNext — ConvNext 기반"
+msgstr "DBConvNext — Basato su ConvNext"
 
 msgid "PaddleOCR — PaddlePaddle Erkennung"
-msgstr "PaddleOCR — PaddlePaddle 인식"
+msgstr "PaddleOCR — Rilevamento PaddlePaddle"
 
 msgid "48px (Standard)"
-msgstr "48px (표준)"
+msgstr "48px (Standard)"
 
 msgid "mocr (Better Quality)"
-msgstr "mocr (고품질)"
+msgstr "mocr (Qualità migliore)"
 
 msgid "LaMA — Standard Inpainting"
-msgstr "LaMA — 표준 인페인팅"
+msgstr "LaMA — Inpainting standard"
 
 msgid "AOTScan — Kontext-basierte Rekonstruktion"
-msgstr "AOTScan — 컨텍스트 기반 복원"
+msgstr "AOTScan — Ricostruzione basata sul contesto"
 
 msgid "PatchMatch — Patch-basierte Bildreparatur"
-msgstr "PatchMatch — 패치 기반 이미지 복구"
+msgstr "PatchMatch — Riparazione immagine basata su patch"
 
 msgid "NSM — Neural Style Migration"
-msgstr "NSM — 신경 스타일 마이그레이션"
+msgstr "NSM — Migrazione stile neurale"
 
 msgid "LaMA Large — Hochauflösendes Inpainting"
-msgstr "LaMA Large — 고해상도 인페인팅"
+msgstr "LaMA Large — Inpainting ad alta risoluzione"
 
 msgid "Keiner"
-msgstr "없음"
+msgstr "Nessuno"
 
 msgid "ESRGAN — Allgemeine Bildverbesserung"
-msgstr "ESRGAN — 일반 이미지 향상"
+msgstr "ESRGAN — Miglioramento generale immagine"
 
 msgid "Waifu2x — Anime & Manga optimiert"
-msgstr "Waifu2x — 애니메이션 & 만화 최적화"
+msgstr "Waifu2x — Ottimizzato per anime e manga"
 
 msgid "4x-UltraSharp — 4fache Hochskalierung"
-msgstr "4x-UltraSharp — 4배 업스케일링"
+msgstr "4x-UltraSharp — Upscaling 4x"
 
 msgid "CUDA (GPU)"
 msgstr "CUDA (GPU)"
@@ -649,25 +652,25 @@ msgid "CPU"
 msgstr "CPU"
 
 msgid "Name (A-Z)"
-msgstr "이름 (A-Z)"
+msgstr "Nome (A-Z)"
 
 msgid "Natürlich (1, 2, 10)"
-msgstr "자연순 (1, 2, 10)"
+msgstr "Naturale (1, 2, 10)"
 
 msgid "Datum (neueste zuerst)"
-msgstr "날짜 (최신순)"
+msgstr "Data (più recenti prima)"
 
 msgid "OpenRouter (Online)"
-msgstr "OpenRouter (온라인)"
+msgstr "OpenRouter (online)"
 
 msgid "Gemini (Online)"
-msgstr "Gemini (온라인)"
+msgstr "Gemini (online)"
 
 msgid "Lokales Modell"
-msgstr "로컬 모델"
+msgstr "Modello locale"
 
 msgid "Standard"
-msgstr "표준"
+msgstr "Standard"
 
 msgid "Manga2Eng (manga2eng_pillow)"
 msgstr "Manga2Eng (manga2eng_pillow)"
@@ -676,46 +679,43 @@ msgid "Manga2Eng (manga2eng)"
 msgstr "Manga2Eng (manga2eng)"
 
 msgid "Kein Rendering"
-msgstr "렌더링 없음"
+msgstr "Nessun rendering"
 
 msgid "Links"
-msgstr "왼쪽"
+msgstr "Sinistra"
 
 msgid "Zentriert"
-msgstr "가운데"
+msgstr "Centro"
 
 msgid "Rechts"
-msgstr "오른쪽"
+msgstr "Destra"
 
 msgid "Horizontal"
-msgstr "가로"
+msgstr "Orizzontale"
 
 msgid "Vertikal"
-msgstr "세로"
+msgstr "Verticale"
 
 msgid "FP32 (Langsam, Präzise)"
-msgstr "FP32 (느림, 정밀)"
+msgstr "FP32 (Lento, preciso)"
 
 msgid "FP16 (Ausgewogen)"
-msgstr "FP16 (균형)"
+msgstr "FP16 (Bilanciato)"
 
 msgid "BF16 (Schnell, Standard)"
-msgstr "BF16 (빠름, 표준)"
+msgstr "BF16 (Veloce, standard)"
 
 msgid "Einstellungen für Blasen- und Texterkennung"
-msgstr "말풍선 및 텍스트 감지 설정"
+msgstr "Impostazioni per il rilevamento di fumetti e testo"
 
 msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
-msgstr "고급 사용자를 위한 추가 옵션"
+msgstr "Opzioni aggiuntive per utenti avanzati"
 
 msgid "Wählen Sie den Speicherort für übersetzte Bilder"
-msgstr "번역된 이미지의 저장 위치 선택"
+msgstr "Scegli la posizione di salvataggio per le immagini tradotte"
 
 msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
-msgstr "원본 파일과 같은 폴더에 번역 저장"
+msgstr "Salva le traduzioni nella stessa cartella dei file originali"
 
 msgid "Benutzerdefinierter Speicherort für Übersetzungen"
-msgstr "번역용 사용자 정의 저장 위치"
-
-msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
-msgstr "메뉴 → 가상 환경… 열어서 경로 설정"
+msgstr "Posizione personalizzata per le traduzioni"

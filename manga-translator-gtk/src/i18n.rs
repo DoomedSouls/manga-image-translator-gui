@@ -3,7 +3,10 @@
 // Minimal internationalization using gettext-rs.
 // Provides a `_()` macro for translating UI strings.
 
+use adw::prelude::*;
 use gettextrs::{LocaleCategory, bindtextdomain, gettext, setlocale, textdomain};
+
+use std::cell::RefCell;
 use std::path::PathBuf;
 
 /// Supported UI languages with their display names.
@@ -16,13 +19,198 @@ pub const SUPPORTED_LANGUAGES: &[(&str, &str)] = &[
     ("es", "Español"),
     ("fr", "Français"),
     ("it", "Italiano"),
+    ("pt_BR", "Português (Brasil)"),
     ("ja", "日本語"),
     ("ko", "한국어"),
     ("zh_CN", "简体中文"),
-    ("pt_BR", "Português (Brasil)"),
 ];
 
 const TEXT_DOMAIN: &str = "manga-translator";
+
+// ---------------------------------------------------------------------------
+// I18n Registry — enables real-time language switching
+// ---------------------------------------------------------------------------
+
+thread_local! {
+    /// Registered callbacks that re-apply translated strings to widgets.
+    /// Each closure captures a weak widget reference and an i18n key.
+    static REGISTRY: RefCell<Vec<Box<dyn Fn()>>> = RefCell::new(Vec::new());
+}
+
+/// Register a closure that will be called when the language changes.
+/// The closure should update a widget's text using the current translation.
+pub fn register(entry: Box<dyn Fn()>) {
+    REGISTRY.with(|r| r.borrow_mut().push(entry));
+}
+
+/// Re-apply all registered translations. Called automatically by set_language().
+pub fn retranslate_all() {
+    REGISTRY.with(|r| {
+        for f in r.borrow().iter() {
+            f();
+        }
+    });
+}
+
+/// Register a gtk::Label for retranslation.
+pub fn register_label(label: &gtk::Label, msgid: &'static str) {
+    let weak = label.downgrade();
+    register(Box::new(move || {
+        if let Some(label) = weak.upgrade() {
+            label.set_label(&t(msgid));
+        }
+    }));
+}
+
+/// Register a gtk::Button's label for retranslation.
+pub fn register_button(button: &gtk::Button, msgid: &'static str) {
+    let weak = button.downgrade();
+    register(Box::new(move || {
+        if let Some(btn) = weak.upgrade() {
+            btn.set_label(&t(msgid));
+        }
+    }));
+}
+
+/// Register a gtk::ToggleButton's label for retranslation.
+pub fn register_toggle(button: &gtk::ToggleButton, msgid: &'static str) {
+    let weak = button.downgrade();
+    register(Box::new(move || {
+        if let Some(btn) = weak.upgrade() {
+            btn.set_label(&t(msgid));
+        }
+    }));
+}
+
+/// Register an adw::PreferencesGroup title for retranslation.
+pub fn register_group_title(group: &adw::PreferencesGroup, msgid: &'static str) {
+    let weak = group.downgrade();
+    register(Box::new(move || {
+        if let Some(g) = weak.upgrade() {
+            g.set_title(&t(msgid));
+        }
+    }));
+}
+
+/// Register an adw::ComboRow title (and optional subtitle) for retranslation.
+pub fn register_combo_row(
+    row: &adw::ComboRow,
+    title_msgid: &'static str,
+    subtitle_msgid: Option<&'static str>,
+) {
+    let weak = row.downgrade();
+    let sub = subtitle_msgid.map(|s| s.to_string());
+    register(Box::new(move || {
+        if let Some(r) = weak.upgrade() {
+            r.set_title(&t(title_msgid));
+            if let Some(ref sub_id) = sub {
+                r.set_subtitle(&t(sub_id));
+            }
+        }
+    }));
+}
+
+/// Register an adw::ActionRow title (and optional subtitle) for retranslation.
+pub fn register_action_row(
+    row: &adw::ActionRow,
+    title_msgid: &'static str,
+    subtitle_msgid: Option<&'static str>,
+) {
+    let weak = row.downgrade();
+    let sub = subtitle_msgid.map(|s| s.to_string());
+    register(Box::new(move || {
+        if let Some(r) = weak.upgrade() {
+            r.set_title(&t(title_msgid));
+            if let Some(ref sub_id) = sub {
+                r.set_subtitle(&t(sub_id));
+            }
+        }
+    }));
+}
+
+/// Register an adw::SwitchRow title (and optional subtitle) for retranslation.
+pub fn register_switch_row(
+    row: &adw::SwitchRow,
+    title_msgid: &'static str,
+    subtitle_msgid: Option<&'static str>,
+) {
+    let weak = row.downgrade();
+    let sub = subtitle_msgid.map(|s| s.to_string());
+    register(Box::new(move || {
+        if let Some(r) = weak.upgrade() {
+            r.set_title(&t(title_msgid));
+            if let Some(ref sub_id) = sub {
+                r.set_subtitle(&t(sub_id));
+            }
+        }
+    }));
+}
+
+/// Register a gtk::Widget's tooltip for retranslation.
+pub fn register_tooltip(widget: &impl IsA<gtk::Widget>, msgid: &'static str) {
+    let weak = widget.downgrade();
+    register(Box::new(move || {
+        if let Some(w) = weak.upgrade() {
+            w.set_tooltip_text(Some(&t(msgid)));
+        }
+    }));
+}
+
+/// Register a gtk::SearchEntry's placeholder for retranslation.
+pub fn register_search_placeholder(entry: &gtk::SearchEntry, msgid: &'static str) {
+    let weak = entry.downgrade();
+    register(Box::new(move || {
+        if let Some(e) = weak.upgrade() {
+            e.set_placeholder_text(Some(&t(msgid)));
+        }
+    }));
+}
+
+/// Register an adw::EntryRow's title for retranslation.
+pub fn register_entry_row(row: &adw::EntryRow, title_msgid: &'static str) {
+    let weak = row.downgrade();
+    register(Box::new(move || {
+        if let Some(r) = weak.upgrade() {
+            r.set_title(&t(title_msgid));
+        }
+    }));
+}
+
+/// Register an adw::ComboRow's dropdown items for retranslation.
+///
+/// When the language changes, creates a new `gtk::StringList` with translated
+/// strings, sets it as the row's model, and restores the previously selected index.
+pub fn register_combo_row_items(row: &adw::ComboRow, msgids: &'static [&'static str]) {
+    let weak = row.downgrade();
+    register(Box::new(move || {
+        if let Some(r) = weak.upgrade() {
+            let selected = r.selected();
+            let translated: Vec<String> = msgids.iter().map(|m| t(m)).collect();
+            let strs: Vec<&str> = translated.iter().map(|s| s.as_str()).collect();
+            let new_model = gtk::StringList::new(&strs);
+            r.set_model(Some(&new_model));
+            r.set_selected(selected.min((msgids.len() - 1) as u32));
+        }
+    }));
+}
+
+/// Register a gtk::DropDown's items for retranslation.
+///
+/// When the language changes, creates a new `gtk::StringList` with translated
+/// strings, sets it as the dropdown's model, and restores the previously selected index.
+pub fn register_dropdown_items(dropdown: &gtk::DropDown, msgids: &'static [&'static str]) {
+    let weak = dropdown.downgrade();
+    register(Box::new(move || {
+        if let Some(d) = weak.upgrade() {
+            let selected = d.selected();
+            let translated: Vec<String> = msgids.iter().map(|m| t(m)).collect();
+            let strs: Vec<&str> = translated.iter().map(|s| s.as_str()).collect();
+            let new_model = gtk::StringList::new(&strs);
+            d.set_model(Some(&new_model));
+            d.set_selected(selected.min((msgids.len() - 1) as u32));
+        }
+    }));
+}
 
 /// Initialize gettext with the locale directory.
 ///
@@ -84,6 +272,9 @@ pub fn set_language(lang: &str) {
         "set_language: gettext('Abbrechen') = '{}' (expected: Cancel/Annuler/etc.)",
         test
     );
+
+    // Update all registered widgets with new translations
+    retranslate_all();
 
     log::info!("Language set to: {}", lang);
 }

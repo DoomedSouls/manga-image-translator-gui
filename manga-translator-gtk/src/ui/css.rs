@@ -218,12 +218,30 @@ pub fn selection_animations_css() -> &'static str {
     100% { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes row-appear-right {
+    0%   { opacity: 0; transform: translateX(8px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes row-appear-left {
+    0%   { opacity: 0; transform: translateX(-8px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
 .grid-item-box.accent-selected {
     animation: selection-pop 250ms ease-out;
 }
 
 .file-row.just-selected {
     animation: row-bounce 300ms ease-out;
+}
+
+.row-appear-right {
+    animation: row-appear-right 300ms ease-out;
+}
+
+.row-appear-left {
+    animation: row-appear-left 300ms ease-out;
 }
 "#
 }
@@ -255,6 +273,38 @@ progressbar.translation-progress.active progress {
 "#
 }
 
+/// CSS for the completion success animation (progress bar + button glow).
+pub fn completion_css() -> &'static str {
+    r#"
+@keyframes success-glow {
+    0%   { box-shadow: 0 0 4px alpha(#4CAF50, 0.3); }
+    50%  { box-shadow: 0 0 24px alpha(#4CAF50, 0.9); }
+    100% { box-shadow: 0 0 4px alpha(#4CAF50, 0.3); }
+}
+
+@keyframes progress-success-pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+progressbar.translation-progress.completed progress {
+    background: #4CAF50;
+    animation: progress-success-pulse 0.6s ease-in-out;
+}
+
+button.start-action-btn.success {
+    background: #4CAF50;
+    color: white;
+    animation: success-glow 0.6s ease-in-out;
+    border-radius: 12px;
+    padding: 10px 24px;
+    font-weight: 700;
+    font-size: 14px;
+}
+"#
+}
+
 /// CSS for suppressing GTK's internal hover/selection highlights
 /// that conflict with our custom selection styles.
 pub fn gtk_override_css() -> &'static str {
@@ -273,6 +323,20 @@ gridview child:hover {
 "#
 }
 
+/// CSS for the spinner fade-out animation in the start button.
+pub fn spinner_fade_css() -> &'static str {
+    r#"
+@keyframes spinner-fade-out {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.spinner-fading {
+    animation: spinner-fade-out 300ms ease-out forwards;
+}
+"#
+}
+
 // ---------------------------------------------------------------------------
 // Combined builder
 // ---------------------------------------------------------------------------
@@ -287,6 +351,8 @@ pub fn build_combined_css() -> String {
     css.push_str(cancel_button_css());
     css.push_str(selection_animations_css());
     css.push_str(progress_bar_css());
+    css.push_str(completion_css());
+    css.push_str(spinner_fade_css());
 
     css.push_str(gtk_override_css());
 

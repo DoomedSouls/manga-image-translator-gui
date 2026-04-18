@@ -549,3 +549,147 @@ msgstr ""
 
 msgid "Rosa"
 msgstr ""
+
+msgid "Wirkt sofort"
+msgstr ""
+
+msgid "Text extrahieren"
+msgstr ""
+
+msgid "Text einfügen"
+msgstr ""
+
+msgid "Lokal (Offline)"
+msgstr ""
+
+msgid "DeepL"
+msgstr ""
+
+msgid "Google (via DeepTranslator)"
+msgstr ""
+
+msgid "Baidu"
+msgstr ""
+
+msgid "Google"
+msgstr ""
+
+msgid "Caiyun"
+msgstr ""
+
+msgid "ChatGPT"
+msgstr ""
+
+msgid "DeepSeek"
+msgstr ""
+
+msgid "Groq"
+msgstr ""
+
+msgid "Gemini"
+msgstr ""
+
+msgid "Sugoi"
+msgstr ""
+
+msgid "None (Text nur erkennen)"
+msgstr ""
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr ""
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr ""
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr ""
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr ""
+
+msgid "LaMA — Standard Inpainting"
+msgstr ""
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr ""
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr ""
+
+msgid "NSM — Neural Style Migration"
+msgstr ""
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr ""
+
+msgid "Keiner"
+msgstr ""
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr ""
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr ""
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr ""
+
+msgid "CUDA (GPU)"
+msgstr ""
+
+msgid "CPU"
+msgstr ""
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Natürlich (1, 2, 10)"
+msgstr ""
+
+msgid "Datum (neueste zuerst)"
+msgstr ""
+
+msgid "OpenRouter (Online)"
+msgstr ""
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr ""
+
+msgid "Manga2Eng (manga2eng)"
+msgstr ""
+
+msgid "Kein Rendering"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Zentriert"
+msgstr ""
+
+msgid "Rechts"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertikal"
+msgstr ""
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr ""
+
+msgid "FP16 (Ausgewogen)"
+msgstr ""
+
+msgid "BF16 (Schnell, Standard)"
+msgstr ""
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr ""
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr ""
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr ""

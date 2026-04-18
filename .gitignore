@@ -30,6 +30,11 @@ desktop.ini
 # Threadbridge internal data
 .threadbridge/
 
+# AppImage build artifacts
+build/
+dist/
+*.AppImage
+
 # Translation output (user-generated)
 result/
 

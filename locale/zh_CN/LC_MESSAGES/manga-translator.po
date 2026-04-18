@@ -542,3 +542,180 @@ msgstr "翻译失败"
 
 msgid "Übersetzung wird vorbereitet…"
 msgstr "正在准备翻译…"
+
+msgid "Wirkt sofort"
+msgstr "立即生效"
+
+msgid "Standard Übersetzer"
+msgstr "标准翻译器"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (视觉语言模型)"
+
+msgid "Text extrahieren"
+msgstr "提取文本"
+
+msgid "Text einfügen"
+msgstr "插入文本"
+
+msgid "Nur Upscaling"
+msgstr "仅放大"
+
+msgid "Lokal (Offline)"
+msgstr "本地（离线）"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google（通过DeepTranslator）"
+
+msgid "Baidu"
+msgstr "百度"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "彩云"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "无（仅文本识别）"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — 漫画和连环画优化"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "默认 — 通用文本识别"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — 基于ConvNext"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — PaddlePaddle识别"
+
+msgid "48px (Standard)"
+msgstr "48px（标准）"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr（更高质量）"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — 标准图像修复"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — 基于上下文的重建"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — 基于补丁的图像修复"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — 神经风格迁移"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — 高分辨率图像修复"
+
+msgid "Keiner"
+msgstr "无"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — 通用图像增强"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — 动漫和漫画优化"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — 4倍放大"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "名称 (A-Z)"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "自然排序 (1, 2, 10)"
+
+msgid "Datum (neueste zuerst)"
+msgstr "日期（最新优先）"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter（在线）"
+
+msgid "Gemini (Online)"
+msgstr "Gemini（在线）"
+
+msgid "Lokales Modell"
+msgstr "本地模型"
+
+msgid "Standard"
+msgstr "标准"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "无渲染"
+
+msgid "Links"
+msgstr "左对齐"
+
+msgid "Zentriert"
+msgstr "居中"
+
+msgid "Rechts"
+msgstr "右对齐"
+
+msgid "Horizontal"
+msgstr "水平"
+
+msgid "Vertikal"
+msgstr "垂直"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32（慢速，精确）"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16（均衡）"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16（快速，标准）"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "气泡和文本检测设置"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "高级用户的额外选项"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "选择翻译图片的存储位置"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "将翻译保存在与原始文件相同的文件夹中"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "自定义翻译存储位置"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "打开菜单 → 虚拟环境… 来配置路径"

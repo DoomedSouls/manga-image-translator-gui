@@ -76,6 +76,49 @@ cargo run --release
 
 The release binary is ~4.7 MB and will be at `target/release/manga-translator-gtk`.
 
+### Building an AppImage
+
+A `build-appimage.sh` script is provided to create a portable AppImage that bundles GTK4, libadwaita, and all shared library dependencies. The Python backend (`server.py`) is included; the virtual environment is configured by the user at runtime.
+
+```bash
+# Full build (compiles Rust binary + creates AppImage)
+./build-appimage.sh
+
+# Skip cargo build, use existing binary
+./build-appimage.sh --skip-build
+
+# Clean previous build artifacts first
+./build-appimage.sh --clean
+```
+
+**Requirements:** `curl` or `wget`, GTK4 + libadwaita dev headers (for building), `pkg-config`.
+
+The script automatically downloads `linuxdeploy`, the GTK plugin, and `appimagetool`. The output is placed in `dist/`:
+
+```
+dist/manga-translator-gtk-0.1.0-x86_64.AppImage   (~42 MB)
+```
+
+**AppImage contents:**
+
+| Path | Description |
+|---|---|
+| `usr/bin/manga-translator-gtk` | Rust binary (stripped, ~3.5 MB) |
+| `usr/lib/` | GTK4, libadwaita, and 90+ shared libraries |
+| `usr/share/locale/` | 8 language translations (.mo) |
+| `usr/share/manga-translator-gtk/backend/server.py` | Python IPC backend |
+| `usr/share/metainfo/` | AppStream metadata |
+| `AppRun` | Wrapper script (sets GTK/GDK env vars) |
+
+**Environment variables:**
+
+| Variable | Default | Description |
+|---|---|---|
+| `ARCH` | `uname -m` | Target architecture |
+| `APP_VERSION` | `0.1.0` | Version string in filename |
+| `OUTPUT_DIR` | `dist` | Output directory |
+| `APPIMAGE_DEBUG` | `0` | Set to `1` for debug output from AppRun |
+
 ## First-time Setup
 
 1. Start the application

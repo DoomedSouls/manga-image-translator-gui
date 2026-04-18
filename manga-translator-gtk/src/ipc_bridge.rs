@@ -692,6 +692,17 @@ impl IpcBridge {
                 if candidate.is_file() {
                     return Ok(candidate);
                 }
+
+                // Installed / AppImage mode: <prefix>/bin/ → <prefix>/share/manga-translator-gtk/backend/
+                let candidate = exe_dir
+                    .join("..")
+                    .join("share")
+                    .join("manga-translator-gtk")
+                    .join("backend")
+                    .join("server.py");
+                if candidate.is_file() {
+                    return Ok(candidate);
+                }
             }
         }
 

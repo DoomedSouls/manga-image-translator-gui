@@ -542,3 +542,180 @@ msgstr "Tradução falhou"
 
 msgid "Übersetzung wird vorbereitet…"
 msgstr "Preparando tradução…"
+
+msgid "Wirkt sofort"
+msgstr "Funciona imediatamente"
+
+msgid "Standard Übersetzer"
+msgstr "Tradutor padrão"
+
+msgid "VLM (Vision Language Model)"
+msgstr "VLM (Modelo de Linguagem Visual)"
+
+msgid "Text extrahieren"
+msgstr "Extrair texto"
+
+msgid "Text einfügen"
+msgstr "Inserir texto"
+
+msgid "Nur Upscaling"
+msgstr "Apenas upscale"
+
+msgid "Lokal (Offline)"
+msgstr "Local (Offline)"
+
+msgid "DeepL"
+msgstr "DeepL"
+
+msgid "Google (via DeepTranslator)"
+msgstr "Google (via DeepTranslator)"
+
+msgid "Baidu"
+msgstr "Baidu"
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Caiyun"
+msgstr "Caiyun"
+
+msgid "ChatGPT"
+msgstr "ChatGPT"
+
+msgid "DeepSeek"
+msgstr "DeepSeek"
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Sugoi"
+msgstr "Sugoi"
+
+msgid "None (Text nur erkennen)"
+msgstr "Nenhum (Apenas detecção de texto)"
+
+msgid "CTD — Optimiert für Manga & Comics"
+msgstr "CTD — Otimizado para mangá e quadrinhos"
+
+msgid "Default — Allgemeine Texterkennung"
+msgstr "Padrão — Detecção de texto geral"
+
+msgid "DBConvNext — ConvNext-basiert"
+msgstr "DBConvNext — Baseado em ConvNext"
+
+msgid "PaddleOCR — PaddlePaddle Erkennung"
+msgstr "PaddleOCR — Detecção PaddlePaddle"
+
+msgid "48px (Standard)"
+msgstr "48px (Padrão)"
+
+msgid "mocr (Better Quality)"
+msgstr "mocr (Melhor qualidade)"
+
+msgid "LaMA — Standard Inpainting"
+msgstr "LaMA — Inpainting padrão"
+
+msgid "AOTScan — Kontext-basierte Rekonstruktion"
+msgstr "AOTScan — Reconstrução baseada em contexto"
+
+msgid "PatchMatch — Patch-basierte Bildreparatur"
+msgstr "PatchMatch — Reparo de imagem baseado em patches"
+
+msgid "NSM — Neural Style Migration"
+msgstr "NSM — Migração de estilo neural"
+
+msgid "LaMA Large — Hochauflösendes Inpainting"
+msgstr "LaMA Large — Inpainting de alta resolução"
+
+msgid "Keiner"
+msgstr "Nenhum"
+
+msgid "ESRGAN — Allgemeine Bildverbesserung"
+msgstr "ESRGAN — Melhoria geral de imagem"
+
+msgid "Waifu2x — Anime & Manga optimiert"
+msgstr "Waifu2x — Otimizado para anime e mangá"
+
+msgid "4x-UltraSharp — 4fache Hochskalierung"
+msgstr "4x-UltraSharp — Upscale 4x"
+
+msgid "CUDA (GPU)"
+msgstr "CUDA (GPU)"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Name (A-Z)"
+msgstr "Nome (A-Z)"
+
+msgid "Natürlich (1, 2, 10)"
+msgstr "Natural (1, 2, 10)"
+
+msgid "Datum (neueste zuerst)"
+msgstr "Data (mais recente primeiro)"
+
+msgid "OpenRouter (Online)"
+msgstr "OpenRouter (Online)"
+
+msgid "Gemini (Online)"
+msgstr "Gemini (Online)"
+
+msgid "Lokales Modell"
+msgstr "Modelo local"
+
+msgid "Standard"
+msgstr "Padrão"
+
+msgid "Manga2Eng (manga2eng_pillow)"
+msgstr "Manga2Eng (manga2eng_pillow)"
+
+msgid "Manga2Eng (manga2eng)"
+msgstr "Manga2Eng (manga2eng)"
+
+msgid "Kein Rendering"
+msgstr "Sem renderização"
+
+msgid "Links"
+msgstr "Esquerda"
+
+msgid "Zentriert"
+msgstr "Centro"
+
+msgid "Rechts"
+msgstr "Direita"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertikal"
+msgstr "Vertical"
+
+msgid "FP32 (Langsam, Präzise)"
+msgstr "FP32 (Lento, Preciso)"
+
+msgid "FP16 (Ausgewogen)"
+msgstr "FP16 (Equilibrado)"
+
+msgid "BF16 (Schnell, Standard)"
+msgstr "BF16 (Rápido, Padrão)"
+
+msgid "Einstellungen für Blasen- und Texterkennung"
+msgstr "Configurações para detecção de balões e texto"
+
+msgid "Zusätzliche Optionen für fortgeschrittene Benutzer"
+msgstr "Opções adicionais para usuários avançados"
+
+msgid "Wählen Sie den Speicherort für übersetzte Bilder"
+msgstr "Escolha o local de armazenamento para as imagens traduzidas"
+
+msgid "Speichert die Übersetzungen im selben Ordner wie die Originaldateien"
+msgstr "Salva as traduções na mesma pasta que os arquivos originais"
+
+msgid "Benutzerdefinierter Speicherort für Übersetzungen"
+msgstr "Local personalizado para traduções"
+
+msgid "Öffne Menü → Virtuelle Umgebung… um die Pfade zu konfigurieren"
+msgstr "Abrir Menu → Ambiente virtual… para configurar os caminhos"

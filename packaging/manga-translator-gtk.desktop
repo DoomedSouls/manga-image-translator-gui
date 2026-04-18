@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=Manga Translator
+Name[de]=Manga-Übersetzer
+Name[ja]=マンガ翻訳ツール
+Comment=Translate manga images with OCR and machine translation
+Comment[de]=Manga-Bilder mit OCR und maschineller Übersetzung übersetzen
+Comment[ja]=OCRと機械翻訳でマンガ画像を翻訳
+Exec=manga-translator-gtk
+Icon=manga-translator-gtk
+Terminal=false
+StartupNotify=true
+Categories=Graphics;Translation;GTK;
+Keywords=manga;translation;OCR;image;translate;comics;
+MimeType=image/png;image/jpeg;image/webp;image/bmp;image/tiff;
+StartupWMClass=manga-translator-gtk

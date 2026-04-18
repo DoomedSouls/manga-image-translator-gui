@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.manga_translator_gtk</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Manga Translator</name>
+  <summary>Translate manga images with OCR and machine translation</summary>
+  <summary xml:lang="de">Manga-Bilder mit OCR und maschineller Übersetzung übersetzen</summary>
+  <summary xml:lang="ja">OCRと機械翻訳でマンガ画像を翻訳</summary>
+  <summary xml:lang="fr">Traduire des images de manga avec OCR et traduction automatique</summary>
+  <summary xml:lang="es">Traducir imágenes de manga con OCR y traducción automática</summary>
+  <summary xml:lang="pt_BR">Traduzir imagens de mangá com OCR e tradução automática</summary>
+  <summary xml:lang="ko">OCR과 기계 번역으로 만화 이미지 번역</summary>
+  <summary xml:lang="zh_CN">使用 OCR 和机器翻译翻译漫画图像</summary>
+
+  <description>
+    <p>
+      A modern desktop GUI for manga-image-translator, built with GTK4 and
+      libadwaita. Browse manga chapter directories, select pages, and translate
+      them using a variety of OCR engines, translators, and inpainting methods.
+    </p>
+    <p xml:lang="de">
+      Eine moderne Desktop-GUI für manga-image-translator, erstellt mit GTK4
+      und libadwaita. Durchsuchen Sie Manga-Kapitelverzeichnisse, wählen Sie
+      Seiten aus und übersetzen Sie diese mit verschiedenen OCR-Engines,
+      Übersetzern und Inpainting-Methoden.
+    </p>
+    <p>
+      Features include folder-based browsing with grid/list views, multiple
+      translation modes (standard, VLM two-pass, extract text, insert text),
+      a live preview with an original/translated comparison slider, accent
+      color customization, and support for 8 languages.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">manga-translator-gtk.desktop</launchable>
+
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <display_length compare="ge">768</display_length>
+  </recommends>
+
+  <provides>
+    <binary>manga-translator-gtk</binary>
+  </provides>
+
+  <categories>
+    <category>Graphics</category>
+  </categories>
+
+  <keywords>
+    <keyword>manga</keyword>
+    <keyword>translation</keyword>
+    <keyword>OCR</keyword>
+    <keyword>image</keyword>
+    <keyword>translate</keyword>
+    <keyword>comics</keyword>
+  </keywords>
+
+  <releases>
+    <release version="0.1.0" date="2026-04-15">
+      <description>
+        <p>Initial release.</p>
+        <ul>
+          <li>GTK4/libadwaita GUI with folder-based manga browsing</li>
+          <li>Standard, VLM, extract, and insert translation modes</li>
+          <li>IPC subprocess backend (Python 3.10+ with any venv)</li>
+          <li>Live preview with original/translated comparison slider</li>
+          <li>8 languages: DE, EN, ES, FR, JA, KO, PT-BR, ZH-CN</li>
+          <li>Configurable accent colors and theme support</li>
+          <li>API key management for translation services</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
+  <developer id="io.github.manga_translator_gtk">
+    <name>SLOB-CODER</name>
+  </developer>
+</component>

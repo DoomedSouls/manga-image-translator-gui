@@ -143,18 +143,17 @@ MangaSettingsPanel {
 /* --- Breadcrumb navigation button flash --- */
 @keyframes btn-nav-flash {
     0% {
-        opacity: 1;
-    }
-    30% {
-        opacity: 0.2;
+        opacity: 0;
+        transform: translateX(-8px);
     }
     100% {
         opacity: 1;
+        transform: translateX(0);
     }
 }
 
 .btn-nav-flash {
-    animation: btn-nav-flash 600ms ease-in-out;
+    animation: btn-nav-flash 300ms ease-out;
 }
 
 /* ===================================================================
@@ -438,6 +437,19 @@ gridview child:hover {
 .preview-placeholder {
     border-radius: 8px;
     background: alpha(@view_bg_color, 0.95);
+    animation: placeholder-breathe 4s ease-in-out infinite;
+}
+
+@keyframes placeholder-breathe {
+    0%,
+    100% {
+        box-shadow: inset 0 0 20px
+            alpha(var(--accent-bg-color, @accent_bg_color), 0.02);
+    }
+    50% {
+        box-shadow: inset 0 0 40px
+            alpha(var(--accent-bg-color, @accent_bg_color), 0.06);
+    }
 }
 
 .preview-image {
@@ -447,6 +459,15 @@ gridview child:hover {
 .comparison-container {
     border-radius: 8px;
     /* overflow: hidden; — not supported by GTK4 CSS */
+}
+
+/* Translated layer — smooth opacity transition for mode switching */
+.translated-layer {
+    transition: opacity 250ms ease;
+}
+
+.translated-layer.layer-hidden {
+    opacity: 0;
 }
 
 /* Comparison slider */
@@ -474,6 +495,15 @@ gridview child:hover {
 .preferences-group row {
     border-radius: 8px;
     margin-bottom: 2px;
+    transition: background 200ms ease;
+}
+
+.preferences-group row:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.06);
+}
+
+.preferences-group row:active {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.1);
 }
 
 /* ===================================================================
@@ -587,6 +617,21 @@ searchbar {
     transform: translateY(0) scale(0.98);
 }
 
+@keyframes breadcrumb-segment-appear {
+    0% {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.breadcrumb-segment-new {
+    animation: breadcrumb-segment-appear 250ms ease-out;
+}
+
 .breadcrumb-separator {
     opacity: 0.5;
     transition: opacity 150ms ease;
@@ -600,11 +645,19 @@ paned > separator {
     min-width: 2px;
     min-height: 2px;
     background: alpha(@borders, 0.3);
-    transition: background 200ms ease;
+    transition:
+        background 200ms ease,
+        box-shadow 200ms ease;
 }
 
 paned > separator:hover {
+    background: alpha(var(--accent-bg-color, @accent_bg_color), 0.5);
+    box-shadow: 0 0 6px alpha(var(--accent-bg-color, @accent_bg_color), 0.3);
+}
+
+paned > separator:active {
     background: var(--accent-bg-color, @accent_bg_color);
+    box-shadow: 0 0 10px alpha(var(--accent-bg-color, @accent_bg_color), 0.5);
 }
 
 /* ===================================================================
@@ -664,21 +717,32 @@ paned > separator:hover {
 }
 
 /* ===================================================================
- * Thumbnail Shimmer (loading placeholder pulse)
+ * Thumbnail Shimmer (skeleton-loader gradient)
  * =================================================================== */
 
 @keyframes thumbnail-shimmer {
-    0%,
-    100% {
-        opacity: 0.5;
+    0% {
+        background-position: -200% 0;
     }
-    50% {
-        opacity: 0.9;
+    100% {
+        background-position: 200% 0;
     }
 }
 
-.thumbnail-loading image {
+.thumbnail-loading {
+    background: linear-gradient(
+        90deg,
+        alpha(@borders, 0.15) 25%,
+        alpha(@borders, 0.35) 50%,
+        alpha(@borders, 0.15) 75%
+    );
+    background-size: 200% 100%;
     animation: thumbnail-shimmer 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+.thumbnail-loading image {
+    opacity: 0.4;
 }
 
 /* ===================================================================

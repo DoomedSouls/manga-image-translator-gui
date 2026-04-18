@@ -360,6 +360,8 @@ pub struct FileBrowserState {
     /// Populated after Phase 2 completes. Enables instant re-display when
     /// navigating back to a previously visited directory.
     dir_cache: HashMap<PathBuf, DirCacheEntry>,
+    /// Whether the last navigation was forward (into a child directory).
+    nav_forward: bool,
 }
 
 // The actual FileBrowser GObject
@@ -403,6 +405,7 @@ impl Default for FileBrowserPrivate {
                 on_folder_activated: None,
                 on_files_dropped: None,
                 dir_cache: HashMap::new(),
+                nav_forward: true,
             }),
             container: RefCell::new(None),
             grid_view: RefCell::new(None),
@@ -457,6 +460,7 @@ impl FileBrowserPrivate {
         count_label.set_margin_top(4);
         count_label.set_margin_bottom(4);
         count_label.set_xalign(0.0);
+        i18n::register_label(&count_label, "Keine Dateien");
         *self.count_label.borrow_mut() = Some(count_label.clone());
         vbox.append(&count_label);
 
@@ -854,13 +858,23 @@ impl FileBrowserPrivate {
                     }
                 }
 
-                // Staggered fade-in: set initial opacity, then animate in after delay
+                // Staggered directional fade-in: set initial opacity, then animate in after delay
                 let position = list_item.position();
                 let delay = std::time::Duration::from_millis(20 * position.min(50) as u64);
                 let row_clone = row.clone();
+                let nav_forward = this.state.borrow().nav_forward;
+                let direction_class = if nav_forward {
+                    "row-appear-right"
+                } else {
+                    "row-appear-left"
+                };
+                // Remove any lingering animation classes from previous binds
+                row_clone.remove_css_class("row-appear-right");
+                row_clone.remove_css_class("row-appear-left");
                 row.set_opacity(0.0);
                 glib::timeout_add_local(delay, move || {
                     row_clone.set_opacity(1.0);
+                    row_clone.add_css_class(direction_class);
                     glib::ControlFlow::Break
                 });
             }
@@ -1253,6 +1267,11 @@ impl FileBrowser {
         log::debug!("set_directory({})", directory.display());
         let priv_ = imp(self);
         let mut state = priv_.state.borrow_mut();
+        // Determine navigation direction
+        if let Some(parent) = state.current_directory.parent() {
+            state.nav_forward = directory.starts_with(parent) && directory != parent;
+        }
+
         state.current_directory = directory.to_path_buf();
         state.items.clear();
         state.all_image_paths.clear();

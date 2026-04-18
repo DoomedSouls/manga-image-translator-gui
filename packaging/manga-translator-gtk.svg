@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="page-l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e0e7ff"/>
+    </linearGradient>
+    <linearGradient id="page-r" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded background -->
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+
+  <!-- Book spine shadow -->
+  <rect x="123" y="48" width="10" height="160" rx="3" fill="#3730a3" opacity="0.35"/>
+
+  <!-- Left page -->
+  <path d="M124,56 Q90,52 52,60 L52,192 Q90,184 124,188 Z" fill="url(#page-l)" stroke="#c7d2fe" stroke-width="1"/>
+
+  <!-- Right page -->
+  <path d="M132,56 Q166,52 204,60 L204,192 Q166,184 132,188 Z" fill="url(#page-r)" stroke="#c7d2fe" stroke-width="1"/>
+
+  <!-- Left page: manga lines (black text simulation) -->
+  <rect x="68" y="78" width="40" height="4" rx="2" fill="#1e1b4b" opacity="0.7"/>
+  <rect x="62" y="90" width="50" height="4" rx="2" fill="#1e1b4b" opacity="0.6"/>
+  <rect x="66" y="102" width="46" height="4" rx="2" fill="#1e1b4b" opacity="0.6"/>
+  <rect x="70" y="114" width="38" height="4" rx="2" fill="#1e1b4b" opacity="0.5"/>
+  <rect x="64" y="126" width="48" height="4" rx="2" fill="#1e1b4b" opacity="0.5"/>
+
+  <!-- Left page: speech bubble -->
+  <rect x="72" y="144" width="44" height="28" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <path d="M82,172 L78,184 L92,172" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="80" y="154" width="28" height="3" rx="1.5" fill="#4338ca" opacity="0.5"/>
+  <rect x="84" y="161" width="20" height="3" rx="1.5" fill="#4338ca" opacity="0.4"/>
+
+  <!-- Right page: translated text lines (colored) -->
+  <rect x="146" y="78" width="42" height="4" rx="2" fill="#4f46e5" opacity="0.7"/>
+  <rect x="142" y="90" width="50" height="4" rx="2" fill="#4f46e5" opacity="0.6"/>
+  <rect x="148" y="102" width="38" height="4" rx="2" fill="#4f46e5" opacity="0.6"/>
+  <rect x="144" y="114" width="46" height="4" rx="2" fill="#4f46e5" opacity="0.5"/>
+  <rect x="150" y="126" width="34" height="4" rx="2" fill="#4f46e5" opacity="0.5"/>
+
+  <!-- Right page: translated speech bubble -->
+  <rect x="140" y="144" width="48" height="28" rx="8" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="1.5"/>
+  <path d="M174,172 L178,184 L164,172" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="148" y="154" width="32" height="3" rx="1.5" fill="#6d28d9" opacity="0.5"/>
+  <rect x="152" y="161" width="24" height="3" rx="1.5" fill="#6d28d9" opacity="0.4"/>
+
+  <!-- Translation arrows between pages -->
+  <g opacity="0.9">
+    <!-- Arrow: left→right (top) -->
+    <path d="M110,210 L140,210" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M134,204 L142,210 L134,216" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Arrow: right→left (bottom) -->
+    <path d="M146,224 L116,224" stroke="#34d399" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M122,218 L114,224 L122,230" stroke="#34d399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+</svg>

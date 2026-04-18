@@ -1,0 +1,56 @@
+#!/bin/bash
+# AppRun — AppImage entry point for manga-translator-gtk
+# Sets up GTK4/libadwaita environment and launches the application.
+
+APPDIR="$(cd "$(dirname "$0")" && pwd)"
+APP="${APPDIR}/usr/bin/manga-translator-gtk"
+
+# ── XDG data directories ──────────────────────────────────────────────
+# Merge AppDir's share/ into the XDG search path so GTK finds schemas,
+# icons, locale data, etc.
+export XDG_DATA_DIRS="${APPDIR}/usr/share${XDG_DATA_DIRS+:${XDG_DATA_DIRS}}"
+
+# ── Library path ──────────────────────────────────────────────────────
+export LD_LIBRARY_PATH="${APPDIR}/usr/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
+
+# ── GTK / GLib / GDK-Pixbuf ──────────────────────────────────────────
+# GSettings schemas (may be bundled by linuxdeploy)
+if [ -d "${APPDIR}/usr/share/glib-2.0/schemas" ]; then
+    export GSETTINGS_SCHEMA_DIR="${APPDIR}/usr/share/glib-2.0/schemas"
+fi
+
+# GTK modules
+if [ -d "${APPDIR}/usr/lib/gtk-4.0" ]; then
+    export GTK_PATH="${APPDIR}/usr/lib/gtk-4.0${GTK_PATH+:${GTK_PATH}}"
+fi
+
+# GDK-Pixbuf loaders (for thumbnailing / image format support)
+if [ -f "${APPDIR}/usr/lib/gdk-pixbuf-2.0/loaders.cache" ]; then
+    export GDK_PIXBUF_MODULE_FILE="${APPDIR}/usr/lib/gdk-pixbuf-2.0/loaders.cache"
+fi
+
+# ── Python backend ────────────────────────────────────────────────────
+# server.py is bundled at usr/share/manga-translator-gtk/backend/server.py
+# The Rust binary discovers it via its installed-mode search path.
+# PYTHONPATH and the venv are configured by the user at runtime.
+
+# ── Locale ────────────────────────────────────────────────────────────
+# gettext-rs looks for <prefix>/share/locale/ — already covered by
+# XDG_DATA_DIRS and the binary's installed-mode path.
+
+# ── Debug helper ──────────────────────────────────────────────────────
+if [ "${APPIMAGE_DEBUG:-0}" = "1" ]; then
+    echo "=== AppImage Debug ==="
+    echo "APPDIR       = ${APPDIR}"
+    echo "APP          = ${APP}"
+    echo "XDG_DATA_DIRS= ${XDG_DATA_DIRS}"
+    echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+    echo "GTK_PATH     = ${GTK_PATH:-<unset>}"
+    echo "GSETTINGS_SCHEMA_DIR=${GSETTINGS_SCHEMA_DIR:-<unset>}"
+    echo "GDK_PIXBUF_MODULE_FILE=${GDK_PIXBUF_MODULE_FILE:-<unset>}"
+    echo "====================="
+    exec "${APP}" "$@"
+fi
+
+# ── Launch ────────────────────────────────────────────────────────────
+exec "${APP}" "$@"
