@@ -78,10 +78,16 @@ jobs:
           cd manga-translator-gtk
           cargo build --release --target x86_64-pc-windows-gnu
 
+      - name: Extract version from Cargo.toml
+        shell: msys2 {0}
+        run: |
+          VERSION="$(grep '^version = ' manga-translator-gtk/Cargo.toml | head -1 | sed 's/version = "\(.*\)"/\1/')"
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+
       - name: Package distribution
         shell: msys2 {0}
         run: |
-          VERSION="${GITHUB_REF_NAME:-0.2.0}"
+          VERSION="${VERSION}"
           DIST="dist/manga-translator-gtk-${VERSION}-windows-x86_64"
           MINGW="/mingw64"
 
