@@ -200,9 +200,9 @@ jobs:
           rm -f "${DIST}/gdk-pixbuf-query-loaders.exe"
           rm -f "${DIST}/gdbus.exe"
 
-          # Create ZIP
+          # Create ZIP using tar (available in MSYS2)
           cd dist
-          7z a -tzip "manga-translator-gtk-${VERSION}-windows-x86_64.zip" "manga-translator-gtk-${VERSION}-windows-x86_64/"
+          tar -a -c -f "manga-translator-gtk-${VERSION}-windows-x86_64.zip" "manga-translator-gtk-${VERSION}-windows-x86_64/"
           cd ..
 
       - name: Upload artifact
