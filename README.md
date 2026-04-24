@@ -1,8 +1,8 @@
-<img width="3802" height="2051" alt="3" src="https://github.com/user-attachments/assets/ad709711-e8d8-4a59-bbd3-5180bd6f79e0" />
+<img width="3802" height="2051" alt="3" src="https://github.com/user-attachments/assets/1f667946-51e5-4bb4-852d-a92f89bdd398" />
 
-<img width="3802" height="2051" alt="2" src="https://github.com/user-attachments/assets/ee1778d7-0401-49c3-96e4-9cf99244b4ba" />
+<img width="3802" height="2051" alt="2" src="https://github.com/user-attachments/assets/845de1d8-b552-4d36-8b3a-f8a9cf553ee5" />
 
-<img width="3802" height="2051" alt="1" src="https://github.com/user-attachments/assets/5201c7f5-cc7a-429d-ab8e-314c2b8036de" />
+<img width="3802" height="2051" alt="1" src="https://github.com/user-attachments/assets/d227c372-1692-4156-b567-e222c510bd1f" />
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows-informational)
