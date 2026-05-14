@@ -14,7 +14,7 @@ export XDG_DATA_DIRS="${APPDIR}/usr/share${XDG_DATA_DIRS+:${XDG_DATA_DIRS}}"
 export LD_LIBRARY_PATH="${APPDIR}/usr/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
 
 # ── GTK / GLib / GDK-Pixbuf ──────────────────────────────────────────
-# GSettings schemas (may be bundled by linuxdeploy)
+# GSettings schemas
 if [ -d "${APPDIR}/usr/share/glib-2.0/schemas" ]; then
     export GSETTINGS_SCHEMA_DIR="${APPDIR}/usr/share/glib-2.0/schemas"
 fi
@@ -24,15 +24,32 @@ if [ -d "${APPDIR}/usr/lib/gtk-4.0" ]; then
     export GTK_PATH="${APPDIR}/usr/lib/gtk-4.0${GTK_PATH+:${GTK_PATH}}"
 fi
 
-# GDK-Pixbuf loaders (for thumbnailing / image format support)
-if [ -f "${APPDIR}/usr/lib/gdk-pixbuf-2.0/loaders.cache" ]; then
-    export GDK_PIXBUF_MODULE_FILE="${APPDIR}/usr/lib/gdk-pixbuf-2.0/loaders.cache"
+# GDK-Pixbuf loaders — fix @MODULEDIR@ placeholders in cache at first run.
+# The build creates the cache with @MODULEDIR@ instead of absolute paths
+# because the AppDir mount point is unknown at build time.
+GDK_PIXBUF_CACHE="${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+GDK_PIXBUF_LOADERS="${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+if [ -f "${GDK_PIXBUF_CACHE}" ]; then
+    # Replace @MODULEDIR@ with the actual loader directory at runtime
+    if grep -q '@MODULEDIR@' "${GDK_PIXBUF_CACHE}" 2>/dev/null; then
+        sed "s|@MODULEDIR@|${GDK_PIXBUF_LOADERS}|g" "${GDK_PIXBUF_CACHE}" \
+            > "${APPDIR}/.loaders.cache.fixed"
+        GDK_PIXBUF_CACHE="${APPDIR}/.loaders.cache.fixed"
+    fi
+    export GDK_PIXBUF_MODULE_FILE="${GDK_PIXBUF_CACHE}"
+    export GDK_PIXBUF_MODULEDIR="${GDK_PIXBUF_LOADERS}"
+fi
+
+# GIO modules
+if [ -d "${APPDIR}/usr/lib/gio/modules" ]; then
+    export GIO_MODULE_DIR="${APPDIR}/usr/lib/gio/modules"
 fi
 
 # ── Python backend ────────────────────────────────────────────────────
 # server.py is bundled at usr/share/manga-translator-gtk/backend/server.py
-# The Rust binary discovers it via its installed-mode search path.
-# PYTHONPATH and the venv are configured by the user at runtime.
+# The Rust binary discovers it via its installed-mode search path:
+#   <exe_dir>/../share/manga-translator-gtk/backend/server.py
+# PYTHONPATH and the venv are configured by the user at runtime via Settings.
 
 # ── Locale ────────────────────────────────────────────────────────────
 # gettext-rs looks for <prefix>/share/locale/ — already covered by
@@ -48,8 +65,8 @@ if [ "${APPIMAGE_DEBUG:-0}" = "1" ]; then
     echo "GTK_PATH     = ${GTK_PATH:-<unset>}"
     echo "GSETTINGS_SCHEMA_DIR=${GSETTINGS_SCHEMA_DIR:-<unset>}"
     echo "GDK_PIXBUF_MODULE_FILE=${GDK_PIXBUF_MODULE_FILE:-<unset>}"
+    echo "GIO_MODULE_DIR=${GIO_MODULE_DIR:-<unset>}"
     echo "====================="
-    exec "${APP}" "$@"
 fi
 
 # ── Launch ────────────────────────────────────────────────────────────

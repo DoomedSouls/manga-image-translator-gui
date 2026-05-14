@@ -42,42 +42,22 @@ jobs:
             librsvg2-dev \
             appstream-util
 
+      # NOTE: AppImage build moved to build-appimage.yml (openSUSE-based).
+      # This workflow validates that the project compiles on Ubuntu.
+
       - name: Build release
         run: |
           cd manga-translator-gtk
           cargo build --release
 
-      - name: Extract version from Cargo.toml
-        run: |
-          VERSION="$(grep '^version = ' manga-translator-gtk/Cargo.toml | head -1 | sed 's/version = "\(.*\)"/\1/')"
-          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
-
-      - name: Build AppImage
-        run: |
-          chmod +x build-appimage.sh
-          ./build-appimage.sh --skip-build
-
-      - name: Rename AppImage with version
-        run: |
-          ARCH="$(uname -m)"
-          SRC="dist/manga-translator-gtk-${VERSION}-${ARCH}.AppImage"
-          if [ -f "$SRC" ]; then
-            echo "AppImage found: ${SRC}"
-            ls -lh "$SRC"
-          else
-            echo "::error::AppImage not found at ${SRC}"
-            ls -lR dist/ || true
-            exit 1
-          fi
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: manga-translator-gtk-linux-x86_64
-          path: dist/*.AppImage
+          path: manga-translator-gtk/target/release/manga-translator-gtk
 
       - name: Upload to release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.AppImage
+          files: manga-translator-gtk/target/release/manga-translator-gtk

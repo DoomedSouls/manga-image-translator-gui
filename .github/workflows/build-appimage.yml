@@ -1,0 +1,275 @@
+name: Build AppImage
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: opensuse/tumbleweed:latest
+
+    steps:
+      - name: Install build tools
+        run: |
+          zypper --non-interactive install \
+            bash \
+            gawk \
+            git \
+            curl \
+            wget \
+            gcc \
+            make \
+            file \
+            pkgconf-pkg-config \
+            zlib-devel
+
+          # Build mksquashfs 4.7.5 from source (openSUSE ships 4.6.1)
+          wget -q "https://github.com/plougher/squashfs-tools/releases/download/4.7.5/squashfs-tools-4.7.5.tar.gz" \
+            -O /tmp/squashfs-tools.tar.gz
+          cd /tmp && tar xzf squashfs-tools.tar.gz
+          make -C squashfs-tools-4.7.5/squashfs-tools -j$(nproc) mksquashfs \
+            XZ_SUPPORT=0 LZO_SUPPORT=0 LZ4_SUPPORT=0 ZSTD_SUPPORT=0
+          install -m 755 squashfs-tools-4.7.5/squashfs-tools/mksquashfs /usr/local/bin/
+          mksquashfs -version | head -1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          zypper --non-interactive install \
+            gtk4-devel \
+            libadwaita-devel \
+            gdk-pixbuf-devel \
+            librsvg-devel \
+            pango-devel \
+            cairo-devel \
+            harfbuzz-devel \
+            freetype2-devel \
+            fontconfig-devel \
+            gettext-tools
+
+      - name: Setup Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: tumbleweed-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: tumbleweed-cargo-
+
+      - name: Build release
+        run: |
+          . "$HOME/.cargo/env"
+          cd manga-translator-gtk
+          cargo build --release
+
+      - name: Extract version
+        run: |
+          VERSION="$(grep '^version = ' manga-translator-gtk/Cargo.toml | head -1 | sed 's/version = "\(.*\)"/\1/')"
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+
+      - name: Create AppDir
+        run: |
+          VERSION="${VERSION:-0.2.0}"
+          APPDIR="build/MangaTranslator.AppDir"
+          BINARY="manga-translator-gtk/target/release/manga-translator-gtk"
+          LIB_DIR="/usr/lib64"
+          APP_NAME="manga-translator-gtk"
+
+          mkdir -p "${APPDIR}"/usr/{bin,lib,share/{applications,icons/hicolor/scalable/apps,locale,metainfo,manga-translator-gtk/backend,glib-2.0/schemas}}
+          mkdir -p "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+          mkdir -p "${APPDIR}/usr/lib/gio/modules"
+          mkdir -p "${APPDIR}/usr/lib/gtk-4.0/4.0/media"
+
+          # ── Binary ──
+          cp "${BINARY}" "${APPDIR}/usr/bin/${APP_NAME}"
+          chmod +x "${APPDIR}/usr/bin/${APP_NAME}"
+          strip --strip-unneeded "${APPDIR}/usr/bin/${APP_NAME}"
+
+          # ── Desktop file (fix Exec for AppImage) ──
+          cp "packaging/${APP_NAME}.desktop" "${APPDIR}/${APP_NAME}.desktop"
+          sed -i 's|^Exec=.*|Exec='"${APP_NAME}"'|' "${APPDIR}/${APP_NAME}.desktop"
+
+          # ── Icon ──
+          cp "packaging/${APP_NAME}.svg" "${APPDIR}/${APP_NAME}.svg"
+          cp "packaging/${APP_NAME}.svg" "${APPDIR}/usr/share/icons/hicolor/scalable/apps/"
+
+          # ── Python backend (server.py) ──
+          cp "manga-translator-gtk/backend/server.py" \
+             "${APPDIR}/usr/share/manga-translator-gtk/backend/server.py"
+          echo "Bundled server.py backend"
+
+          # ── Locale files (.mo) ──
+          LOCALE_COUNT=0
+          for po_dir in locale/*/LC_MESSAGES; do
+            lang="$(basename "$(dirname "$po_dir")")"
+            for mo_file in "${po_dir}"/*.mo; do
+              [ -f "$mo_file" ] || continue
+              dest_dir="${APPDIR}/usr/share/locale/${lang}/LC_MESSAGES"
+              mkdir -p "$dest_dir"
+              cp "$mo_file" "$dest_dir/$(basename "$mo_file")"
+              LOCALE_COUNT=$((LOCALE_COUNT + 1))
+            done
+          done
+          echo "Bundled ${LOCALE_COUNT} locale files"
+
+          # ── AppStream metainfo ──
+          if [ -f "packaging/metainfo/io.github.manga_translator_gtk.appdata.xml" ]; then
+            cp "packaging/metainfo/io.github.manga_translator_gtk.appdata.xml" \
+               "${APPDIR}/usr/share/metainfo/"
+            echo "Bundled metainfo"
+          fi
+
+          # ═══════════════════════════════════════════════════════════
+          # Shared libraries — bundle EVERYTHING except GPU/display.
+          #
+          # Strategy: "Bundle all, prefer system when compatible"
+          # Only GPU/display/compositor libs are excluded — they
+          # MUST match the running kernel and hardware drivers.
+          # ═══════════════════════════════════════════════════════════
+
+          DEPS_FILE=$(mktemp /tmp/manga_translator_deps.XXXXXX)
+
+          # Direct binary deps (resolves transitive tree via ldd)
+          ldd "${BINARY}" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+
+          # librsvg — loaded dynamically by gdk-pixbuf for SVG support
+          if [ -f "${LIB_DIR}/librsvg-2.so.2" ]; then
+            echo "${LIB_DIR}/librsvg-2.so.2" >> "$DEPS_FILE"
+            ldd "${LIB_DIR}/librsvg-2.so.2" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+          fi
+
+          # gdk-pixbuf loaders (dynamically dlopen'd)
+          LOADERS_SRC="${LIB_DIR}/gdk-pixbuf-2.0/2.10.0/loaders"
+          if [ -d "$LOADERS_SRC" ]; then
+            for loader in "${LOADERS_SRC}"/*.so; do
+              [ -f "$loader" ] || continue
+              echo "$loader" >> "$DEPS_FILE"
+              ldd "$loader" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # GIO modules (TLS, proxy, etc. — dynamically loaded)
+          GIO_MOD_SRC="${LIB_DIR}/gio/modules"
+          if [ -d "$GIO_MOD_SRC" ]; then
+            for mod in "${GIO_MOD_SRC}"/*.so; do
+              [ -f "$mod" ] || continue
+              echo "$mod" >> "$DEPS_FILE"
+              ldd "$mod" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # GTK4 media backends (gstreamer, etc.)
+          GTK_MEDIA_SRC="${LIB_DIR}/gtk-4.0/4.0/media"
+          if [ -d "$GTK_MEDIA_SRC" ]; then
+            for mod in "${GTK_MEDIA_SRC}"/*.so; do
+              [ -f "$mod" ] || continue
+              echo "$mod" >> "$DEPS_FILE"
+              ldd "$mod" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # Only exclude GPU/display/compositor — must match kernel/hardware
+          EXCLUDE_GPU='libEGL|libGL[._]|libGLdispatch|libGLX|libGLES|libglapi|libvulkan|libdrm|libgbm'
+          EXCLUDE_DISPLAY='libX11|libXau|libxcb|libXcursor|libXdamage|libXdmcp|libXext|libXfixes|libXinerama|libXi|libxkbcommon|libXrandr|libXrender|libwayland-client|libwayland-cursor|libwayland-egl'
+          EXCLUDE_RUNTIME='ld-linux|linux-vdso|/libc\.so|/libm\.so|/libdl\.so|/libpthread\.so|/librt\.so|/libresolv\.so|/libnss|libgcc_s|libstdc\+\+'
+          EXCLUDE_ALL="${EXCLUDE_RUNTIME}|${EXCLUDE_GPU}|${EXCLUDE_DISPLAY}"
+
+          sort -u "$DEPS_FILE" \
+            | grep -vE "${EXCLUDE_ALL}" \
+            | while IFS= read -r lib; do
+                  [ -f "$lib" ] && cp -Ln "$lib" "${APPDIR}/usr/lib/" 2>/dev/null || true
+              done
+          rm -f "$DEPS_FILE"
+
+          echo "Bundled $(find "${APPDIR}/usr/lib" -maxdepth 1 -name '*.so*' | wc -l) libraries"
+
+          # ── gdk-pixbuf loaders (bundled, remap paths) ──
+          LOADERS_DST="${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+          if [ -d "$LOADERS_SRC" ] && ls "${LOADERS_SRC}"/*.so &>/dev/null; then
+            cp -Ln "${LOADERS_SRC}"/*.so "$LOADERS_DST/" 2>/dev/null || true
+            GDK_PIXBUF_MODULEDIR="$LOADERS_DST" gdk-pixbuf-query-loaders 2>/dev/null \
+              > "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" || true
+            # Fix absolute paths: replace build-time AppDir path with runtime module dir.
+            sed -i "s|\"${LOADERS_DST}/|\"@MODULEDIR@/|g" \
+              "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" 2>/dev/null || true
+            echo "Bundled $(ls "$LOADERS_DST"/*.so 2>/dev/null | wc -l) gdk-pixbuf loaders"
+          else
+            : > "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+          fi
+
+          # ── GIO modules (bundled) ──
+          GIO_MOD_DST="${APPDIR}/usr/lib/gio/modules"
+          if [ -d "$GIO_MOD_SRC" ]; then
+            cp -Ln "${GIO_MOD_SRC}"/*.so "$GIO_MOD_DST/" 2>/dev/null || true
+            if [ -f "${GIO_MOD_SRC}/giomodule.cache" ]; then
+              cp "${GIO_MOD_SRC}/giomodule.cache" "$GIO_MOD_DST/" 2>/dev/null || true
+            fi
+            echo "Bundled $(ls "$GIO_MOD_DST"/*.so 2>/dev/null | wc -l) GIO modules"
+          fi
+
+          # ── GTK4 media backends (bundled) ──
+          GTK_MEDIA_DST="${APPDIR}/usr/lib/gtk-4.0/4.0/media"
+          if [ -d "$GTK_MEDIA_SRC" ]; then
+            cp -Ln "${GTK_MEDIA_SRC}"/*.so "$GTK_MEDIA_DST/" 2>/dev/null || true
+            echo "Bundled $(ls "$GTK_MEDIA_DST"/*.so 2>/dev/null | wc -l) GTK4 media backends"
+          fi
+
+          # ── GSettings schemas ──
+          SCHEMA_DST="${APPDIR}/usr/share/glib-2.0/schemas"
+          for f in /usr/share/glib-2.0/schemas/org.gtk.gtk4.*.gschema.xml \
+                   /usr/share/glib-2.0/schemas/org.gtk.Settings.*.gschema.xml; do
+              [ -f "$f" ] && cp "$f" "$SCHEMA_DST/"
+          done
+          glib-compile-schemas "$SCHEMA_DST" 2>/dev/null || true
+
+          # ── AppRun ──
+          cp packaging/AppRun "${APPDIR}/AppRun"
+          chmod +x "${APPDIR}/AppRun"
+
+      - name: Package AppImage
+        run: |
+          VERSION="${VERSION:-0.2.0}"
+          ARCH=x86_64
+          APPDIR="build/MangaTranslator.AppDir"
+          OUTPUT="build/dist/MangaTranslator-${VERSION}-${ARCH}.AppImage"
+          mkdir -p build/dist
+
+          # Download AppImage type 2 runtime
+          wget -q "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64" \
+            -O /tmp/runtime-x86_64
+          chmod +x /tmp/runtime-x86_64
+
+          # Create squashfs filesystem (fast gzip compression for CI)
+          mksquashfs "${APPDIR}" /tmp/squashfs.img \
+            -all-root -noappend -no-progress \
+            -comp gzip -Xcompression-level 1 \
+            -processors $(nproc)
+
+          # Combine runtime + squashfs into AppImage
+          cat /tmp/runtime-x86_64 /tmp/squashfs.img > "${OUTPUT}"
+          chmod +x "${OUTPUT}"
+
+          echo "Created $(basename ${OUTPUT}) ($(du -h ${OUTPUT} | cut -f1))"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manga-translator-gtk-linux-x86_64
+          path: build/dist/*.AppImage
+
+      - name: Upload to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/dist/*.AppImage
