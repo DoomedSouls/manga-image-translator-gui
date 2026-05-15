@@ -41,6 +41,8 @@ modules:
         ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/io.github.manga_translator_gtk.png
       - install -Dm644 packaging/icons/io.github.manga_translator_gtk-256x256.png
         ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/io.github.manga_translator_gtk.png
+      # Update icon theme cache for appstreamcli
+      - gtk-update-icon-cache ${FLATPAK_DEST}/share/icons/hicolor || true
 
       # AppStream metainfo
       - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml

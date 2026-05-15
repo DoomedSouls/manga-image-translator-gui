@@ -33,7 +33,9 @@
     </p>
   </description>
 
-  <launchable type="desktop-id">manga-translator-gtk.desktop</launchable>
+  <launchable type="desktop-id">io.github.manga_translator_gtk.desktop</launchable>
+
+  <icon type="stock">io.github.manga_translator_gtk</icon>
 
   <recommends>
     <control>keyboard</control>
