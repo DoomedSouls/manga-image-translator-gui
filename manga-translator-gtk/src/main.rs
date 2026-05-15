@@ -18,7 +18,7 @@ use gtk::glib;
 use std::fs::File;
 use std::io::Write;
 
-const APP_ID: &str = "com.manga-translator.gui";
+const APP_ID: &str = "com.mangatranslator.gui";
 
 /// Custom CSS for the application (accent colors, animations, widgets)
 const APP_CSS: &str = include_str!("../resources/style.css");

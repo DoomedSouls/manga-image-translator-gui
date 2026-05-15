@@ -48,7 +48,7 @@ jobs:
           mkdir -p packaging/icons
           for size in 64 128 256; do
             rsvg-convert -w $size -h $size packaging/manga-translator-gtk.svg \
-              -o packaging/icons/com.manga-translator.gui-${size}x${size}.png
+              -o packaging/icons/com.mangatranslator.gui-${size}x${size}.png
           done
           ls -la packaging/icons/
 
@@ -74,14 +74,14 @@ jobs:
             --force-clean \
             --repo=repo \
             build-dir \
-            com.manga-translator.gui.yaml
+            com.mangatranslator.gui.yaml
 
       - name: Create .flatpak bundle
         run: |
           cd flatpak
           VERSION="${GITHUB_REF_NAME:-0.0.0}"
           BUNDLE="MangaTranslator-${VERSION}-x86_64.flatpak"
-          flatpak build-bundle repo "${BUNDLE}" com.manga-translator.gui
+          flatpak build-bundle repo "${BUNDLE}" com.mangatranslator.gui
           mkdir -p ../dist
           mv "${BUNDLE}" ../dist/
           echo "Created ${BUNDLE} ($(du -h ../dist/${BUNDLE} | cut -f1))"

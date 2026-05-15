@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.manga-translator.gui</id>
+  <id>com.mangatranslator.gui</id>
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <name>Manga Translator</name>
@@ -33,9 +33,9 @@
     </p>
   </description>
 
-  <launchable type="desktop-id">com.manga-translator.gui.desktop</launchable>
+  <launchable type="desktop-id">com.mangatranslator.gui.desktop</launchable>
 
-  <icon type="stock">com.manga-translator.gui</icon>
+  <icon type="stock">com.mangatranslator.gui</icon>
 
   <recommends>
     <control>keyboard</control>

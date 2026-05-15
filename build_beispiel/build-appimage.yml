@@ -1,0 +1,285 @@
+name: Build AppImage
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: opensuse/tumbleweed:latest
+
+    steps:
+      - name: Install build tools
+        run: |
+          zypper --non-interactive install \
+            bash \
+            gawk \
+            git \
+            curl \
+            wget \
+            gcc \
+            make \
+            file \
+            pkgconf-pkg-config \
+            zlib-devel
+
+          # Build mksquashfs 4.7.5 from source (openSUSE ships 4.6.1)
+          wget -q "https://github.com/plougher/squashfs-tools/releases/download/4.7.5/squashfs-tools-4.7.5.tar.gz" \
+            -O /tmp/squashfs-tools.tar.gz
+          cd /tmp && tar xzf squashfs-tools.tar.gz
+          make -C squashfs-tools-4.7.5/squashfs-tools -j$(nproc) mksquashfs \
+            XZ_SUPPORT=0 LZO_SUPPORT=0 LZ4_SUPPORT=0 ZSTD_SUPPORT=0
+          install -m 755 squashfs-tools-4.7.5/squashfs-tools/mksquashfs /usr/local/bin/
+          mksquashfs -version | head -1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          zypper --non-interactive install \
+            gtk4-devel \
+            libadwaita-devel \
+            libshumate-devel \
+            gdk-pixbuf-devel \
+            librsvg-devel \
+            pango-devel \
+            cairo-devel \
+            sqlite3-devel \
+            protobuf-c-devel \
+            libsoup-devel \
+            json-glib-devel \
+            libgraphene-devel \
+            libopenssl-devel \
+            libxml2-devel \
+            libepoxy-devel \
+            harfbuzz-devel \
+            freetype2-devel \
+            fontconfig-devel
+
+      - name: Setup Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: tumbleweed-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: tumbleweed-cargo-
+
+      - name: Build release
+        run: . "$HOME/.cargo/env" && cargo build --release
+
+      - name: Create AppDir
+        run: |
+          VERSION="${GITHUB_REF_NAME:-0.1.0}"
+          APPDIR="build/QR_Studio.AppDir"
+          BINARY="target/release/qr_studio"
+          LIB_DIR="/usr/lib64"
+
+          mkdir -p "${APPDIR}"/usr/{bin,lib,share/{glib-2.0/schemas,icons/hicolor/scalable/apps}}
+          mkdir -p "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+          mkdir -p "${APPDIR}/usr/lib/gio/modules"
+          mkdir -p "${APPDIR}/usr/lib/gtk-4.0/4.0/media"
+
+          # ── Binary ──
+          cp "${BINARY}" "${APPDIR}/usr/bin/"
+          chmod +x "${APPDIR}/usr/bin/qr_studio"
+          strip --strip-unneeded "${APPDIR}/usr/bin/qr_studio"
+
+          # ── Desktop file (fix Exec for AppImage) ──
+          cp data/io.github.SlobCoder.qr_studio.desktop "${APPDIR}/io.github.SlobCoder.qr_studio.desktop"
+          sed -i 's|^Exec=.*|Exec=qr_studio|' "${APPDIR}/io.github.SlobCoder.qr_studio.desktop"
+
+          # ── Country flag SVGs (for phone/vCard dropdowns) ──
+          if [ -d "flags" ]; then
+            cp -r flags "${APPDIR}/usr/bin/flags"
+            echo "Copied $(ls "${APPDIR}/usr/bin/flags/"*.svg 2>/dev/null | wc -l) flag SVGs"
+          fi
+
+          # ── Icon ──
+          cp data/io.github.SlobCoder.qr_studio.svg "${APPDIR}/io.github.SlobCoder.qr_studio.svg"
+          cp data/io.github.SlobCoder.qr_studio.svg "${APPDIR}/usr/share/icons/hicolor/scalable/apps/"
+
+          # ── adw-gtk3 theme ──
+          curl -fsSL https://github.com/lassekongo83/adw-gtk3/releases/download/v6.5/adw-gtk3v6.5.tar.xz \
+            -o /tmp/adw-gtk3.tar.xz
+          echo "a81780fadfc432be0fc3d89c4ebb41aa28e4f032d42c36f9789c57dd10cfa41c  /tmp/adw-gtk3.tar.xz" \
+            | sha256sum -c -
+          mkdir -p "${APPDIR}/usr/share/themes"
+          tar -xJf /tmp/adw-gtk3.tar.xz -C "${APPDIR}/usr/share/themes/"
+          echo "Bundled adw-gtk3 themes: $(ls "${APPDIR}/usr/share/themes/")"
+
+          # ═══════════════════════════════════════════════════════════
+          # Shared libraries — bundle EVERYTHING except GPU/display.
+          #
+          # Strategy: "Bundle all, prefer system when compatible"
+          # The AppRun launcher detects whether the host has BOTH
+          # GTK4 AND libadwaita. System mode is only used when both
+          # are present, avoiding CSS version mismatches.
+          #
+          # Only GPU/display/compositor libs are excluded — they
+          # MUST match the running kernel and hardware drivers.
+          # ═══════════════════════════════════════════════════════════
+
+          DEPS_FILE=$(mktemp /tmp/qr_studio_deps.XXXXXX)
+
+          # Direct binary deps (resolves transitive tree via ldd)
+          ldd "${BINARY}" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+
+          # librsvg — loaded dynamically by gdk-pixbuf for SVG support
+          if [ -f "${LIB_DIR}/librsvg-2.so.2" ]; then
+            echo "${LIB_DIR}/librsvg-2.so.2" >> "$DEPS_FILE"
+            ldd "${LIB_DIR}/librsvg-2.so.2" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+          fi
+
+          # gdk-pixbuf loaders (dynamically dlopen'd)
+          LOADERS_SRC="${LIB_DIR}/gdk-pixbuf-2.0/2.10.0/loaders"
+          if [ -d "$LOADERS_SRC" ]; then
+            for loader in "${LOADERS_SRC}"/*.so; do
+              [ -f "$loader" ] || continue
+              echo "$loader" >> "$DEPS_FILE"
+              ldd "$loader" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # GIO modules (TLS, proxy, etc. — dynamically loaded)
+          GIO_MOD_SRC="${LIB_DIR}/gio/modules"
+          if [ -d "$GIO_MOD_SRC" ]; then
+            for mod in "${GIO_MOD_SRC}"/*.so; do
+              [ -f "$mod" ] || continue
+              echo "$mod" >> "$DEPS_FILE"
+              ldd "$mod" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # GTK4 media backends (gstreamer, etc.)
+          GTK_MEDIA_SRC="${LIB_DIR}/gtk-4.0/4.0/media"
+          if [ -d "$GTK_MEDIA_SRC" ]; then
+            for mod in "${GTK_MEDIA_SRC}"/*.so; do
+              [ -f "$mod" ] || continue
+              echo "$mod" >> "$DEPS_FILE"
+              ldd "$mod" 2>/dev/null | awk '/=>/{print $3}' >> "$DEPS_FILE"
+            done
+          fi
+
+          # Only exclude GPU/display/compositor — must match kernel/hardware
+          EXCLUDE_GPU='libEGL|libGL[._]|libGLdispatch|libGLX|libGLES|libglapi|libvulkan|libdrm|libgbm'
+          EXCLUDE_DISPLAY='libX11|libXau|libxcb|libXcursor|libXdamage|libXdmcp|libXext|libXfixes|libXinerama|libXi|libxkbcommon|libXrandr|libXrender|libwayland-client|libwayland-cursor|libwayland-egl'
+          EXCLUDE_RUNTIME='ld-linux|linux-vdso|/libc\.so|/libm\.so|/libdl\.so|/libpthread\.so|/librt\.so|/libresolv\.so|/libnss|libgcc_s|libstdc\+\+'
+          EXCLUDE_ALL="${EXCLUDE_RUNTIME}|${EXCLUDE_GPU}|${EXCLUDE_DISPLAY}"
+
+          sort -u "$DEPS_FILE" \
+            | grep -vE "${EXCLUDE_ALL}" \
+            | while IFS= read -r lib; do
+                  [ -f "$lib" ] && cp -Ln "$lib" "${APPDIR}/usr/lib/" 2>/dev/null || true
+              done
+          rm -f "$DEPS_FILE"
+
+          echo "Bundled $(find "${APPDIR}/usr/lib" -maxdepth 1 -name '*.so*' | wc -l) libraries"
+
+          # ── gdk-pixbuf loaders (bundled, remap paths) ──
+          LOADERS_DST="${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+          if [ -d "$LOADERS_SRC" ] && ls "${LOADERS_SRC}"/*.so &>/dev/null; then
+            cp -Ln "${LOADERS_SRC}"/*.so "$LOADERS_DST/" 2>/dev/null || true
+            GDK_PIXBUF_MODULEDIR="$LOADERS_DST" gdk-pixbuf-query-loaders 2>/dev/null \
+              > "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" || true
+            # Fix absolute paths: replace build-time AppDir path with runtime module dir.
+            # At runtime, GDK_PIXBUF_MODULEDIR points to the mounted AppImage's loaders.
+            # The cache entries must match that path for gdk-pixbuf to find the .so files.
+            sed -i "s|\"${LOADERS_DST}/|\"@MODULEDIR@/|g" \
+              "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" 2>/dev/null || true
+            echo "Bundled $(ls "$LOADERS_DST"/*.so 2>/dev/null | wc -l) gdk-pixbuf loaders"
+          else
+            : > "${APPDIR}/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+          fi
+
+          # ── GIO modules (bundled) ──
+          GIO_MOD_DST="${APPDIR}/usr/lib/gio/modules"
+          if [ -d "$GIO_MOD_SRC" ]; then
+            cp -Ln "${GIO_MOD_SRC}"/*.so "$GIO_MOD_DST/" 2>/dev/null || true
+            if [ -f "${GIO_MOD_SRC}/giomodule.cache" ]; then
+              cp "${GIO_MOD_SRC}/giomodule.cache" "$GIO_MOD_DST/" 2>/dev/null || true
+            fi
+            echo "Bundled $(ls "$GIO_MOD_DST"/*.so 2>/dev/null | wc -l) GIO modules"
+          fi
+
+          # ── GTK4 media backends (bundled) ──
+          GTK_MEDIA_DST="${APPDIR}/usr/lib/gtk-4.0/4.0/media"
+          if [ -d "$GTK_MEDIA_SRC" ]; then
+            cp -Ln "${GTK_MEDIA_SRC}"/*.so "$GTK_MEDIA_DST/" 2>/dev/null || true
+            echo "Bundled $(ls "$GTK_MEDIA_DST"/*.so 2>/dev/null | wc -l) GTK4 media backends"
+          fi
+
+          # ── GSettings schemas ──
+          SCHEMA_DST="${APPDIR}/usr/share/glib-2.0/schemas"
+          for f in /usr/share/glib-2.0/schemas/org.gtk.gtk4.*.gschema.xml \
+                   /usr/share/glib-2.0/schemas/org.gtk.Settings.*.gschema.xml; do
+              [ -f "$f" ] && cp "$f" "$SCHEMA_DST/"
+          done
+
+          # App's own GSettings schema
+          if [ -f "data/io.github.SlobCoder.qr_studio.gschema.xml" ]; then
+            cp "data/io.github.SlobCoder.qr_studio.gschema.xml" "$SCHEMA_DST/"
+          fi
+
+          glib-compile-schemas "$SCHEMA_DST" 2>/dev/null || true
+
+          # ═══════════════════════════════════════════════════════════
+          # AppRun — smart launcher with system/bundled detection
+          #
+          # Detects whether the host has BOTH GTK4 and libadwaita:
+          #   YES → system libs preferred (bundled as fallback)
+          #   NO  → bundled libs preferred (avoids CSS version mismatch)
+          #
+          # Override: QR_STUDIO_SYSTEM_LIBS=1 forces system mode
+          #           QR_STUDIO_BUNDLED_LIBS=1 forces bundled mode
+          #           QR_STUDIO_DEBUG=1 shows detection debug output
+          # ═══════════════════════════════════════════════════════════
+          cp data/AppRun "${APPDIR}/AppRun"
+          chmod +x "${APPDIR}/AppRun"
+
+      - name: Package AppImage
+        run: |
+          VERSION="${GITHUB_REF_NAME:-0.1.0}"
+          ARCH=x86_64
+          APPDIR="build/QR_Studio.AppDir"
+          OUTPUT="build/dist/QR_Studio-${VERSION}-${ARCH}.AppImage"
+          mkdir -p build/dist
+
+          # Download AppImage type 2 runtime
+          wget -q "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64" \
+            -O /tmp/runtime-x86_64
+          chmod +x /tmp/runtime-x86_64
+
+          # Create squashfs filesystem (fast gzip compression for CI)
+          mksquashfs "${APPDIR}" /tmp/squashfs.img \
+            -all-root -noappend -no-progress \
+            -comp gzip -Xcompression-level 1 \
+            -processors $(nproc)
+
+          # Combine runtime + squashfs into AppImage
+          cat /tmp/runtime-x86_64 /tmp/squashfs.img > "${OUTPUT}"
+          chmod +x "${OUTPUT}"
+
+          echo "Created $(basename ${OUTPUT}) ($(du -h ${OUTPUT} | cut -f1))"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qr-studio-linux-x86_64
+          path: build/dist/*.AppImage
+
+      - name: Upload to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/dist/*.AppImage

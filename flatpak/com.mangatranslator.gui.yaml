@@ -1,0 +1,68 @@
+app-id: com.mangatranslator.gui
+runtime: org.gnome.Platform
+runtime-version: "50"
+sdk: org.gnome.Sdk
+command: manga-translator-gtk
+
+finish-args:
+  # GPU acceleration
+  - --device=dri
+  # X11 / Wayland
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  # Translation APIs (DeepL, OpenRouter, etc.)
+  - --share=network
+  # Access to manga directories and Python venv
+  - --filesystem=home
+  # Spawn host processes (Python backend via flatpak-spawn --host)
+  - --talk-name=org.freedesktop.Flatpak
+
+modules:
+  - name: manga-translator-gtk
+    buildsystem: simple
+    build-commands:
+      # Binary (pre-built on host with rustup)
+      - install -Dm755 manga-translator-gtk/target/release/manga-translator-gtk
+          ${FLATPAK_DEST}/bin/manga-translator-gtk
+
+      # Desktop file (renamed to app-id for Flatpak convention)
+      - install -Dm644 packaging/manga-translator-gtk.desktop
+          ${FLATPAK_DEST}/share/applications/com.mangatranslator.gui.desktop
+      - sed -i 's|^Icon=.*|Icon=com.mangatranslator.gui|'
+          ${FLATPAK_DEST}/share/applications/com.mangatranslator.gui.desktop
+
+      # Icon (renamed to app-id for Flatpak convention)
+      - install -Dm644 packaging/manga-translator-gtk.svg
+          ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/com.mangatranslator.gui.svg
+      - install -Dm644 packaging/icons/com.mangatranslator.gui-64x64.png
+          ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/com.mangatranslator.gui.png
+      - install -Dm644 packaging/icons/com.mangatranslator.gui-128x128.png
+          ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/com.mangatranslator.gui.png
+      - install -Dm644 packaging/icons/com.mangatranslator.gui-256x256.png
+          ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.mangatranslator.gui.png
+      # Update icon theme cache for appstreamcli
+      - gtk-update-icon-cache ${FLATPAK_DEST}/share/icons/hicolor || true
+
+      # AppStream metainfo
+      - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml
+          ${FLATPAK_DEST}/share/metainfo/com.mangatranslator.gui.metainfo.xml
+
+      # Python backend
+      - install -Dm644 manga-translator-gtk/backend/server.py
+          ${FLATPAK_DEST}/share/manga-translator-gtk/backend/server.py
+
+      # Locale (.mo files)
+      - |
+        for po_dir in locale/*/LC_MESSAGES; do
+          lang="$(basename "$(dirname "$po_dir")")"
+          for mo in "${po_dir}"/*.mo; do
+            [ -f "$mo" ] || continue
+            install -Dm644 "$mo" \
+              ${FLATPAK_DEST}/share/locale/${lang}/LC_MESSAGES/$(basename "$mo")
+          done
+        done
+
+    sources:
+      - type: dir
+        path: ..
