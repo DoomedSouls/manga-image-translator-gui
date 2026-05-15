@@ -61,6 +61,30 @@
   </keywords>
 
   <releases>
+    <release version="0.2.1" date="2026-05-15">
+      <description>
+        <p>Packaging and CI/CD release.</p>
+        <ul>
+          <li>Flatpak build (GNOME 50 SDK, NVIDIA/ROCm GPU support, matugen colors)</li>
+          <li>AppImage build (openSUSE Tumbleweed, manual lib bundling)</li>
+          <li>Windows build (MSYS2, MSIX + ZIP dual packaging)</li>
+          <li>Hotpath profiler integration (zero-cost when disabled)</li>
+          <li>Windows: no CMD flash, UTF-8 gettext, panic-to-MessageBox</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.0" date="2026-04-15">
+      <description>
+        <p>i18n and packaging improvements.</p>
+        <ul>
+          <li>Live UI retranslation for dropdowns and menus</li>
+          <li>Italian translation added (8 → 9 languages)</li>
+          <li>Per-chapter _Text/ storage for translations</li>
+          <li>VLM verbose=False fix, new "Text extrahieren" mode</li>
+          <li>UI sensitivity fixes during translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.0" date="2026-04-15">
       <description>
         <p>Initial release.</p>
