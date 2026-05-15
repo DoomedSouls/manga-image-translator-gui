@@ -24,9 +24,23 @@ const APP_CSS: &str = include_str!("../resources/style.css");
 static LOG_FILE: std::sync::Mutex<Option<File>> = std::sync::Mutex::new(None);
 
 fn main() -> glib::ExitCode {
+    // ── Windows: show panic as message box instead of vanishing console ──
+    #[cfg(target_os = "windows")]
+    setup_windows_panic_hook();
+
+    // Initialize hotpath profiler (zero-cost when feature is disabled).
+    // Drops + prints report when _guard goes out of scope at process exit.
+    let _hotpath_guard = hotpath_init();
+
     // Initialize logger that writes to both stderr AND a log file.
     // The log file can be viewed from the Log Viewer dialog.
     init_logging();
+
+    // Free the console window on Windows — we have logging to file now.
+    #[cfg(target_os = "windows")]
+    unsafe {
+        winapi_free_console();
+    }
 
     // Initialize gettext/i18n
     i18n::init();
@@ -78,6 +92,51 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
+// ── Windows helpers ──────────────────────────────────────────────────
+
+#[cfg(target_os = "windows")]
+fn setup_windows_panic_hook() {
+    std::panic::set_hook(Box::new(|info| {
+        let msg = format!("{}", info);
+        eprintln!("PANIC: {}", msg);
+
+        // Try to flush the log file so the panic is recorded
+        if let Ok(mut guard) = LOG_FILE.lock() {
+            if let Some(ref mut file) = *guard {
+                let _ = file.write_all(format!("PANIC: {}\n", msg).as_bytes());
+                let _ = file.flush();
+            }
+        }
+
+        // Show a message box so the user can see what went wrong.
+        // Without this, a panic just flashes a CMD window and disappears.
+        unsafe {
+            let caption = b"Manga Translator - Error\0";
+            let full_msg = format!("{}\0", msg);
+            winapi_message_box_a(full_msg.as_ptr(), caption.as_ptr());
+        }
+    }));
+}
+
+#[cfg(target_os = "windows")]
+#[link(name = "user32")]
+extern "system" {
+    fn FreeConsole() -> i32;
+    fn MessageBoxA(hwnd: usize, text: *const u8, caption: *const u8, flags: u32) -> i32;
+}
+
+#[cfg(target_os = "windows")]
+unsafe fn winapi_free_console() {
+    FreeConsole();
+}
+
+#[cfg(target_os = "windows")]
+unsafe fn winapi_message_box_a(text: *const u8, caption: *const u8) {
+    MessageBoxA(0, text, caption, 0x10); // MB_ICONERROR
+}
+
+// ── Logging ──────────────────────────────────────────────────────────
+
 /// Initialize dual logging: stderr (for terminal) + log file.
 ///
 /// The log file is created at `~/.config/manga-translator-gtk/manga-translator.log`.
@@ -121,6 +180,29 @@ fn init_logging() {
 
     log::info!("Log file: {}", log_path.display());
 }
+
+/// Initialize hotpath profiler when the `hotpath` feature is enabled.
+/// Returns an RAII guard that prints the performance report on drop.
+/// When the feature is disabled, this is a no-op returning unit.
+#[cfg(feature = "hotpath")]
+fn hotpath_init() -> hotpath::HotpathGuard {
+    use hotpath::{Format, HotpathGuardBuilder, Section};
+
+    HotpathGuardBuilder::new("main")
+        .percentiles(&[50, 95, 99])
+        .with_functions_limit(30)
+        .with_sections(vec![
+            Section::FunctionsTiming,
+            Section::FunctionsAlloc,
+            Section::Threads,
+        ])
+        .format(Format::Table)
+        .build()
+}
+
+/// No-op when hotpath feature is disabled.
+#[cfg(not(feature = "hotpath"))]
+fn hotpath_init() {}
 
 /// Load global application CSS provider
 fn load_global_css() {
