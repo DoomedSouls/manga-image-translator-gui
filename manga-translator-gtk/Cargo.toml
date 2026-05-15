@@ -24,3 +24,9 @@ env_logger = "0.11"
 dirs = "6"
 alphanumeric-sort = "1"
 base64 = "0.22"
+hotpath = "0.14"
+
+[features]
+default = []
+hotpath = ["hotpath/hotpath"]
+hotpath-alloc = ["hotpath/hotpath-alloc"]

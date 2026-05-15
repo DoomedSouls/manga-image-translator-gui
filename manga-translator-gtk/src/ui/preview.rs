@@ -1474,6 +1474,7 @@ impl Preview {
     ///
     /// Reads the file on a background thread to avoid blocking the UI.
     /// The texture is created on the main thread once bytes arrive.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn load_original(&self, path: &std::path::Path) {
         let priv_ = self.imp();
 
@@ -1522,6 +1523,7 @@ impl Preview {
     ///
     /// Does not switch the view mode — the user can toggle to see it.
     /// Reads the file on a background thread to avoid blocking the UI.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn load_translated(&self, path: &std::path::Path) {
         let priv_ = self.imp();
 
@@ -1592,6 +1594,7 @@ impl Preview {
     ///
     /// Automatically switches to comparison mode if both are available.
     /// Both images are loaded in parallel on background threads.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn load_pair(
         &self,
         original: Option<&std::path::Path>,

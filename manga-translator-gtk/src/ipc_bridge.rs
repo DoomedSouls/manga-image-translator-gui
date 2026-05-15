@@ -350,6 +350,7 @@ impl IpcBridge {
     }
 
     /// Start (or restart) the Python backend process.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     fn start_process(&self) -> BridgeResult<()> {
         // Stop any existing process first
         self.stop_process();
@@ -551,6 +552,7 @@ impl IpcBridge {
     }
 
     /// Send a request and wait for a single response (no progress).
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     fn call(&self, method: &str, params: Value) -> BridgeResult<Value> {
         let id = self.send_request(method, params)?;
 
@@ -584,6 +586,7 @@ impl IpcBridge {
     }
 
     /// Send a translate request and handle streamed progress + result.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     fn call_translate(
         &self,
         params: Value,
@@ -825,6 +828,7 @@ impl IpcBridge {
     // -----------------------------------------------------------------------
 
     /// Generate a thumbnail for an image file, returning PNG bytes.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn generate_thumbnail(&self, path: &Path, max_size: (i32, i32)) -> BridgeResult<Vec<u8>> {
         self.ensure_initialized()?;
 
@@ -852,6 +856,7 @@ impl IpcBridge {
     // -----------------------------------------------------------------------
 
     /// Check if a cached translation exists for the given source image.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn get_cached_translation(&self, path: &Path) -> BridgeResult<Option<PathBuf>> {
         self.ensure_initialized()?;
 
@@ -874,6 +879,7 @@ impl IpcBridge {
     // -----------------------------------------------------------------------
 
     /// Fetch available vision-capable models from the OpenRouter API.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn fetch_openrouter_models(&self, api_key: &str) -> BridgeResult<Vec<ModelInfo>> {
         self.ensure_initialized()?;
 
@@ -908,6 +914,7 @@ impl IpcBridge {
     /// Sends the job to the Python backend and streams progress via
     /// `on_progress`.  Checks `cancel_flag` every 500 ms and forwards
     /// a cancel command to the backend when set.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn translate(
         &self,
         file_paths: &[PathBuf],
@@ -964,9 +971,8 @@ impl IpcBridge {
     // Public API — file listing (pure Rust, no backend needed)
     // -----------------------------------------------------------------------
 
-    /// List subdirectories in a directory.
-    ///
-    /// Pure Rust — no backend round-trip required.
+    /// List subdirectories of a given path (pure Rust, no backend).
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn list_directories(&self, path: &Path) -> BridgeResult<Vec<PathBuf>> {
         let path = path.to_path_buf();
         if !path.is_dir() {
@@ -984,8 +990,7 @@ impl IpcBridge {
     }
 
     /// List image files in a directory (supports common manga formats).
-    ///
-    /// Pure Rust — no backend round-trip required.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn list_image_files(&self, directory: &Path) -> BridgeResult<Vec<ImageEntry>> {
         let image_extensions = ["png", "jpg", "jpeg", "bmp", "tiff", "tif", "webp", "gif"];
         let mut entries = Vec::new();

@@ -1096,6 +1096,7 @@ impl FileBrowserPrivate {
     ///   - Thumbnails load in parallel on background threads (no main thread blocking)
     ///   - Disk cache avoids re-decoding images on revisits
     ///   - In-memory cache survives directory navigation
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     fn load_thumbnail_async(&self, path: &PathBuf) {
         let mut state = self.state.borrow_mut();
         if state.thumbnails.is_loading(path) || state.thumbnails.get(path).is_some() {
@@ -1289,6 +1290,7 @@ impl FileBrowser {
     /// Directory scanning runs on a background thread to keep the UI
     /// responsive. Results are posted back to the main thread via an
     /// async channel, so the main loop stays responsive during I/O.
+    #[cfg_attr(feature = "hotpath", hotpath::measure)]
     pub fn refresh(&self) {
         let priv_ = imp(self);
         let directory = priv_.state.borrow().current_directory.clone();

@@ -1328,6 +1328,7 @@ fn update_breadcrumb(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowSt
 // Translation
 // ---------------------------------------------------------------------------
 
+#[cfg_attr(feature = "hotpath", hotpath::measure)]
 fn start_translation(widgets: &Rc<RefCell<Widgets>>, state: &Rc<RefCell<WindowState>>) {
     let mut files = widgets.borrow().file_browser.selected_files();
     if files.is_empty() {
