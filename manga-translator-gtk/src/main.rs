@@ -5,6 +5,10 @@
 // Build:  cargo build
 // Run:    cargo run
 
+// On Windows, build as GUI application (no console window).
+// On Linux this attribute has no effect.
+#![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
+
 use manga_translator_gtk::{i18n, ui};
 
 use adw::prelude::*;
@@ -35,12 +39,6 @@ fn main() -> glib::ExitCode {
     // Initialize logger that writes to both stderr AND a log file.
     // The log file can be viewed from the Log Viewer dialog.
     init_logging();
-
-    // Free the console window on Windows — we have logging to file now.
-    #[cfg(target_os = "windows")]
-    unsafe {
-        winapi_free_console();
-    }
 
     // Initialize gettext/i18n
     i18n::init();
@@ -121,13 +119,7 @@ fn setup_windows_panic_hook() {
 #[cfg(target_os = "windows")]
 #[link(name = "user32")]
 unsafe extern "system" {
-    fn FreeConsole() -> i32;
     fn MessageBoxA(hwnd: usize, text: *const u8, caption: *const u8, flags: u32) -> i32;
-}
-
-#[cfg(target_os = "windows")]
-unsafe fn winapi_free_console() {
-    unsafe { FreeConsole() };
 }
 
 #[cfg(target_os = "windows")]
