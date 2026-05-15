@@ -29,10 +29,12 @@ modules:
       # Desktop file (renamed to app-id for Flatpak convention)
       - install -Dm644 packaging/manga-translator-gtk.desktop
         ${FLATPAK_DEST}/share/applications/io.github.manga_translator_gtk.desktop
+      - sed -i 's|^Icon=.*|Icon=io.github.manga_translator_gtk|'
+        ${FLATPAK_DEST}/share/applications/io.github.manga_translator_gtk.desktop
 
-      # Icon
+      # Icon (renamed to app-id for Flatpak convention)
       - install -Dm644 packaging/manga-translator-gtk.svg
-        ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/manga-translator-gtk.svg
+        ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/io.github.manga_translator_gtk.svg
 
       # AppStream metainfo
       - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml
