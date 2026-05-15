@@ -4,7 +4,9 @@
 // Provides a `_()` macro for translating UI strings.
 
 use adw::prelude::*;
-use gettextrs::{LocaleCategory, bindtextdomain, gettext, setlocale, textdomain};
+use gettextrs::{
+    LocaleCategory, bind_textdomain_codeset, bindtextdomain, gettext, setlocale, textdomain,
+};
 
 use std::cell::RefCell;
 use std::path::PathBuf;
@@ -225,6 +227,12 @@ pub fn init() {
     if let Some(locale_dir) = find_locale_dir() {
         bindtextdomain(TEXT_DOMAIN, &locale_dir).ok();
     }
+
+    // Ensure gettext always returns UTF-8 strings.
+    // On Linux this is the default, but on Windows gettext returns
+    // strings in the system codepage (e.g. Windows-1252 for German)
+    // which causes UTF-8 validation panics in gettext-rs.
+    bind_textdomain_codeset(TEXT_DOMAIN, "UTF-8").ok();
 
     textdomain(TEXT_DOMAIN).ok();
 
