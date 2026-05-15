@@ -35,6 +35,12 @@ modules:
       # Icon (renamed to app-id for Flatpak convention)
       - install -Dm644 packaging/manga-translator-gtk.svg
         ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/io.github.manga_translator_gtk.svg
+      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-64x64.png
+        ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/io.github.manga_translator_gtk.png
+      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-128x128.png
+        ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/io.github.manga_translator_gtk.png
+      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-256x256.png
+        ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/io.github.manga_translator_gtk.png
 
       # AppStream metainfo
       - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml

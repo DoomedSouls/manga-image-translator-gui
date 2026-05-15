@@ -39,8 +39,18 @@ jobs:
             libgdk-pixbuf-2.0-dev \
             libgraphene-1.0-dev \
             librsvg2-dev \
+            librsvg2-bin \
             flatpak-builder \
             elfutils
+
+      - name: Generate PNG icons from SVG
+        run: |
+          mkdir -p packaging/icons
+          for size in 64 128 256; do
+            rsvg-convert -w $size -h $size packaging/manga-translator-gtk.svg \
+              -o packaging/icons/io.github.manga_translator_gtk-${size}x${size}.png
+          done
+          ls -la packaging/icons/
 
       - name: Build release
         run: |
@@ -62,7 +72,6 @@ jobs:
             --user \
             --disable-rofiles-fuse \
             --force-clean \
-            --disable-appstream \
             --repo=repo \
             build-dir \
             io.github.manga_translator_gtk.yaml
