@@ -18,38 +18,11 @@ finish-args:
   # Spawn host processes (Python backend via flatpak-spawn --host)
   - --talk-name=org.freedesktop.Flatpak
 
-build-options:
-  env:
-    CARGO_HOME: /run/build/manga-translator-gtk/cargo
-    RUST_BACKTRACE: "1"
-
 modules:
-  # ── Rust toolchain (installed into /app) ──────────────────────────
-  - name: rust
-    buildsystem: simple
-    cleanup:
-      - /share/doc
-      - /share/man
-    sources:
-      - type: archive
-        url: https://static.rust-lang.org/dist/rust-1.87.0-x86_64-unknown-linux-gnu.tar.xz
-        sha256: 9720bf4ffdd5e6112f8fc93a645d50bfdc64f95cb76d41561be196e1721b4b69
-        only-arches:
-          - x86_64
-    build-commands:
-      - ./install.sh --prefix=/app --disable-ldconfig --verbose
-
-  # ── Application ───────────────────────────────────────────────────
   - name: manga-translator-gtk
     buildsystem: simple
-    build-options:
-      prepend-path: /app/bin
-      prepend-ld-library-path: /app/lib
     build-commands:
-      # Build Rust binary (offline — crate sources from cargo-sources.json)
-      - cargo --offline build --release --manifest-path manga-translator-gtk/Cargo.toml
-
-      # Install binary
+      # Binary (pre-built on host with rustup)
       - install -Dm755 manga-translator-gtk/target/release/manga-translator-gtk
         ${FLATPAK_DEST}/bin/manga-translator-gtk
 
@@ -83,4 +56,3 @@ modules:
     sources:
       - type: dir
         path: ..
-      - cargo-sources.json

@@ -16,10 +16,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install flatpak-builder
+      - name: Setup Rust (rustup)
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends flatpak-builder elfutils librsvg2-common
+          sudo apt-get install -y --no-install-recommends \
+            libgtk-4-dev \
+            libadwaita-1-dev \
+            libcairo2-dev \
+            libpango1.0-dev \
+            libgdk-pixbuf-2.0-dev \
+            libgraphene-1.0-dev \
+            librsvg2-dev \
+            flatpak-builder
+
+      - name: Build release
+        run: |
+          cd manga-translator-gtk
+          cargo build --release
 
       - name: Add GNOME runtime remote
         run: |
@@ -28,19 +53,6 @@ jobs:
       - name: Install GNOME SDK runtime
         run: |
           flatpak install --user -y flathub org.gnome.Sdk//50 org.gnome.Platform//50
-
-      - name: Download flatpak-cargo-generator.py
-        run: |
-          curl -fsSL \
-            https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py \
-            -o flatpak/flatpak-cargo-generator.py
-
-      - name: Regenerate cargo-sources.json
-        run: |
-          cd flatpak
-          pip3 install toml tomlkit aiohttp
-          python3 flatpak-cargo-generator.py ../manga-translator-gtk/Cargo.lock -o cargo-sources.json
-          echo "cargo-sources.json regenerated ($(wc -l < cargo-sources.json) lines)"
 
       - name: Build Flatpak
         run: |
