@@ -120,19 +120,19 @@ fn setup_windows_panic_hook() {
 
 #[cfg(target_os = "windows")]
 #[link(name = "user32")]
-extern "system" {
+unsafe extern "system" {
     fn FreeConsole() -> i32;
     fn MessageBoxA(hwnd: usize, text: *const u8, caption: *const u8, flags: u32) -> i32;
 }
 
 #[cfg(target_os = "windows")]
 unsafe fn winapi_free_console() {
-    FreeConsole();
+    unsafe { FreeConsole() };
 }
 
 #[cfg(target_os = "windows")]
 unsafe fn winapi_message_box_a(text: *const u8, caption: *const u8) {
-    MessageBoxA(0, text, caption, 0x10); // MB_ICONERROR
+    unsafe { MessageBoxA(0, text, caption, 0x10) }; // MB_ICONERROR
 }
 
 // ── Logging ──────────────────────────────────────────────────────────
