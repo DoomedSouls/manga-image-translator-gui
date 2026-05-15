@@ -1,0 +1,70 @@
+app-id: io.github.manga_translator_gtk
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: manga-translator-gtk
+
+finish-args:
+  # GPU acceleration
+  - --device=dri
+  # X11 / Wayland
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  # Translation APIs (DeepL, OpenRouter, etc.)
+  - --share=network
+  # Access to manga directories and Python venv
+  - --filesystem=home
+  # Spawn host processes (Python backend via flatpak-spawn --host)
+  - --talk-name=org.freedesktop.Flatpak
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/manga-translator-gtk/cargo
+    RUST_BACKTRACE: '1'
+
+modules:
+  - name: manga-translator-gtk
+    buildsystem: simple
+    build-commands:
+      # Build Rust binary (offline — crate sources from cargo-sources.json)
+      - cargo --offline build --release --manifest-path manga-translator-gtk/Cargo.toml
+
+      # Install binary
+      - install -Dm755 manga-translator-gtk/target/release/manga-translator-gtk
+          ${FLATPAK_DEST}/bin/manga-translator-gtk
+
+      # Desktop file (renamed to app-id for Flatpak convention)
+      - install -Dm644 packaging/manga-translator-gtk.desktop
+          ${FLATPAK_DEST}/share/applications/io.github.manga_translator_gtk.desktop
+
+      # Icon
+      - install -Dm644 packaging/manga-translator-gtk.svg
+          ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/manga-translator-gtk.svg
+
+      # AppStream metainfo
+      - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml
+          ${FLATPAK_DEST}/share/metainfo/io.github.manga_translator_gtk.appdata.xml
+
+      # Python backend
+      - install -Dm644 manga-translator-gtk/backend/server.py
+          ${FLATPAK_DEST}/share/manga-translator-gtk/backend/server.py
+
+      # Locale (.mo files)
+      - |
+        for po_dir in locale/*/LC_MESSAGES; do
+          lang="$(basename "$(dirname "$po_dir")")"
+          for mo in "${po_dir}"/*.mo; do
+            [ -f "$mo" ] || continue
+            install -Dm644 "$mo" \
+              ${FLATPAK_DEST}/share/locale/${lang}/LC_MESSAGES/$(basename "$mo")
+          done
+        done
+
+    sources:
+      - type: dir
+        path: ..
+      - cargo-sources.json

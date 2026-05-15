@@ -1,0 +1,76 @@
+name: Build Flatpak
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install flatpak-builder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends flatpak-builder elfutils librsvg2-common
+
+      - name: Add GNOME runtime remote
+        run: |
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+      - name: Install GNOME SDK runtime
+        run: |
+          flatpak install --user -y flathub org.gnome.Sdk//50 org.gnome.Platform//50
+
+      - name: Download flatpak-cargo-generator.py
+        run: |
+          curl -fsSL \
+            https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py \
+            -o flatpak/flatpak-cargo-generator.py
+
+      - name: Regenerate cargo-sources.json
+        run: |
+          cd flatpak
+          pip3 install toml tomlkit aiohttp
+          python3 flatpak-cargo-generator.py ../manga-translator-gtk/Cargo.lock -o cargo-sources.json
+          echo "cargo-sources.json regenerated ($(wc -l < cargo-sources.json) lines)"
+
+      - name: Build Flatpak
+        run: |
+          cd flatpak
+          flatpak-builder \
+            --user \
+            --disable-rofiles-fuse \
+            --force-clean \
+            --repo=repo \
+            build-dir \
+            io.github.manga_translator_gtk.yaml
+
+      - name: Create .flatpak bundle
+        run: |
+          cd flatpak
+          VERSION="${GITHUB_REF_NAME:-0.0.0}"
+          BUNDLE="MangaTranslator-${VERSION}-x86_64.flatpak"
+          flatpak build-bundle repo "${BUNDLE}" io.github.manga_translator_gtk
+          mkdir -p ../dist
+          mv "${BUNDLE}" ../dist/
+          echo "Created ${BUNDLE} ($(du -h ../dist/${BUNDLE} | cut -f1))"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manga-translator-flatpak-x86_64
+          path: dist/*.flatpak
+
+      - name: Upload to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.flatpak
