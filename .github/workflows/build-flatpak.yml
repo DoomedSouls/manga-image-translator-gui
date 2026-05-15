@@ -39,7 +39,8 @@ jobs:
             libgdk-pixbuf-2.0-dev \
             libgraphene-1.0-dev \
             librsvg2-dev \
-            flatpak-builder
+            flatpak-builder \
+            elfutils
 
       - name: Build release
         run: |
