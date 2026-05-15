@@ -62,6 +62,7 @@ jobs:
             --user \
             --disable-rofiles-fuse \
             --force-clean \
+            --no-appstream \
             --repo=repo \
             build-dir \
             io.github.manga_translator_gtk.yaml
