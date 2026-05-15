@@ -4,9 +4,22 @@ runtime-version: "50"
 sdk: org.gnome.Sdk
 command: manga-translator-gtk
 
+# NVIDIA / CUDA driver extension for GPU compute
+add-extensions:
+  org.freedesktop.Platform.GL:
+    directory: lib/GL
+    version: "1.4"
+    versions: 1.4;1.0
+    no-autodownload: true
+    autodelete: false
+    add-ld-path: lib
+    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
+    download-if: active-gl-driver
+    enable-if: active-gl-driver
+
 finish-args:
-  # GPU acceleration
-  - --device=dri
+  # GPU acceleration (all devices for CUDA access)
+  - --device=all
   # X11 / Wayland
   - --share=ipc
   - --socket=fallback-x11
@@ -26,6 +39,9 @@ modules:
   - name: manga-translator-gtk
     buildsystem: simple
     build-commands:
+      # Create GL extension directory for NVIDIA driver
+      - mkdir -p ${FLATPAK_DEST}/lib/GL
+
       # Binary (pre-built on host with rustup)
       - install -Dm755 manga-translator-gtk/target/release/manga-translator-gtk
         ${FLATPAK_DEST}/bin/manga-translator-gtk
