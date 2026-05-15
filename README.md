@@ -369,7 +369,7 @@ manga-image-translator-gui/
 │       ↕          file_browser               │
 │  ipc_bridge ←   preview                     │
 │       ↕          dialogs                    │
-│       ↕          css (dynamic styles)        │
+│       ↕          css (dynamic styles)       │
 ├───────┬─────────────────────────────────────┤
 │ stdin/stdout (JSON)                         │
 ├───────┴─────────────────────────────────────┤
