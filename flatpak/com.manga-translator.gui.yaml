@@ -1,4 +1,4 @@
-app-id: io.github.manga_translator_gtk
+app-id: com.manga-translator.gui
 runtime: org.gnome.Platform
 runtime-version: "50"
 sdk: org.gnome.Sdk
@@ -24,33 +24,33 @@ modules:
     build-commands:
       # Binary (pre-built on host with rustup)
       - install -Dm755 manga-translator-gtk/target/release/manga-translator-gtk
-        ${FLATPAK_DEST}/bin/manga-translator-gtk
+          ${FLATPAK_DEST}/bin/manga-translator-gtk
 
       # Desktop file (renamed to app-id for Flatpak convention)
       - install -Dm644 packaging/manga-translator-gtk.desktop
-        ${FLATPAK_DEST}/share/applications/io.github.manga_translator_gtk.desktop
-      - sed -i 's|^Icon=.*|Icon=io.github.manga_translator_gtk|'
-        ${FLATPAK_DEST}/share/applications/io.github.manga_translator_gtk.desktop
+          ${FLATPAK_DEST}/share/applications/com.manga-translator.gui.desktop
+      - sed -i 's|^Icon=.*|Icon=com.manga-translator.gui|'
+          ${FLATPAK_DEST}/share/applications/com.manga-translator.gui.desktop
 
       # Icon (renamed to app-id for Flatpak convention)
       - install -Dm644 packaging/manga-translator-gtk.svg
-        ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/io.github.manga_translator_gtk.svg
-      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-64x64.png
-        ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/io.github.manga_translator_gtk.png
-      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-128x128.png
-        ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/io.github.manga_translator_gtk.png
-      - install -Dm644 packaging/icons/io.github.manga_translator_gtk-256x256.png
-        ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/io.github.manga_translator_gtk.png
+          ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/com.manga-translator.gui.svg
+      - install -Dm644 packaging/icons/com.manga-translator.gui-64x64.png
+          ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/com.manga-translator.gui.png
+      - install -Dm644 packaging/icons/com.manga-translator.gui-128x128.png
+          ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/com.manga-translator.gui.png
+      - install -Dm644 packaging/icons/com.manga-translator.gui-256x256.png
+          ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.manga-translator.gui.png
       # Update icon theme cache for appstreamcli
       - gtk-update-icon-cache ${FLATPAK_DEST}/share/icons/hicolor || true
 
       # AppStream metainfo
       - install -Dm644 packaging/metainfo/io.github.manga_translator_gtk.appdata.xml
-        ${FLATPAK_DEST}/share/metainfo/io.github.manga_translator_gtk.appdata.xml
+          ${FLATPAK_DEST}/share/metainfo/com.manga-translator.gui.metainfo.xml
 
       # Python backend
       - install -Dm644 manga-translator-gtk/backend/server.py
-        ${FLATPAK_DEST}/share/manga-translator-gtk/backend/server.py
+          ${FLATPAK_DEST}/share/manga-translator-gtk/backend/server.py
 
       # Locale (.mo files)
       - |
